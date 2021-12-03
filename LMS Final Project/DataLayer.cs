@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Data.SqlClient;
+
 using System.Data;
+using System.Data.SqlClient;
 
 namespace LMS_Final_Project
 {
-    class DataLayer
+    public class DataLayer
     {
         private string connectionString = "";
         SqlConnection conn;
-        
-        public DataLayer(string connectionString)
+
+        public DataLayer(string connString)
         {
-            this.connectionString = connectionString;
+            this.connectionString = connString;
         }
 
         public void CreateSchema()
