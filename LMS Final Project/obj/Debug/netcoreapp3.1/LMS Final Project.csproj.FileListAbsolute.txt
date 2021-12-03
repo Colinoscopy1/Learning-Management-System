@@ -1,9 +1,3 @@
-C:\Users\colin.carrier\source\repos\LMS Final Project\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.csproj.AssemblyReference.cache
-C:\Users\colin.carrier\source\repos\LMS Final Project\LMS Final Project\obj\Debug\netcoreapp3.1\LMS_Final_Project.Form1.resources
-C:\Users\colin.carrier\source\repos\LMS Final Project\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.csproj.GenerateResource.cache
-C:\Users\colin.carrier\source\repos\LMS Final Project\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.AssemblyInfoInputs.cache
-C:\Users\colin.carrier\source\repos\LMS Final Project\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.AssemblyInfo.cs
-C:\Users\colin.carrier\source\repos\LMS Final Project\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.csproj.CoreCompileInputs.cache
 C:\Users\gerrit.kat\Desktop\PROG 210\Final Project\Learning-Management-System\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.csproj.AssemblyReference.cache
 C:\Users\gerrit.kat\Desktop\PROG 210\Final Project\Learning-Management-System\LMS Final Project\obj\Debug\netcoreapp3.1\LMS_Final_Project.Form1.resources
 C:\Users\gerrit.kat\Desktop\PROG 210\Final Project\Learning-Management-System\LMS Final Project\obj\Debug\netcoreapp3.1\LMS_Final_Project.LoginRegister.resources
@@ -11,3 +5,10 @@ C:\Users\gerrit.kat\Desktop\PROG 210\Final Project\Learning-Management-System\LM
 C:\Users\gerrit.kat\Desktop\PROG 210\Final Project\Learning-Management-System\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.AssemblyInfoInputs.cache
 C:\Users\gerrit.kat\Desktop\PROG 210\Final Project\Learning-Management-System\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.AssemblyInfo.cs
 C:\Users\gerrit.kat\Desktop\PROG 210\Final Project\Learning-Management-System\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.csproj.CoreCompileInputs.cache
+C:\Users\colin.carrier\source\repos\LMS Final Project\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.csproj.AssemblyReference.cache
+C:\Users\colin.carrier\source\repos\LMS Final Project\LMS Final Project\obj\Debug\netcoreapp3.1\LMS_Final_Project.Form1.resources
+C:\Users\colin.carrier\source\repos\LMS Final Project\LMS Final Project\obj\Debug\netcoreapp3.1\LMS_Final_Project.LoginRegister.resources
+C:\Users\colin.carrier\source\repos\LMS Final Project\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.csproj.GenerateResource.cache
+C:\Users\colin.carrier\source\repos\LMS Final Project\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.AssemblyInfoInputs.cache
+C:\Users\colin.carrier\source\repos\LMS Final Project\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.AssemblyInfo.cs
+C:\Users\colin.carrier\source\repos\LMS Final Project\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.csproj.CoreCompileInputs.cache
