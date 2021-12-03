@@ -19,12 +19,12 @@ namespace LMS_Final_Project
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-
+            LoginRegister lr = new LoginRegister("Login");
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-
+            LoginRegister lr = new LoginRegister("Register");
         }
     }
 }
