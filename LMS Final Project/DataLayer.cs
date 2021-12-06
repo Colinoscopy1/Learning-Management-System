@@ -200,7 +200,7 @@ namespace LMS_Final_Project
 
 		public void CreateEmployee(string fname, string lname, string email, string officenum, string phone)
         {
-			string createEmployeeQuery = @"INSERT INTO Employees VALUES (@fname, @lname, @email, @officenum, @phone)";
+			string createEmployeeQuery = @"INSERT INTO Employees VALUES (@fname, @lname, @officenum, @email,  @phone)";
 
 			conn = new SqlConnection(connectionString);
 			SqlCommand cmd = new SqlCommand(createEmployeeQuery, conn);
