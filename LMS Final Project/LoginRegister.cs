@@ -10,18 +10,21 @@ namespace LMS_Final_Project
 {
     public partial class LoginRegister : Form
     {
-        public LoginRegister(string type)
+        public LoginRegister()
         {
             InitializeComponent();
 
-            this.Text = type;
-            btnGo.Text = type;
+            btnGo.Text = "Login";
+        }
 
-            if (type == "Login")
-            {
-                lblConfirmPass.Visible = false;
-                txtConfirmPass.Visible = false;
-            }
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnGo_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

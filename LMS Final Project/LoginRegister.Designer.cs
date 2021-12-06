@@ -33,8 +33,6 @@ namespace LMS_Final_Project
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.lblPassword = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
-            this.txtConfirmPass = new System.Windows.Forms.TextBox();
-            this.lblConfirmPass = new System.Windows.Forms.Label();
             this.btnGo = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -75,59 +73,41 @@ namespace LMS_Final_Project
             this.txtPassword.Size = new System.Drawing.Size(175, 29);
             this.txtPassword.TabIndex = 3;
             // 
-            // txtConfirmPass
-            // 
-            this.txtConfirmPass.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtConfirmPass.Location = new System.Drawing.Point(176, 82);
-            this.txtConfirmPass.Name = "txtConfirmPass";
-            this.txtConfirmPass.Size = new System.Drawing.Size(175, 29);
-            this.txtConfirmPass.TabIndex = 5;
-            // 
-            // lblConfirmPass
-            // 
-            this.lblConfirmPass.AutoSize = true;
-            this.lblConfirmPass.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblConfirmPass.Location = new System.Drawing.Point(16, 85);
-            this.lblConfirmPass.Name = "lblConfirmPass";
-            this.lblConfirmPass.Size = new System.Drawing.Size(140, 21);
-            this.lblConfirmPass.TabIndex = 4;
-            this.lblConfirmPass.Text = "Confirm Password:";
-            // 
             // btnGo
             // 
             this.btnGo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnGo.Location = new System.Drawing.Point(273, 117);
+            this.btnGo.Location = new System.Drawing.Point(273, 82);
             this.btnGo.Name = "btnGo";
             this.btnGo.Size = new System.Drawing.Size(78, 35);
             this.btnGo.TabIndex = 6;
             this.btnGo.Text = "Register";
             this.btnGo.UseVisualStyleBackColor = true;
+            this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
             // 
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnCancel.Location = new System.Drawing.Point(176, 117);
+            this.btnCancel.Location = new System.Drawing.Point(176, 82);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(78, 35);
             this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // LoginRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(368, 165);
+            this.ClientSize = new System.Drawing.Size(368, 131);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnGo);
-            this.Controls.Add(this.txtConfirmPass);
-            this.Controls.Add(this.lblConfirmPass);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.lblUsername);
             this.Name = "LoginRegister";
-            this.Text = "LoginRegister";
+            this.Text = "Login";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -139,8 +119,6 @@ namespace LMS_Final_Project
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.TextBox txtPassword;
-        private System.Windows.Forms.TextBox txtConfirmPass;
-        private System.Windows.Forms.Label lblConfirmPass;
         private System.Windows.Forms.Button btnGo;
         private System.Windows.Forms.Button btnCancel;
     }
