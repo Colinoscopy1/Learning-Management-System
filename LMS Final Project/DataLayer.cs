@@ -253,7 +253,7 @@ namespace LMS_Final_Project
          
 		public void CreateEmployeeAccount(string username, string password, int employeeid, int admin)
         {
-			string createEmployeeAccount = @"INSERT INTO StudentAccounts VALUES (@username, CONVERT (VARCHAR(64), HASHBYTES('SHA2_256', @password), 2), @employeeid, @admin)";
+			string createEmployeeAccount = @"INSERT INTO EmployeeAccounts VALUES (@username, CONVERT (VARCHAR(64), HASHBYTES('SHA2_256', @password), 2), @employeeid, @admin)";
 
 			conn = new SqlConnection(connectionString);
 			SqlCommand cmd = new SqlCommand(createEmployeeAccount, conn);
