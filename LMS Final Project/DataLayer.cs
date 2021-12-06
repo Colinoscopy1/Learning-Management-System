@@ -229,7 +229,7 @@ namespace LMS_Final_Project
         {
 			int ret = 0;
 
-			string getEmployeeIDQuery = $@"SELECT EmployeeID from Students WHERE Email = '{email}'";
+			string getEmployeeIDQuery = $@"SELECT EmployeeID from Employees WHERE Email = '{email}'";
 
 			conn = new SqlConnection(connectionString);
 			SqlCommand cmd = new SqlCommand(getEmployeeIDQuery, conn);
