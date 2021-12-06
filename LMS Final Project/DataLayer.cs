@@ -146,9 +146,9 @@ namespace LMS_Final_Project
             }
         }
 
-		public void CreateEmployee(string fname, string lname, string email, string officenum, string phone, int bit)
+		public void CreateEmployee(string fname, string lname, string email, string officenum, string phone)
         {
-			string createEmployeeQuery = @"INSERT INTO Employees VALUES (@fname, @lname, @email, @officenum, @phone, @bit)";
+			string createEmployeeQuery = @"INSERT INTO Employees VALUES (@fname, @lname, @email, @officenum, @phone)";
 
 			conn = new SqlConnection(connectionString);
 			SqlCommand cmd = new SqlCommand(createEmployeeQuery, conn);
@@ -203,7 +203,24 @@ namespace LMS_Final_Project
 
 		public void CreateStudentAccount(int studentid, string username, string password)
         {
-			string createStudentAccount = @"INSERT INTO StudentAccounts VALUES ()";
+			string createStudentAccount = @"INSERT INTO StudentAccounts VALUES (@studentid, @username, @password)";
+
+			conn = new SqlConnection(connectionString);
+			SqlCommand cmd = new SqlCommand(createStudentAccount, conn);
+
+            try
+            {
+				conn.Open();
+				cmd.ExecuteNonQuery();
+            }
+			catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+				conn.Close();
+            }
         }
            
     }
