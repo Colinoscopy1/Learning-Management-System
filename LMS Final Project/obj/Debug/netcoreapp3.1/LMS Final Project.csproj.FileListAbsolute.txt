@@ -54,3 +54,5 @@ C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final
 C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.dll
 C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.pdb
 C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.genruntimeconfig.cache
+C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.csproj.AssemblyReference.cache
+C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\obj\Debug\netcoreapp3.1\LMS_Final_Project.RegisterEmployee.resources
