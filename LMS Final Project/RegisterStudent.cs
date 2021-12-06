@@ -65,14 +65,13 @@ namespace LMS_Final_Project
             }
 
             int studentID = d.GetStudentIdbyEmail(email);
-            List<string> characters = new List<string>();
             string username = "";
 
             if (txtFname.Text.Length > 12)
             {
                 for (int i = 0; i < 12; i++)
                 {
-                    username += txtFname.Text.Split()[i];
+                    username += txtFname.Text.ToCharArray()[i];
                 }
             }
             else
@@ -86,7 +85,7 @@ namespace LMS_Final_Project
             {
                 for (int i = 0; i < 13; i++)
                 {
-                    username += txtLname.Text.Split()[i];
+                    username += txtLname.Text.ToCharArray()[i];
                 }
             }
             else

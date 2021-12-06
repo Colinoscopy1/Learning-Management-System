@@ -177,7 +177,7 @@ namespace LMS_Final_Project
         {
 			int ret = 0;
 
-			string getIDquery = $@"SELECT StudentID from Students WHERE Email = {email}";
+			string getIDquery = $@"SELECT StudentID from Students WHERE Email = '{email}'";
 
 			conn = new SqlConnection(connectionString);
 			SqlCommand cmd = new SqlCommand(getIDquery, conn);
@@ -185,7 +185,7 @@ namespace LMS_Final_Project
 			try
 			{
 				conn.Open();
-				ret = (int)cmd.ExecuteScalar();
+				ret = Convert.ToInt32(cmd.ExecuteScalar());
 			}
 			catch (Exception ex)
 			{
@@ -202,10 +202,13 @@ namespace LMS_Final_Project
 
 		public void CreateStudentAccount(int studentid, string username, string password)
         {
-			string createStudentAccount = @"INSERT INTO StudentAccounts VALUES (@studentid, @username, CONVERT (VARCHAR(64), HASHBYTES('SHA2_256', @password), 2))";
+			string createStudentAccount = @"INSERT INTO StudentAccounts VALUES (@username, @studentid, CONVERT (VARCHAR(64), HASHBYTES('SHA2_256', @password), 2))";
 
 			conn = new SqlConnection(connectionString);
 			SqlCommand cmd = new SqlCommand(createStudentAccount, conn);
+			cmd.Parameters.AddWithValue("@studentid", studentid);
+			cmd.Parameters.AddWithValue("@username", username);
+			cmd.Parameters.AddWithValue("@password", password);
 
             try
             {
