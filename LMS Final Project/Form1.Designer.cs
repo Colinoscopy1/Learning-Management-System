@@ -63,7 +63,7 @@ namespace LMS_Final_Project
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.btnLogin);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Welcome";
             this.ResumeLayout(false);
 
         }
