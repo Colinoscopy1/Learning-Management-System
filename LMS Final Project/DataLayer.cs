@@ -146,6 +146,58 @@ namespace LMS_Final_Project
             }
         }
 
+		public int GetStudentIdbyEmail(string email)
+		{
+			int ret = 0;
+
+			string getIDquery = $@"SELECT StudentID from Students WHERE Email = '{email}'";
+
+			conn = new SqlConnection(connectionString);
+			SqlCommand cmd = new SqlCommand(getIDquery, conn);
+
+			try
+			{
+				conn.Open();
+				ret = Convert.ToInt32(cmd.ExecuteScalar());
+			}
+			catch (Exception ex)
+			{
+				System.Windows.Forms.MessageBox.Show(ex.ToString());
+			}
+			finally
+			{
+				conn.Close();
+			}
+
+			return ret;
+
+		}
+
+		public void CreateStudentAccount(int studentid, string username, string password)
+		{
+			string createStudentAccount = @"INSERT INTO StudentAccounts VALUES (@username, @studentid, CONVERT (VARCHAR(64), HASHBYTES('SHA2_256', @password), 2))";
+
+			conn = new SqlConnection(connectionString);
+			SqlCommand cmd = new SqlCommand(createStudentAccount, conn);
+			cmd.Parameters.AddWithValue("@studentid", studentid);
+			cmd.Parameters.AddWithValue("@username", username);
+			cmd.Parameters.AddWithValue("@password", password);
+
+			try
+			{
+				conn.Open();
+				cmd.ExecuteNonQuery();
+			}
+			catch (Exception ex)
+			{
+				System.Windows.Forms.MessageBox.Show(ex.ToString());
+			}
+			finally
+			{
+				conn.Close();
+			}
+		}
+
 		public void CreateEmployee(string fname, string lname, string email, string officenum, string phone)
         {
 			string createEmployeeQuery = @"INSERT INTO Employees VALUES (@fname, @lname, @email, @officenum, @phone)";
@@ -173,14 +225,14 @@ namespace LMS_Final_Project
 			}
 		}
 
-		public int GetStudentIdbyEmail(string email)
+		public int GetEmployeeIDbyEmail(string email)
         {
 			int ret = 0;
 
-			string getIDquery = $@"SELECT StudentID from Students WHERE Email = '{email}'";
+			string getEmployeeIDQuery = $@"SELECT EmployeeID from Students WHERE Email = '{email}'";
 
 			conn = new SqlConnection(connectionString);
-			SqlCommand cmd = new SqlCommand(getIDquery, conn);
+			SqlCommand cmd = new SqlCommand(getEmployeeIDQuery, conn);
 
 			try
 			{
@@ -197,34 +249,33 @@ namespace LMS_Final_Project
 			}
 
 			return ret;
-
 		}
-
-		public void CreateStudentAccount(int studentid, string username, string password)
+         
+		public void CreateEmployeeAccount(string username, string password, int employeeid, int admin)
         {
-			string createStudentAccount = @"INSERT INTO StudentAccounts VALUES (@username, @studentid, CONVERT (VARCHAR(64), HASHBYTES('SHA2_256', @password), 2))";
+			string createEmployeeAccount = @"INSERT INTO StudentAccounts VALUES (@username, CONVERT (VARCHAR(64), HASHBYTES('SHA2_256', @password), 2), @employeeid, @admin)";
 
 			conn = new SqlConnection(connectionString);
-			SqlCommand cmd = new SqlCommand(createStudentAccount, conn);
-			cmd.Parameters.AddWithValue("@studentid", studentid);
+			SqlCommand cmd = new SqlCommand(createEmployeeAccount, conn);
+			cmd.Parameters.AddWithValue("@employeeid", employeeid);
 			cmd.Parameters.AddWithValue("@username", username);
 			cmd.Parameters.AddWithValue("@password", password);
+			cmd.Parameters.AddWithValue("@admin", admin);
 
-            try
-            {
+			try
+			{
 				conn.Open();
 				cmd.ExecuteNonQuery();
-            }
+			}
 			catch (Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.ToString());
-            }
-            finally
-            {
+			{
+				System.Windows.Forms.MessageBox.Show(ex.ToString());
+			}
+			finally
+			{
 				conn.Close();
-            }
-        }
-           
+			}
+		}
     }
 
 }
