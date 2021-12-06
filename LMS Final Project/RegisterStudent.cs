@@ -94,7 +94,7 @@ namespace LMS_Final_Project
                 username += txtLname.Text;
             }
 
-            d.CreateStudentAccount(studentID, username, )
+            d.CreateStudentAccount(studentID, username, password);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

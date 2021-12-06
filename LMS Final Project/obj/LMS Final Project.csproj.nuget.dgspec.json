@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\colin.carrier\\Desktop\\PROG210 Repo\\Learning-Management-System\\LMS Final Project\\LMS Final Project.csproj": {}
+    "C:\\Users\\gerrit.kat\\Desktop\\PROG 210\\Final Project\\Learning-Management-System\\LMS Final Project\\LMS Final Project.csproj": {}
   },
   "projects": {
-    "C:\\Users\\colin.carrier\\Desktop\\PROG210 Repo\\Learning-Management-System\\LMS Final Project\\LMS Final Project.csproj": {
+    "C:\\Users\\gerrit.kat\\Desktop\\PROG 210\\Final Project\\Learning-Management-System\\LMS Final Project\\LMS Final Project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\colin.carrier\\Desktop\\PROG210 Repo\\Learning-Management-System\\LMS Final Project\\LMS Final Project.csproj",
+        "projectUniqueName": "C:\\Users\\gerrit.kat\\Desktop\\PROG 210\\Final Project\\Learning-Management-System\\LMS Final Project\\LMS Final Project.csproj",
         "projectName": "LMS Final Project",
-        "projectPath": "C:\\Users\\colin.carrier\\Desktop\\PROG210 Repo\\Learning-Management-System\\LMS Final Project\\LMS Final Project.csproj",
-        "packagesPath": "C:\\Users\\colin.carrier\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\colin.carrier\\Desktop\\PROG210 Repo\\Learning-Management-System\\LMS Final Project\\obj\\",
+        "projectPath": "C:\\Users\\gerrit.kat\\Desktop\\PROG 210\\Final Project\\Learning-Management-System\\LMS Final Project\\LMS Final Project.csproj",
+        "packagesPath": "C:\\Users\\gerrit.kat\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\gerrit.kat\\Desktop\\PROG 210\\Final Project\\Learning-Management-System\\LMS Final Project\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\colin.carrier\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\gerrit.kat\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
