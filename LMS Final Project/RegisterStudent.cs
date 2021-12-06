@@ -65,8 +65,36 @@ namespace LMS_Final_Project
             }
 
             int studentID = d.GetStudentIdbyEmail(email);
+            List<string> characters = new List<string>();
+            string username = "";
 
+            if (txtFname.Text.Length > 12)
+            {
+                for (int i = 0; i < 12; i++)
+                {
+                    username += txtFname.Text.Split()[i];
+                }
+            }
+            else
+            {
+                username += txtFname.Text;
+            }
 
+            username += ".";
+
+            if (txtLname.Text.Length > 13)
+            {
+                for (int i = 0; i < 13; i++)
+                {
+                    username += txtLname.Text.Split()[i];
+                }
+            }
+            else
+            {
+                username += txtLname.Text;
+            }
+
+            d.CreateStudentAccount(studentID, username, )
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

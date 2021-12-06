@@ -157,7 +157,6 @@ namespace LMS_Final_Project
 			cmd.Parameters.AddWithValue("@email", email);
 			cmd.Parameters.AddWithValue("@officenum", officenum);
 			cmd.Parameters.AddWithValue("@phone", phone);
-			cmd.Parameters.AddWithValue("@bit", bit);
 
 			try
 			{
@@ -203,7 +202,7 @@ namespace LMS_Final_Project
 
 		public void CreateStudentAccount(int studentid, string username, string password)
         {
-			string createStudentAccount = @"INSERT INTO StudentAccounts VALUES (@studentid, @username, @password)";
+			string createStudentAccount = @"INSERT INTO StudentAccounts VALUES (@studentid, @username, CONVERT (VARCHAR(64), HASHBYTES('SHA2_256', @password), 2))";
 
 			conn = new SqlConnection(connectionString);
 			SqlCommand cmd = new SqlCommand(createStudentAccount, conn);
