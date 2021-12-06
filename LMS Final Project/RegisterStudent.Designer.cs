@@ -33,8 +33,6 @@ namespace LMS_Final_Project
             this.txtFname = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtLname = new System.Windows.Forms.TextBox();
-            this.lblYourUser = new System.Windows.Forms.Label();
-            this.txtUsername = new System.Windows.Forms.TextBox();
             this.txtPass = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtConfirmPass = new System.Windows.Forms.TextBox();
@@ -79,26 +77,8 @@ namespace LMS_Final_Project
             this.txtLname.Location = new System.Drawing.Point(158, 50);
             this.txtLname.Name = "txtLname";
             this.txtLname.Size = new System.Drawing.Size(227, 29);
-            this.txtLname.TabIndex = 3;
-            // 
-            // lblYourUser
-            // 
-            this.lblYourUser.AutoSize = true;
-            this.lblYourUser.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblYourUser.Location = new System.Drawing.Point(12, 123);
-            this.lblYourUser.Name = "lblYourUser";
-            this.lblYourUser.Size = new System.Drawing.Size(84, 21);
-            this.lblYourUser.TabIndex = 4;
-            this.lblYourUser.Text = "Username:";
-            // 
-            // txtUsername
-            // 
-            this.txtUsername.Enabled = false;
-            this.txtUsername.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtUsername.Location = new System.Drawing.Point(158, 120);
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(227, 29);
-            this.txtUsername.TabIndex = 5;
+            this.txtLname.TabIndex = 2;
+            this.txtLname.Leave += new System.EventHandler(this.txtLname_Leave);
             // 
             // txtPass
             // 
@@ -108,7 +88,7 @@ namespace LMS_Final_Project
             this.txtPass.Name = "txtPass";
             this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(227, 29);
-            this.txtPass.TabIndex = 7;
+            this.txtPass.TabIndex = 5;
             // 
             // label3
             // 
@@ -128,7 +108,7 @@ namespace LMS_Final_Project
             this.txtConfirmPass.Name = "txtConfirmPass";
             this.txtConfirmPass.PasswordChar = '*';
             this.txtConfirmPass.Size = new System.Drawing.Size(227, 29);
-            this.txtConfirmPass.TabIndex = 9;
+            this.txtConfirmPass.TabIndex = 6;
             // 
             // label4
             // 
@@ -146,7 +126,7 @@ namespace LMS_Final_Project
             this.textBox1.Location = new System.Drawing.Point(158, 85);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(227, 29);
-            this.textBox1.TabIndex = 11;
+            this.textBox1.TabIndex = 3;
             // 
             // label5
             // 
@@ -164,7 +144,7 @@ namespace LMS_Final_Project
             this.btnRegister.Location = new System.Drawing.Point(286, 225);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(99, 33);
-            this.btnRegister.TabIndex = 12;
+            this.btnRegister.TabIndex = 8;
             this.btnRegister.Text = "Register";
             this.btnRegister.UseVisualStyleBackColor = true;
             // 
@@ -174,7 +154,7 @@ namespace LMS_Final_Project
             this.btnCancel.Location = new System.Drawing.Point(158, 225);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(99, 33);
-            this.btnCancel.TabIndex = 13;
+            this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
@@ -191,8 +171,6 @@ namespace LMS_Final_Project
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtPass);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtUsername);
-            this.Controls.Add(this.lblYourUser);
             this.Controls.Add(this.txtLname);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtFname);
@@ -210,8 +188,6 @@ namespace LMS_Final_Project
         private System.Windows.Forms.TextBox txtFname;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtLname;
-        private System.Windows.Forms.Label lblYourUser;
-        private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.TextBox txtPass;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtConfirmPass;

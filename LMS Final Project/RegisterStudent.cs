@@ -14,5 +14,10 @@ namespace LMS_Final_Project
         {
             InitializeComponent();
         }
+
+        private void txtLname_Leave(object sender, EventArgs e)
+        {
+
+        }
     }
 }
