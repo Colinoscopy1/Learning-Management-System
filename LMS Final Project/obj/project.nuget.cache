@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "y8z2cvUFdeH+gXGNNCa/TeYIgg1lRs5PNyRovdSGaXxk9z+Q2J2aE8aHn/jJw4YTg2CB7Vs8SdT1ZIPhzmdVzw==",
+  "dgSpecHash": "BpR3cY7Z+uvrxaIePo/JWredrOPrtLB5NefA7st2PftboWpxoX1jCuEvzCzm32h+E4vIHwFE1waTssKMChIDUg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\colin.carrier\\source\\repos\\LMS Final Project\\LMS Final Project\\LMS Final Project.csproj",
+  "projectFilePath": "C:\\Users\\colin.carrier\\Desktop\\PROG210 Repo\\Learning-Management-System\\LMS Final Project\\LMS Final Project.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\colin.carrier\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\colin.carrier\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
