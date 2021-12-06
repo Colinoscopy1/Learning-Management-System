@@ -96,7 +96,7 @@ namespace LMS_Final_Project
 					,[Is_Admin])
 					VALUES
 					 ('Admin',
-					  'password',
+					  CONVERT (VARCHAR(64), HASHBYTES('SHA2_256', 'password'), 2),
 					  '0',
 					  1);
 
