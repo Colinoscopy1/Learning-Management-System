@@ -63,6 +63,10 @@ namespace LMS_Final_Project
             {
                 MessageBox.Show(ex.Message);
             }
+
+            int studentID = d.GetStudentIdbyEmail(email);
+
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
