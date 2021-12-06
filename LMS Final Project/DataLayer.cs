@@ -89,6 +89,16 @@ namespace LMS_Final_Project
 					[Password] [varchar](64) NOT NULL
 					);
 
+				    INSERT INTO [dbo].[EmployeeAccounts]
+					([Username]
+					,[Password]
+					,[EmployeeID]
+					,[Is_Admin])
+					VALUES
+					 ('Admin',
+					  'password',
+					  '1',
+					  1);
 
                      ";
 
