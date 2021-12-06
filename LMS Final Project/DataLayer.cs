@@ -97,7 +97,7 @@ namespace LMS_Final_Project
 					VALUES
 					 ('Admin',
 					  'password',
-					  '1',
+					  '0',
 					  1);
 
                      ";
