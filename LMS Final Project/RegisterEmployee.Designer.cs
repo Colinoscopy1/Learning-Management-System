@@ -57,6 +57,7 @@ namespace LMS_Final_Project
             this.btnCancel.TabIndex = 8;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnRegister
             // 
@@ -67,6 +68,7 @@ namespace LMS_Final_Project
             this.btnRegister.TabIndex = 9;
             this.btnRegister.Text = "Register";
             this.btnRegister.UseVisualStyleBackColor = true;
+            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
             // txtEmail
             // 
@@ -88,7 +90,6 @@ namespace LMS_Final_Project
             // 
             // txtConfirmPass
             // 
-            this.txtConfirmPass.Enabled = false;
             this.txtConfirmPass.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtConfirmPass.Location = new System.Drawing.Point(158, 214);
             this.txtConfirmPass.Name = "txtConfirmPass";
@@ -108,7 +109,6 @@ namespace LMS_Final_Project
             // 
             // txtPass
             // 
-            this.txtPass.Enabled = false;
             this.txtPass.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtPass.Location = new System.Drawing.Point(158, 179);
             this.txtPass.Name = "txtPass";
