@@ -1,14 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "3r2RnmuumELQ8eIICwKD/5GOduQ9c2BHPgQwbEnSILyw4+wu3tS1BaJZ/oi2k78CMmm15xPWq2lGEkqljGrUFw==",
   "success": true,
   "projectFilePath": "C:\\Users\\gerrit.kat\\Desktop\\PROG 210\\Final Project\\Learning-Management-System\\LMS Final Project\\LMS Final Project.csproj",
-=======
-  "dgSpecHash": "BpR3cY7Z+uvrxaIePo/JWredrOPrtLB5NefA7st2PftboWpxoX1jCuEvzCzm32h+E4vIHwFE1waTssKMChIDUg==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\colin.carrier\\Desktop\\PROG210 Repo\\Learning-Management-System\\LMS Final Project\\LMS Final Project.csproj",
->>>>>>> 9205bb50df08c059f00ededd3817b1252d9042f4
   "expectedPackageFiles": [
     "C:\\Users\\gerrit.kat\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\gerrit.kat\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
