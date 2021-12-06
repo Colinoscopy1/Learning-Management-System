@@ -110,9 +110,9 @@ namespace LMS_Final_Project
 				cmd.ExecuteNonQuery();
 				
             }
-            catch(Exception ex)
+            catch
             {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
+                //System.Windows.Forms.MessageBox.Show(ex.Message);
             }
             finally
             {
