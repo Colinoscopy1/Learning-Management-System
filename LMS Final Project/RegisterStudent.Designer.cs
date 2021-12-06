@@ -84,7 +84,6 @@ namespace LMS_Final_Project
             // 
             // txtPass
             // 
-            this.txtPass.Enabled = false;
             this.txtPass.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtPass.Location = new System.Drawing.Point(158, 155);
             this.txtPass.Name = "txtPass";
@@ -104,7 +103,6 @@ namespace LMS_Final_Project
             // 
             // txtConfirmPass
             // 
-            this.txtConfirmPass.Enabled = false;
             this.txtConfirmPass.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtConfirmPass.Location = new System.Drawing.Point(158, 190);
             this.txtConfirmPass.Name = "txtConfirmPass";
