@@ -119,8 +119,40 @@ namespace LMS_Final_Project
 				conn.Close();
             }
         }
+
+		public void CreateStudent(string fname, string lname, string email, string phone)
+        {
+			string createStudentQuery = @"INSERT INTO Students (FName, LName, Email, Phone, Is_Approved, Academic_Probation)
+											VALUES (@fname, @lname, @email, @phone, 0, 0)";
+
+			conn = new SqlConnection(connectionString);
+			SqlCommand cmd = new SqlCommand(createStudentQuery, conn);
+			cmd.Parameters.AddWithValue("@fname", fname);
+			cmd.Parameters.AddWithValue("@lname", lname);
+			cmd.Parameters.AddWithValue("@email", email);
+			cmd.Parameters.AddWithValue("@phone", phone);
+
+			try
+            {
+				conn.Open();
+				cmd.ExecuteNonQuery();
+            }
+			catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+				conn.Close();
+            }
+        }
+
+		public void CreateEmployee(string fname, string lname, string email, string officenum, string phone)
+        {
+
+        }
            
     }
 
-    }
+}
 
