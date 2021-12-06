@@ -28,3 +28,28 @@ C:\Users\gerrit.kat\Desktop\PROG 210\Final Project\Learning-Management-System\LM
 C:\Users\gerrit.kat\Desktop\PROG 210\Final Project\Learning-Management-System\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.dll
 C:\Users\gerrit.kat\Desktop\PROG 210\Final Project\Learning-Management-System\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.pdb
 C:\Users\gerrit.kat\Desktop\PROG 210\Final Project\Learning-Management-System\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.genruntimeconfig.cache
+C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.csproj.AssemblyReference.cache
+C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\obj\Debug\netcoreapp3.1\LMS_Final_Project.Form1.resources
+C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\obj\Debug\netcoreapp3.1\LMS_Final_Project.LoginRegister.resources
+C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\obj\Debug\netcoreapp3.1\LMS_Final_Project.RegisterStudent.resources
+C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.csproj.GenerateResource.cache
+C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.AssemblyInfoInputs.cache
+C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.AssemblyInfo.cs
+C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.csproj.CoreCompileInputs.cache
+C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.dll
+C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.pdb
+C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\bin\Debug\netcoreapp3.1\LMS Final Project.exe
+C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\bin\Debug\netcoreapp3.1\LMS Final Project.dll.config
+C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\bin\Debug\netcoreapp3.1\LMS Final Project.deps.json
+C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\bin\Debug\netcoreapp3.1\LMS Final Project.runtimeconfig.json
+C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\bin\Debug\netcoreapp3.1\LMS Final Project.runtimeconfig.dev.json
+C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\bin\Debug\netcoreapp3.1\LMS Final Project.dll
+C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\bin\Debug\netcoreapp3.1\LMS Final Project.pdb
+C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.csproj.CopyComplete
+C:\Users\colin.carrier\Desktop\PROG210 Repo\Learning-Management-System\LMS Final Project\obj\Debug\netcoreapp3.1\LMS Final Project.genruntimeconfig.cache

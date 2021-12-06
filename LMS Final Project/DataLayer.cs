@@ -91,6 +91,23 @@ namespace LMS_Final_Project
 
 
                      ";
+
+			conn = new SqlConnection(connectionString);
+			SqlCommand cmd = new SqlCommand(CreateDataBasequery, conn);
+            try
+            {
+				conn.Open();
+				cmd.ExecuteNonQuery();
+				
+            }
+            catch(Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+				conn.Close();
+            }
         }
            
     }
