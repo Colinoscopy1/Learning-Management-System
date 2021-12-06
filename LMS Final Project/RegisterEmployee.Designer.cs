@@ -208,6 +208,7 @@ namespace LMS_Final_Project
             this.chkAdmin.TabIndex = 27;
             this.chkAdmin.Text = "Administrator?";
             this.chkAdmin.UseVisualStyleBackColor = true;
+            this.chkAdmin.CheckedChanged += new System.EventHandler(this.chkAdmin_CheckedChanged);
             // 
             // RegisterEmployee
             // 

@@ -17,6 +17,7 @@ namespace LMS_Final_Project
         string officeNumber;
         string phone;
         string password;
+        bool admin = false;
 
         DataLayer d;
 
@@ -46,6 +47,7 @@ namespace LMS_Final_Project
                 this.firstName = txtFname.Text;
                 this.lastName = txtLname.Text;
                 this.email = txtEmail.Text;
+                this.officeNumber = txtOfficeNumber.Text;
                 this.phone = txtPhone.Text;
                 this.password = txtPass.Text;
             }
@@ -58,11 +60,58 @@ namespace LMS_Final_Project
             {
                 MessageBox.Show(ex.Message);
             }
+
+            string username = "";
+            int employeeID = d.GetEmployeeIDbyEmail(email);
+
+            if (txtFname.Text.Length > 12)
+            {
+                for (int i = 0; i < 12; i++)
+                {
+                    username += firstName.ToCharArray()[i];
+                }
+            }
+            else
+            {
+                username += firstName;
+            }
+
+            username += ".";
+
+            if (txtLname.Text.Length > 13)
+            {
+                for (int i = 0; i < 13; i++)
+                {
+                    username += lastName.ToCharArray()[i];
+                }
+            }
+            else
+            {
+                username += lastName;
+            }
+
+            int adminBit = 0;
+            if (admin == true)
+                adminBit = 1;
+            else if (admin == false)
+                adminBit = 0;
+
+            d.CreateEmployeeAccount(username, password, employeeID, adminBit);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void chkAdmin_CheckedChanged(object sender, EventArgs e)
+        {
+            if (admin == false)
+                admin = true;
+            else if (admin == true)
+                admin = false;
+
+
         }
     }
 }

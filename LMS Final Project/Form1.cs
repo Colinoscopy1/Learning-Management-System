@@ -46,5 +46,11 @@ namespace LMS_Final_Project
             RegisterStudent rs = new RegisterStudent();
             rs.ShowDialog();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            RegisterEmployee re = new RegisterEmployee();
+            re.ShowDialog();
+        }
     }
 }
