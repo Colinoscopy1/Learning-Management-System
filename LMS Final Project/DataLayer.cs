@@ -82,6 +82,12 @@ namespace LMS_Final_Project
 					[Academic_Probtation] [bit] NOT NULL
 					);
 
+					CREATE TABLE [dbo].[StudentAccounts](
+					[AccountNumber] [int] IDENTITY(1,1) NOT NULL,
+					[Username] [varchar](25) NOT NULL,
+					[StudentID] [int] NOT NULL,
+					[Password] [varchar](64) NOT NULL
+					);
 
 
                      ";
