@@ -41,6 +41,8 @@ namespace LMS_Final_Project
             this.label5 = new System.Windows.Forms.Label();
             this.btnRegister = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtPhone = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -158,11 +160,31 @@ namespace LMS_Final_Project
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(12, 123);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(57, 21);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Phone:";
+            // 
+            // txtPhone
+            // 
+            this.txtPhone.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtPhone.Location = new System.Drawing.Point(158, 120);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(227, 29);
+            this.txtPhone.TabIndex = 4;
+            // 
             // RegisterStudent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(401, 271);
+            this.Controls.Add(this.txtPhone);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.textBox1);
@@ -196,5 +218,7 @@ namespace LMS_Final_Project
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnRegister;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtPhone;
     }
 }
