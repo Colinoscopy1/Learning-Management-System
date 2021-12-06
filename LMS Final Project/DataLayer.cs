@@ -122,8 +122,7 @@ namespace LMS_Final_Project
 
 		public void CreateStudent(string fname, string lname, string email, string phone)
         {
-			string createStudentQuery = @"INSERT INTO Students (FName, LName, Email, Phone, Is_Approved, Academic_Probation)
-											VALUES (@fname, @lname, @email, @phone, 0, 0)";
+			string createStudentQuery = @"INSERT INTO Students VALUES (@fname, @lname, @email, @phone, 0, 0)";
 
 			conn = new SqlConnection(connectionString);
 			SqlCommand cmd = new SqlCommand(createStudentQuery, conn);
@@ -147,9 +146,64 @@ namespace LMS_Final_Project
             }
         }
 
-		public void CreateEmployee(string fname, string lname, string email, string officenum, string phone)
+		public void CreateEmployee(string fname, string lname, string email, string officenum, string phone, int bit)
         {
+			string createEmployeeQuery = @"INSERT INTO Employees VALUES (@fname, @lname, @email, @officenum, @phone, @bit)";
 
+			conn = new SqlConnection(connectionString);
+			SqlCommand cmd = new SqlCommand(createEmployeeQuery, conn);
+			cmd.Parameters.AddWithValue("@fname", fname);
+			cmd.Parameters.AddWithValue("@lname", lname);
+			cmd.Parameters.AddWithValue("@email", email);
+			cmd.Parameters.AddWithValue("@officenum", officenum);
+			cmd.Parameters.AddWithValue("@phone", phone);
+			cmd.Parameters.AddWithValue("@bit", bit);
+
+			try
+			{
+				conn.Open();
+				cmd.ExecuteNonQuery();
+			}
+			catch (Exception ex)
+			{
+				System.Windows.Forms.MessageBox.Show(ex.ToString());
+			}
+			finally
+			{
+				conn.Close();
+			}
+		}
+
+		public int GetStudentIdbyEmail(string email)
+        {
+			int ret = 0;
+
+			string getIDquery = $@"SELECT StudentID from Students WHERE Email = {email}";
+
+			conn = new SqlConnection(connectionString);
+			SqlCommand cmd = new SqlCommand(getIDquery, conn);
+
+			try
+			{
+				conn.Open();
+				ret = (int)cmd.ExecuteScalar();
+			}
+			catch (Exception ex)
+			{
+				System.Windows.Forms.MessageBox.Show(ex.ToString());
+			}
+			finally
+			{
+				conn.Close();
+			}
+
+			return ret;
+
+		}
+
+		public void CreateStudentAccount(int studentid, string username, string password)
+        {
+			string createStudentAccount = @"INSERT INTO StudentAccounts VALUES ()";
         }
            
     }
