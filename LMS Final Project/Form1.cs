@@ -24,11 +24,9 @@ namespace LMS_Final_Project
             InitializeComponent();
             string connectionString = $"server={serverAddress};database={databaseName};user id={userID};password={password}";
 
-            
-
             try
             {
-            DataLayer d = new DataLayer(connectionString);
+                DataLayer d = new DataLayer(connectionString);
                 d.CreateSchema();
             }
             catch
@@ -45,7 +43,8 @@ namespace LMS_Final_Project
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-
+            RegisterStudent rs = new RegisterStudent();
+            rs.ShowDialog();
         }
     }
 }

@@ -19,7 +19,6 @@ namespace LMS_Final_Project
         string password;
 
         DataLayer d;
-        SqlConnection conn;
 
         public RegisterStudent()
         {
@@ -31,9 +30,7 @@ namespace LMS_Final_Project
 
             string connectionString = $"server={serverAddress};database={databaseName};user id={userID};password={password}";
 
-             this.d = new DataLayer(connectionString);
-
-             this.conn = new SqlConnection();
+            this.d = new DataLayer(connectionString);
         }
 
         private void txtLname_Leave(object sender, EventArgs e)
@@ -60,16 +57,11 @@ namespace LMS_Final_Project
 
             try
             {
-                conn.Open();
                 d.CreateStudent(firstName, lastName, email, phone);
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
             }
         }
 
