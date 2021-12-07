@@ -276,7 +276,136 @@ namespace LMS_Final_Project
 				conn.Close();
 			}
 		}
-    }
+
+		public bool CheckStudentApproval(string username, string password)
+        {
+			bool ret = false;
+
+			string studentStatus = @"SELECT Is_Approved FROM Students s JOIN StudentAccounts a WHERE a.Username = @user AND a.Password = 
+										CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', @password), 2)";
+
+			conn = new SqlConnection(connectionString);
+            try
+            {
+				conn.Open();
+				SqlCommand cmd = new SqlCommand(studentStatus, conn);
+				cmd.Parameters.AddWithValue("@user", username);
+				cmd.Parameters.AddWithValue("@password", password);
+				int countRecord = (int)cmd.ExecuteScalar();
+
+				if (countRecord == 0)
+					ret = false;
+				else
+					ret = true;
+            }
+            catch
+            {
+				ret = false;
+            }
+            finally
+            {
+				conn.Close();
+            }
+
+			return ret;
+        }
+
+		public bool StudentLogin(string username, string password)
+        {
+			bool ret = false;
+
+			string studentLoginQuery = @"SELECT COUNT(*) FROM StudentAccounts WHERE Username = @user AND Password = CONVERT(VARCHAR(64), HASHBYTES('SHA2_256',@password), 2)";
+
+			conn = new SqlConnection(connectionString);
+            try
+            {
+				conn.Open();
+				SqlCommand cmd = new SqlCommand(studentLoginQuery, conn);
+				cmd.Parameters.AddWithValue("@user", username);
+				cmd.Parameters.AddWithValue("@password", password);
+				int countRecord = (int)cmd.ExecuteScalar();
+
+				if (countRecord > 0)
+					ret = true;
+				else
+					ret = false;
+            }
+            catch
+            {
+				ret = false;
+            }
+            finally
+            {
+				conn.Close();
+            }
+
+			return ret;
+        }
+
+		public bool CheckAdminStatus(string username, string password)
+        {
+			bool ret = false;
+
+			string checkAdminQuery = @"SELECT Is_Admin FROM EmployeeAccounts WHERE Username = @user and Password = CONVERT(VARCHAR(64), HASHBYTES('SHA2_256',@password), 2)";
+
+			conn = new SqlConnection(connectionString);
+            try
+            {
+				conn.Open();
+				SqlCommand cmd = new SqlCommand(checkAdminQuery, conn);
+				cmd.Parameters.AddWithValue("@user", username);
+				cmd.Parameters.AddWithValue("@password", password);
+				int countRecord = (int)cmd.ExecuteScalar();
+
+				if (countRecord == 1)
+					ret = true;
+				else
+					ret = false;
+            }
+            catch
+            {
+				ret = false;
+            }
+            finally
+            {
+				conn.Close();
+            }
+
+			return ret;
+        }
+
+		public bool EmployeeLogin(string username, string password)
+		{
+			bool ret = false;
+
+			string employeeLoginQuery = @"SELECT COUNT(*) FROM EmployeeAccounts WHERE Username = @user AND Password = CONVERT(VARCHAR(64), HASHBYTES('SHA2_256',@password), 2)";
+
+			conn = new SqlConnection(connectionString);
+			try
+			{
+				conn.Open();
+				SqlCommand cmd = new SqlCommand(employeeLoginQuery, conn);
+				cmd.Parameters.AddWithValue("@user", username);
+				cmd.Parameters.AddWithValue("@password", password);
+				int countRecord = (int)cmd.ExecuteScalar();
+
+				if (countRecord > 0)
+					ret = true;
+				else
+					ret = false;
+			}
+			catch
+			{
+				ret = false;
+			}
+			finally
+			{
+				conn.Close();
+			}
+
+			return ret;
+		}
+	}
 
 }
 
