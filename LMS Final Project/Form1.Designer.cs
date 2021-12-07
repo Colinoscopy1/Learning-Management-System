@@ -32,14 +32,19 @@ namespace LMS_Final_Project
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnRegister = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.grpStudents = new System.Windows.Forms.GroupBox();
+            this.grpEmployees = new System.Windows.Forms.GroupBox();
+            this.btnEmployeeLogin = new System.Windows.Forms.Button();
+            this.grpStudents.SuspendLayout();
+            this.grpEmployees.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLogin
             // 
             this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnLogin.Location = new System.Drawing.Point(12, 12);
+            this.btnLogin.Location = new System.Drawing.Point(6, 28);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(180, 45);
+            this.btnLogin.Size = new System.Drawing.Size(188, 45);
             this.btnLogin.TabIndex = 0;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -48,9 +53,9 @@ namespace LMS_Final_Project
             // btnRegister
             // 
             this.btnRegister.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnRegister.Location = new System.Drawing.Point(12, 63);
+            this.btnRegister.Location = new System.Drawing.Point(6, 88);
             this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(180, 45);
+            this.btnRegister.Size = new System.Drawing.Size(188, 45);
             this.btnRegister.TabIndex = 1;
             this.btnRegister.Text = "Register";
             this.btnRegister.UseVisualStyleBackColor = true;
@@ -58,24 +63,60 @@ namespace LMS_Final_Project
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(39, 130);
+            this.button1.Location = new System.Drawing.Point(6, 88);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(188, 45);
             this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
+            this.button1.Text = "Employee Register";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // grpStudents
+            // 
+            this.grpStudents.Controls.Add(this.btnLogin);
+            this.grpStudents.Controls.Add(this.btnRegister);
+            this.grpStudents.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.grpStudents.Location = new System.Drawing.Point(240, 12);
+            this.grpStudents.Name = "grpStudents";
+            this.grpStudents.Size = new System.Drawing.Size(200, 144);
+            this.grpStudents.TabIndex = 3;
+            this.grpStudents.TabStop = false;
+            this.grpStudents.Text = "Students";
+            // 
+            // grpEmployees
+            // 
+            this.grpEmployees.Controls.Add(this.btnEmployeeLogin);
+            this.grpEmployees.Controls.Add(this.button1);
+            this.grpEmployees.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.grpEmployees.Location = new System.Drawing.Point(12, 12);
+            this.grpEmployees.Name = "grpEmployees";
+            this.grpEmployees.Size = new System.Drawing.Size(200, 144);
+            this.grpEmployees.TabIndex = 4;
+            this.grpEmployees.TabStop = false;
+            this.grpEmployees.Text = "Employees";
+            // 
+            // btnEmployeeLogin
+            // 
+            this.btnEmployeeLogin.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnEmployeeLogin.Location = new System.Drawing.Point(6, 28);
+            this.btnEmployeeLogin.Name = "btnEmployeeLogin";
+            this.btnEmployeeLogin.Size = new System.Drawing.Size(188, 45);
+            this.btnEmployeeLogin.TabIndex = 2;
+            this.btnEmployeeLogin.Text = "Login";
+            this.btnEmployeeLogin.UseVisualStyleBackColor = true;
+            this.btnEmployeeLogin.Click += new System.EventHandler(this.btnEmployeeLogin_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(204, 168);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.btnRegister);
-            this.Controls.Add(this.btnLogin);
+            this.ClientSize = new System.Drawing.Size(455, 166);
+            this.Controls.Add(this.grpEmployees);
+            this.Controls.Add(this.grpStudents);
             this.Name = "Form1";
             this.Text = "Welcome";
+            this.grpStudents.ResumeLayout(false);
+            this.grpEmployees.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -85,6 +126,9 @@ namespace LMS_Final_Project
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnRegister;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox grpStudents;
+        private System.Windows.Forms.GroupBox grpEmployees;
+        private System.Windows.Forms.Button btnEmployeeLogin;
     }
 }
 

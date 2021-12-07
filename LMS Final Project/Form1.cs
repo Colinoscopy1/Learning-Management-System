@@ -38,7 +38,8 @@ namespace LMS_Final_Project
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            LoginRegister lr = new LoginRegister();
+            LoginRegister lr = new LoginRegister(2);
+            lr.ShowDialog();
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
@@ -51,6 +52,12 @@ namespace LMS_Final_Project
         {
             RegisterEmployee re = new RegisterEmployee();
             re.ShowDialog();
+        }
+
+        private void btnEmployeeLogin_Click(object sender, EventArgs e)
+        {
+            LoginRegister lr = new LoginRegister(1);
+            lr.ShowDialog();
         }
     }
 }

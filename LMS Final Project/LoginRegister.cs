@@ -10,11 +10,14 @@ namespace LMS_Final_Project
 {
     public partial class LoginRegister : Form
     {
-        public LoginRegister()
+        int loginType;
+
+        public LoginRegister(int type)
         {
             InitializeComponent();
 
             btnGo.Text = "Login";
+            this.loginType = type;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -24,7 +27,16 @@ namespace LMS_Final_Project
 
         private void btnGo_Click(object sender, EventArgs e)
         {
-
+            //if the account is an employee
+            if (this.loginType == 1)
+            {
+                //put the method(s) for employee query here
+            }
+            //if the account is a student
+            else
+            {
+                //put the method(s) for student query here
+            }
         }
     }
 }
