@@ -32,5 +32,15 @@ namespace LMS_Final_Project
 
             lblWelcome.Text = "Welcome, " + studentName + "!";
         }
+
+        private void btnRegProg_Click(object sender, EventArgs e)
+        {
+            //run a query to populate flowside with a list of items from programs table, clicking on one generates a list of classes in flowmain
+        }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
