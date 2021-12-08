@@ -628,7 +628,7 @@ namespace LMS_Final_Project
         {
 			List<Course> ret = new List<Course>();
 
-			string yourcoursequery = $@"SELECT c.Class_Number, c.ClassName, c.Building, c.Room_Number, c.InstructorID, c.ProgramID FROM ClassRoster r JOIN Classes c 
+			string yourcoursequery = $@"SELECT c.Class_Number, c.Class_Name, c.Building, c.Room_Number, c.InstructorID, c.ProgramID FROM ClassRoster r JOIN Classes c 
 										ON r.Class = c.Class_Number WHERE r.StudentID = @id";
 
 			conn = new SqlConnection(connectionString);
