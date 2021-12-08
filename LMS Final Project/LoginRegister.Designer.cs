@@ -81,7 +81,7 @@ namespace LMS_Final_Project
             this.btnGo.Name = "btnGo";
             this.btnGo.Size = new System.Drawing.Size(78, 35);
             this.btnGo.TabIndex = 6;
-            this.btnGo.Text = "Register";
+            this.btnGo.Text = "Login";
             this.btnGo.UseVisualStyleBackColor = true;
             this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
             // 

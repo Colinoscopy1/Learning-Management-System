@@ -25,7 +25,6 @@ namespace LMS_Final_Project
             InitializeComponent();
 
             connectionString = $"server={serverAddress};database={databaseName};user id={userID};password={password}";
-            btnGo.Text = "Login";
             this.loginType = type;
         }
 
