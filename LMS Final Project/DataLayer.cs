@@ -195,6 +195,32 @@ namespace LMS_Final_Project
 			return ret;
 		}
 
+		public string GetStudentUsernameByEmail(string email)
+		{
+			string ret = "";
+
+			string getIDquery = $@"SELECT Username FROM StudentAccounts a JOIN Students s ON a.StudentID = s.StudentID WHERE s.Email = '{email}'";
+
+			conn = new SqlConnection(connectionString);
+			SqlCommand cmd = new SqlCommand(getIDquery, conn);
+
+			try
+			{
+				conn.Open();
+				ret = cmd.ExecuteScalar().ToString();
+			}
+			catch (Exception ex)
+			{
+				System.Windows.Forms.MessageBox.Show(ex.ToString());
+			}
+			finally
+			{
+				conn.Close();
+			}
+
+			return ret;
+		}
+
 		public string GetStudentNamebyID(int studentID)
         {
 			string ret = "";
@@ -265,6 +291,32 @@ namespace LMS_Final_Project
 			catch (Exception ex)
 			{
 				System.Windows.Forms.MessageBox.Show(ex.Message);
+			}
+			finally
+			{
+				conn.Close();
+			}
+
+			return ret;
+		}
+
+		public string GetEmployeeUsernamebyEmail(string email)
+		{
+			string ret = "";
+
+			string getIDquery = $@"SELECT Username FROM EmployeeAccounts a JOIN Employees e ON a.EmployeeID = s.EmployeeID WHERE s.Email = '{email}'";
+
+			conn = new SqlConnection(connectionString);
+			SqlCommand cmd = new SqlCommand(getIDquery, conn);
+
+			try
+			{
+				conn.Open();
+				ret = cmd.ExecuteScalar().ToString();
+			}
+			catch (Exception ex)
+			{
+				System.Windows.Forms.MessageBox.Show(ex.ToString());
 			}
 			finally
 			{

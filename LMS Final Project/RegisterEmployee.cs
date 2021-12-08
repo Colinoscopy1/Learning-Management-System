@@ -44,12 +44,12 @@ namespace LMS_Final_Project
             }
             else
             {
-                this.firstName = txtFname.Text;
-                this.lastName = txtLname.Text;
-                this.email = txtEmail.Text;
-                this.officeNumber = txtOfficeNumber.Text;
-                this.phone = txtPhone.Text;
-                this.password = txtPass.Text;
+                this.firstName = txtFname.Text.Trim();
+                this.lastName = txtLname.Text.Trim();
+                this.email = txtEmail.Text.Trim();
+                this.officeNumber = txtOfficeNumber.Text.Trim();
+                this.phone = txtPhone.Text.Trim();
+                this.password = txtPass.Text.Trim();
             }
 
             try
@@ -78,9 +78,9 @@ namespace LMS_Final_Project
 
             username += ".";
 
-            if (txtLname.Text.Length > 13)
+            if (txtLname.Text.Length > 12)
             {
-                for (int i = 0; i < 13; i++)
+                for (int i = 0; i < 12; i++)
                 {
                     username += lastName.ToCharArray()[i];
                 }

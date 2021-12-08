@@ -71,29 +71,33 @@ namespace LMS_Final_Project
             {
                 for (int i = 0; i < 12; i++)
                 {
-                    username += txtFname.Text.ToCharArray()[i];
+                    username += txtFname.Text.Trim().ToCharArray()[i];
                 }
             }
             else
             {
-                username += txtFname.Text;
+                username += txtFname.Text.Trim();
             }
 
             username += ".";
 
-            if (txtLname.Text.Length > 13)
+            if (txtLname.Text.Length > 12)
             {
-                for (int i = 0; i < 13; i++)
+                for (int i = 0; i < 12; i++)
                 {
-                    username += txtLname.Text.ToCharArray()[i];
+                    username += txtLname.Text.Trim().ToCharArray()[i];
                 }
             }
             else
             {
-                username += txtLname.Text;
+                username += txtLname.Text.Trim();
             }
 
             d.CreateStudentAccount(studentID, username, password);
+
+            string tmp = d.GetStudentUsernameByEmail(email);
+
+            MessageBox.Show("Your username is: " + tmp);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
