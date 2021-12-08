@@ -49,11 +49,21 @@ namespace LMS_Final_Project
 
         private void lstContainer_SelectedIndexChanged(object sender, EventArgs e)
         {
-            flowMain.Controls.Clear();
+            if (lstContainer.DataSource == programs)
+            {
+                flowMain.Controls.Clear();
+                CourseControl crs = new CourseControl(this, (SchoolProgram)lstContainer.SelectedItem);
+                flowMain.Controls.Add(crs);
+            }
 
-            CourseControl crs = new CourseControl(this, (SchoolProgram)lstContainer.SelectedItem);
-            flowMain.Controls.Add(crs);
+        }
 
+        private void btnClasses_Click(object sender, EventArgs e)
+        {
+            lstContainer.DataSource = null;
+
+
+            lstContainer.DataSource = d.GetEnrolledClasses(this.studentID);
         }
     }
 }

@@ -75,6 +75,7 @@ namespace LMS_Final_Project
             this.btnClasses.TabIndex = 3;
             this.btnClasses.Text = "Add/Drop Classes";
             this.btnClasses.UseVisualStyleBackColor = true;
+            this.btnClasses.Click += new System.EventHandler(this.btnClasses_Click);
             // 
             // btnRegProg
             // 
