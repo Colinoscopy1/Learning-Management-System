@@ -628,7 +628,7 @@ namespace LMS_Final_Project
         {
 			List<Course> ret = new List<Course>();
 
-			string yourcoursequery = $@"SELECT c.Class_Number, c.ClassName, c.Building, c.Room_Number, c.InstructorID,  FROM ClassRoster r JOIN Classes c ON r.Class = c.Class_Number WHERE r.StudentID = @id";
+			string yourcoursequery = $@"SELECT c.Class_Number, c.ClassName, c.Building, c.Room_Number, c.InstructorID FROM ClassRoster r JOIN Classes c ON r.Class = c.Class_Number WHERE r.StudentID = @id";
 
 			conn = new SqlConnection(connectionString);
 			SqlCommand cmd = new SqlCommand(yourcoursequery, conn);
@@ -919,7 +919,7 @@ namespace LMS_Final_Project
         {
 			List<string> ret = new List<string>();
 
-			string pendingstudentQuery = $@"SELECT FName +' '+ LName FROM Students WHERE Is_Approved = 0";
+			string pendingstudentQuery = $@"SELECT FName +' '+ LName +','+ StudentID FROM Students WHERE Is_Approved = 0";
 
 			conn = new SqlConnection(connectionString);
 			SqlCommand cmd = new SqlCommand(pendingstudentQuery, conn);
@@ -950,6 +950,20 @@ namespace LMS_Final_Project
 
 			return ret;
         }
+
+		public void ApprovePendingStudent(int studentID)
+        {
+			string approveStudent = $@"UPDATE Students SET Is_Approved = 1 WHERE StudentID = @id";
+
+			conn = new SqlConnection(connectionString);
+			SqlCommand cmd = new SqlCommand(approveStudent, conn);
+			cmd.Parameters.AddWithValue("@id", studentID);
+
+            try
+            {
+				conn.Open();
+            }
+		}
 
         #endregion
     }
