@@ -31,12 +31,14 @@ namespace LMS_Final_Project
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblWelcome = new System.Windows.Forms.Label();
+            this.btnLogOut = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.WindowText;
+            this.panel1.Controls.Add(this.btnLogOut);
             this.panel1.Controls.Add(this.lblWelcome);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -54,6 +56,15 @@ namespace LMS_Final_Project
             this.lblWelcome.Size = new System.Drawing.Size(220, 21);
             this.lblWelcome.TabIndex = 1;
             this.lblWelcome.Text = "Welcome, Your Name Here!";
+            // 
+            // btnLogOut
+            // 
+            this.btnLogOut.Location = new System.Drawing.Point(922, 14);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(75, 23);
+            this.btnLogOut.TabIndex = 1;
+            this.btnLogOut.Text = "Log Out";
+            this.btnLogOut.UseVisualStyleBackColor = true;
             // 
             // StudentHome
             // 
@@ -73,5 +84,6 @@ namespace LMS_Final_Project
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblWelcome;
+        private System.Windows.Forms.Button btnLogOut;
     }
 }
