@@ -36,8 +36,10 @@ namespace LMS_Final_Project
             this.btnLogOut = new System.Windows.Forms.Button();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.flowSide = new System.Windows.Forms.FlowLayoutPanel();
             this.flowMain = new System.Windows.Forms.FlowLayoutPanel();
+            this.lstContainer = new System.Windows.Forms.ListBox();
+            this.lnklblAdd = new System.Windows.Forms.LinkLabel();
+            this.lnklblDrop = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -109,18 +111,11 @@ namespace LMS_Final_Project
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.panel2.Controls.Add(this.flowSide);
+            this.panel2.Controls.Add(this.lstContainer);
             this.panel2.Location = new System.Drawing.Point(0, 48);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(215, 538);
             this.panel2.TabIndex = 5;
-            // 
-            // flowSide
-            // 
-            this.flowSide.Location = new System.Drawing.Point(12, 38);
-            this.flowSide.Name = "flowSide";
-            this.flowSide.Size = new System.Drawing.Size(187, 486);
-            this.flowSide.TabIndex = 0;
             // 
             // flowMain
             // 
@@ -129,11 +124,44 @@ namespace LMS_Final_Project
             this.flowMain.Size = new System.Drawing.Size(766, 486);
             this.flowMain.TabIndex = 6;
             // 
+            // lstContainer
+            // 
+            this.lstContainer.FormattingEnabled = true;
+            this.lstContainer.ItemHeight = 15;
+            this.lstContainer.Location = new System.Drawing.Point(13, 38);
+            this.lstContainer.Name = "lstContainer";
+            this.lstContainer.Size = new System.Drawing.Size(187, 484);
+            this.lstContainer.TabIndex = 0;
+            // 
+            // lnklblAdd
+            // 
+            this.lnklblAdd.AutoSize = true;
+            this.lnklblAdd.Location = new System.Drawing.Point(231, 53);
+            this.lnklblAdd.Name = "lnklblAdd";
+            this.lnklblAdd.Size = new System.Drawing.Size(59, 15);
+            this.lnklblAdd.TabIndex = 7;
+            this.lnklblAdd.TabStop = true;
+            this.lnklblAdd.Text = "Add Class";
+            this.lnklblAdd.Visible = false;
+            // 
+            // lnklblDrop
+            // 
+            this.lnklblDrop.AutoSize = true;
+            this.lnklblDrop.Location = new System.Drawing.Point(297, 53);
+            this.lnklblDrop.Name = "lnklblDrop";
+            this.lnklblDrop.Size = new System.Drawing.Size(63, 15);
+            this.lnklblDrop.TabIndex = 8;
+            this.lnklblDrop.TabStop = true;
+            this.lnklblDrop.Text = "Drop Class";
+            this.lnklblDrop.Visible = false;
+            // 
             // StudentHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1009, 584);
+            this.Controls.Add(this.lnklblDrop);
+            this.Controls.Add(this.lnklblAdd);
             this.Controls.Add(this.flowMain);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
@@ -143,6 +171,7 @@ namespace LMS_Final_Project
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -155,7 +184,9 @@ namespace LMS_Final_Project
         private System.Windows.Forms.Button btnYourClasses;
         private System.Windows.Forms.Button btnClasses;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.FlowLayoutPanel flowSide;
         private System.Windows.Forms.FlowLayoutPanel flowMain;
+        private System.Windows.Forms.ListBox lstContainer;
+        private System.Windows.Forms.LinkLabel lnklblAdd;
+        private System.Windows.Forms.LinkLabel lnklblDrop;
     }
 }
