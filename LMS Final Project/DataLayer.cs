@@ -624,6 +624,209 @@ namespace LMS_Final_Project
 			}
 		}
 
+		public List<Course> GetEnrolledClasses(int studentID)
+        {
+			List<Course> ret = new List<Course>();
+
+			string yourcoursequery = $@"SELECT c.Class_Number, c.ClassName, c.Building, c.Room_Number, c.InstructorID,  FROM ClassRoster r JOIN Classes c ON r.Class = c.Class_Number WHERE r.StudentID = @id";
+
+			conn = new SqlConnection(connectionString);
+			SqlCommand cmd = new SqlCommand(yourcoursequery, conn);
+			cmd.Parameters.AddWithValue("@id", studentID);
+
+            try
+            {
+				conn.Open();
+				SqlDataReader reader = cmd.ExecuteReader();
+
+				if (reader.HasRows)
+                {
+					while (reader.Read())
+                    {
+						string classNum = reader.GetString(0);
+						string className = reader.GetString(1);
+						string building = reader.GetString(2);
+						string roomNum = reader.GetString(3);
+						int instructor = reader.GetInt32(4);
+						int progID = reader.GetInt32(5);
+
+						Course tmp = new Course(classNum, className, building, roomNum, instructor, progID);
+
+						ret.Add(tmp);
+					}
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+				conn.Close();
+            }
+
+			return ret;
+        }
+
+		public List<Course> GetAllClasses()
+        {
+			List<Course> ret = new List<Course>();
+
+			string allclassquery = $@"SELECT Class_Number, Class_Name, Building, Room_Number, InstructorID, ProgramID FROM Classes";
+
+			conn = new SqlConnection(connectionString);
+			SqlCommand cmd = new SqlCommand(allclassquery, conn);
+
+			try
+			{
+				conn.Open();
+				SqlDataReader reader = cmd.ExecuteReader();
+
+				if (reader.HasRows)
+				{
+					while (reader.Read())
+					{
+						string classNum = reader.GetString(0);
+						string className = reader.GetString(1);
+						string building = reader.GetString(2);
+						string roomNum = reader.GetString(3);
+						int instructor = reader.GetInt32(4);
+						int progID = reader.GetInt32(5);
+
+						Course tmp = new Course(classNum, className, building, roomNum, instructor, progID);
+
+						ret.Add(tmp);
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				System.Windows.Forms.MessageBox.Show(ex.Message);
+			}
+			finally
+			{
+				conn.Close();
+			}
+
+			return ret;
+        }
+
+		public List<string> GetClassTimes(string classNum)
+        {
+			List<string> ret = new List<string>();
+
+			string timequery = $@"SELECT Day_of_Week +'s at '+ Time [DayTime] FROM ClassTimes WHERE Class = @num";
+
+			conn = new SqlConnection(connectionString);
+			SqlCommand cmd = new SqlCommand(timequery, conn);
+			cmd.Parameters.AddWithValue("@num", classNum);
+
+            try
+            {
+				conn.Open();
+				SqlDataReader reader = cmd.ExecuteReader();
+
+				if (reader.HasRows)
+                {
+					while (reader.Read())
+                    {
+						string tmp = reader.GetString(0);
+						ret.Add(tmp);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+				conn.Close();
+            }
+
+			return ret;
+        }
+
+		public List<Course> GetClassesbyInstructor(int employeeID)
+        {
+			List<Course> ret = new List<Course>();
+
+			string allclassquery = $@"SELECT Class_Number, Class_Name, Building, Room_Number, InstructorID, ProgramID FROM Classes WHERE InstructorID = @id";
+
+			conn = new SqlConnection(connectionString);
+			SqlCommand cmd = new SqlCommand(allclassquery, conn);
+			cmd.Parameters.AddWithValue("id", employeeID);
+
+			try
+			{
+				conn.Open();
+				SqlDataReader reader = cmd.ExecuteReader();
+
+				if (reader.HasRows)
+				{
+					while (reader.Read())
+					{
+						string classNum = reader.GetString(0);
+						string className = reader.GetString(1);
+						string building = reader.GetString(2);
+						string roomNum = reader.GetString(3);
+						int instructor = reader.GetInt32(4);
+						int progID = reader.GetInt32(5);
+
+						Course tmp = new Course(classNum, className, building, roomNum, instructor, progID);
+
+						ret.Add(tmp);
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				System.Windows.Forms.MessageBox.Show(ex.Message);
+			}
+			finally
+			{
+				conn.Close();
+			}
+
+			return ret;
+		}
+
+		public List<string> GetStudentsFromRoster(string classNum)
+        {
+			List<string> ret = new List<string>();
+
+			string rosterquery = $@"SELECT s.FirstName +' '+ s.LastName [FullName] FROM ClassRoster r JOIN Students s ON r.StudentID = s.StudentID WHERE r.Class = @num";
+
+			conn = new SqlConnection(connectionString);
+			SqlCommand cmd = new SqlCommand(rosterquery, conn);
+			cmd.Parameters.AddWithValue("@num", classNum);
+
+			try
+			{
+				conn.Open();
+				SqlDataReader reader = cmd.ExecuteReader();
+
+				if (reader.HasRows)
+				{
+					while (reader.Read())
+					{
+						string tmp = reader.GetString(0);
+						ret.Add(tmp);
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				System.Windows.Forms.MessageBox.Show(ex.Message);
+			}
+			finally
+			{
+				conn.Close();
+			}
+
+			return ret;
+        }
+
 		public List<SchoolProgram> GetPrograms()
         {
 			List<SchoolProgram> ret = new List<SchoolProgram>();
@@ -708,7 +911,47 @@ namespace LMS_Final_Project
 
 			return ret;
         }
-        #endregion 
+        #endregion
+
+        #region admin controls
+
+		public List<string> GetPendingStudents()
+        {
+			List<string> ret = new List<string>();
+
+			string pendingstudentQuery = $@"SELECT FName +' '+ LName FROM Students WHERE Is_Approved = 0";
+
+			conn = new SqlConnection(connectionString);
+			SqlCommand cmd = new SqlCommand(pendingstudentQuery, conn);
+
+            try
+            {
+				conn.Open();
+				SqlDataReader reader = cmd.ExecuteReader();
+
+				if (reader.HasRows)
+				{
+					while (reader.Read())
+					{
+						string tmp = reader.GetString(0);
+
+						ret.Add(tmp);
+					}
+				}
+			}
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+				conn.Close();
+            }
+
+			return ret;
+        }
+
+        #endregion
     }
 
 }
