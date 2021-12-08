@@ -914,9 +914,40 @@ namespace LMS_Final_Project
         }
         #endregion
 
+        #region posts/handins
+
+		public void CreatePost(string title, string body, int isAssignment, DateTime dueDate, string classNum)
+        {
+			string makepostQuery = $@"INSERT INTO Posts VALUES (@title, @body, @assign, @due, @class)";
+
+			conn = new SqlConnection(connectionString);
+			SqlCommand cmd = new SqlCommand(makepostQuery, conn);
+			cmd.Parameters.AddWithValue("@title", title);
+			cmd.Parameters.AddWithValue("@body", body);
+			cmd.Parameters.AddWithValue("@assign", isAssignment);
+			cmd.Parameters.AddWithValue("@due", dueDate);
+			cmd.Parameters.AddWithValue("@class", classNum);
+
+            try
+            {
+				conn.Open();
+				cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+				conn.Close();
+            }
+		}
+
+        #endregion
+
         #region admin controls
 
-		public List<string> GetPendingStudents()
+        public List<string> GetPendingStudents()
         {
 			List<string> ret = new List<string>();
 
@@ -963,15 +994,19 @@ namespace LMS_Final_Project
             try
             {
 				conn.Open();
+				cmd.ExecuteNonQuery();
             }
-            catch
+            catch (Exception ex)
             {
-
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+				conn.Close();
             }
 		}
 
         #endregion
     }
-
 }
 
