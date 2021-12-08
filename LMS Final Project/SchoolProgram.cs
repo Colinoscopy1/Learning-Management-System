@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LMS_Final_Project
 {
-    class SchoolProgram
+    public class SchoolProgram
     {
         private int _ProgramID;
         private string _ProgramName;

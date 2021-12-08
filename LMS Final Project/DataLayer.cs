@@ -60,6 +60,7 @@ namespace LMS_Final_Project
 
 										CREATE TABLE [dbo].[Classes](
 											[Class_Number] [varchar](7) PRIMARY KEY NOT NULL,
+											[Class_Name] [varchar](MAX) NOT NULL,
 											[Building] [varchar](50) NULL,
 											[Room_Number] [varchar](5) NULL,
 											[InstructorID] [int] NOT NULL FOREIGN KEY REFERENCES [dbo].[Programs] (ProgramID),
@@ -623,14 +624,87 @@ namespace LMS_Final_Project
 			}
 		}
 
+		public List<SchoolProgram> GetPrograms()
+        {
+			List<SchoolProgram> ret = new List<SchoolProgram>();
+
+			string programquery = $@"SELECT ProgramID, Program_Name, Semester, Year FROM Programs";
+
+			conn = new SqlConnection(connectionString);
+			SqlCommand cmd = new SqlCommand(programquery, conn);
+
+            try
+            {
+				conn.Open();
+				SqlDataReader reader = cmd.ExecuteReader();
+
+				if (reader.HasRows)
+                {
+					while (reader.Read())
+                    {
+						int programID = reader.GetInt32(0);
+						string progName = reader.GetString(1);
+						int semester = reader.GetInt32(2);
+						int year = reader.GetInt32(3);
+
+						SchoolProgram tmp = new SchoolProgram(programID, progName, semester, year);
+						tmp.AddCourses(GetCourseByProgram(programID));
+						ret.Add(tmp);
+                    }
+                }
+            }
+			catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+				conn.Close();
+            }
+
+			return ret;
+        }
+
 		public List<Course> GetCourseByProgram(int programID)
         {
 			List<Course> ret = new List<Course>();
 
+			string coursequery = $@"SELECT Class_Number, Class_Name, Building, Room_Number, InstructorID, ProgramID from Classes WHERE ProgramID = @progID";
 
+			conn = new SqlConnection(connectionString);
+			SqlCommand cmd = new SqlCommand(coursequery, conn);
+			cmd.Parameters.AddWithValue("@progID", programID);
 
+            try
+            {
+				conn.Open();
+				SqlDataReader reader = cmd.ExecuteReader();
 
+				if (reader.HasRows)
+                {
+					while (reader.Read())
+                    {
+						string classNum = reader.GetString(0);
+						string className = reader.GetString(1);
+						string building = reader.GetString(2);
+						string roomNum = reader.GetString(3);
+						int instructor = reader.GetInt32(4);
+						int progID = reader.GetInt32(5);
 
+						Course tmp = new Course(classNum, className, building, roomNum, instructor, progID);
+
+						ret.Add(tmp);
+                    }
+                }
+            }
+			catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+				conn.Close();
+            }
 
 			return ret;
         }
