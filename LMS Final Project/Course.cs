@@ -27,5 +27,10 @@ namespace LMS_Final_Project
             this._InstructorID = instructorID;
             this._ProgramID = programID;
         }
+
+        public override string ToString()
+        {
+            return this._ClassNumber + ": " + this._ClassName;
+        }
     }
 }
