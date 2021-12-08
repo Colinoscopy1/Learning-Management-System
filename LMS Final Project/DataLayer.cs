@@ -330,24 +330,28 @@ namespace LMS_Final_Project
         {
 			bool ret = false;
 
-			string studentStatus = $@"SELECT s.Is_Approved FROM Students s JOIN StudentAccounts a ON s.StudentID = a.StudentID WHERE a.Username = '{username}' AND 
+            string studentStatus = $@"SELECT s.Is_Approved FROM Students s JOIN StudentAccounts a ON s.StudentID = a.StudentID WHERE a.Username = '{username}' AND 
 									a.Password = (CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', '{userPassword}'), 2));";
+
+            string studentStatusBroken = $@"SELECT s.Is_Approved FROM Students s JOIN StudentAccounts a ON s.StudentID = a.StudentID WHERE a.Username = @user AND 
+									a.Password = (CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', @password), 2));";
 
 			conn = new SqlConnection(connectionString);
 			SqlCommand cmd = new SqlCommand(studentStatus, conn);
-			//cmd.Parameters.AddWithValue("@user", username);
-			//cmd.Parameters.AddWithValue("@password", userPassword);
+            //cmd.Parameters.AddWithValue("@user", username);
+            //cmd.Parameters.AddWithValue("@password", userPassword);
 
 			try
             {
 				conn.Open();
 				//always returns null even though query is right!
-				int countRecord = Convert.ToInt32(cmd.ExecuteScalar());
+				object test = cmd.ExecuteScalar();
+                int countRecord = Convert.ToInt32(cmd.ExecuteScalar());
 
-				if (countRecord > 0)
-					ret = true;
-				else
-					ret = false;
+                if (countRecord > 0)
+                    ret = true;
+                else
+                    ret = false;
             }
             catch (Exception ex)
             {
