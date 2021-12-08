@@ -628,7 +628,8 @@ namespace LMS_Final_Project
         {
 			List<Course> ret = new List<Course>();
 
-			string yourcoursequery = $@"SELECT c.Class_Number, c.ClassName, c.Building, c.Room_Number, c.InstructorID FROM ClassRoster r JOIN Classes c ON r.Class = c.Class_Number WHERE r.StudentID = @id";
+			string yourcoursequery = $@"SELECT c.Class_Number, c.ClassName, c.Building, c.Room_Number, c.InstructorID, c.ProgramID FROM ClassRoster r JOIN Classes c 
+										ON r.Class = c.Class_Number WHERE r.StudentID = @id";
 
 			conn = new SqlConnection(connectionString);
 			SqlCommand cmd = new SqlCommand(yourcoursequery, conn);
@@ -962,6 +963,10 @@ namespace LMS_Final_Project
             try
             {
 				conn.Open();
+            }
+            catch
+            {
+
             }
 		}
 
