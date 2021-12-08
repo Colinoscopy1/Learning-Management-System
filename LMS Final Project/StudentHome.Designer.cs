@@ -36,8 +36,8 @@ namespace LMS_Final_Project
             this.btnLogOut = new System.Windows.Forms.Button();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.flowMain = new System.Windows.Forms.FlowLayoutPanel();
             this.lstContainer = new System.Windows.Forms.ListBox();
+            this.flowMain = new System.Windows.Forms.FlowLayoutPanel();
             this.lnklblAdd = new System.Windows.Forms.LinkLabel();
             this.lnklblDrop = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
@@ -54,13 +54,13 @@ namespace LMS_Final_Project
             this.panel1.Controls.Add(this.lblWelcome);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1009, 50);
+            this.panel1.Size = new System.Drawing.Size(1185, 50);
             this.panel1.TabIndex = 0;
             // 
             // btnYourClasses
             // 
             this.btnYourClasses.Enabled = false;
-            this.btnYourClasses.Location = new System.Drawing.Point(768, 14);
+            this.btnYourClasses.Location = new System.Drawing.Point(948, 11);
             this.btnYourClasses.Name = "btnYourClasses";
             this.btnYourClasses.Size = new System.Drawing.Size(148, 23);
             this.btnYourClasses.TabIndex = 4;
@@ -69,7 +69,7 @@ namespace LMS_Final_Project
             // 
             // btnClasses
             // 
-            this.btnClasses.Location = new System.Drawing.Point(614, 14);
+            this.btnClasses.Location = new System.Drawing.Point(794, 11);
             this.btnClasses.Name = "btnClasses";
             this.btnClasses.Size = new System.Drawing.Size(148, 23);
             this.btnClasses.TabIndex = 3;
@@ -78,7 +78,7 @@ namespace LMS_Final_Project
             // 
             // btnRegProg
             // 
-            this.btnRegProg.Location = new System.Drawing.Point(460, 14);
+            this.btnRegProg.Location = new System.Drawing.Point(640, 11);
             this.btnRegProg.Name = "btnRegProg";
             this.btnRegProg.Size = new System.Drawing.Size(148, 23);
             this.btnRegProg.TabIndex = 2;
@@ -88,7 +88,7 @@ namespace LMS_Final_Project
             // 
             // btnLogOut
             // 
-            this.btnLogOut.Location = new System.Drawing.Point(922, 14);
+            this.btnLogOut.Location = new System.Drawing.Point(1102, 11);
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(75, 23);
             this.btnLogOut.TabIndex = 1;
@@ -114,15 +114,8 @@ namespace LMS_Final_Project
             this.panel2.Controls.Add(this.lstContainer);
             this.panel2.Location = new System.Drawing.Point(0, 48);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(215, 538);
+            this.panel2.Size = new System.Drawing.Size(308, 576);
             this.panel2.TabIndex = 5;
-            // 
-            // flowMain
-            // 
-            this.flowMain.Location = new System.Drawing.Point(231, 86);
-            this.flowMain.Name = "flowMain";
-            this.flowMain.Size = new System.Drawing.Size(766, 486);
-            this.flowMain.TabIndex = 6;
             // 
             // lstContainer
             // 
@@ -130,13 +123,21 @@ namespace LMS_Final_Project
             this.lstContainer.ItemHeight = 15;
             this.lstContainer.Location = new System.Drawing.Point(13, 38);
             this.lstContainer.Name = "lstContainer";
-            this.lstContainer.Size = new System.Drawing.Size(187, 484);
+            this.lstContainer.Size = new System.Drawing.Size(268, 529);
             this.lstContainer.TabIndex = 0;
+            this.lstContainer.SelectedIndexChanged += new System.EventHandler(this.lstContainer_SelectedIndexChanged);
+            // 
+            // flowMain
+            // 
+            this.flowMain.Location = new System.Drawing.Point(330, 86);
+            this.flowMain.Name = "flowMain";
+            this.flowMain.Size = new System.Drawing.Size(841, 529);
+            this.flowMain.TabIndex = 6;
             // 
             // lnklblAdd
             // 
             this.lnklblAdd.AutoSize = true;
-            this.lnklblAdd.Location = new System.Drawing.Point(231, 53);
+            this.lnklblAdd.Location = new System.Drawing.Point(330, 53);
             this.lnklblAdd.Name = "lnklblAdd";
             this.lnklblAdd.Size = new System.Drawing.Size(59, 15);
             this.lnklblAdd.TabIndex = 7;
@@ -147,7 +148,7 @@ namespace LMS_Final_Project
             // lnklblDrop
             // 
             this.lnklblDrop.AutoSize = true;
-            this.lnklblDrop.Location = new System.Drawing.Point(297, 53);
+            this.lnklblDrop.Location = new System.Drawing.Point(396, 53);
             this.lnklblDrop.Name = "lnklblDrop";
             this.lnklblDrop.Size = new System.Drawing.Size(63, 15);
             this.lnklblDrop.TabIndex = 8;
@@ -159,7 +160,7 @@ namespace LMS_Final_Project
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1009, 584);
+            this.ClientSize = new System.Drawing.Size(1183, 623);
             this.Controls.Add(this.lnklblDrop);
             this.Controls.Add(this.lnklblAdd);
             this.Controls.Add(this.flowMain);

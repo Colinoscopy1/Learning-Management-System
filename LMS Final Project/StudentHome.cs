@@ -14,6 +14,7 @@ namespace LMS_Final_Project
         public string userName;
         public int studentID;
         DataLayer d;
+        List<SchoolProgram> programs;
         string serverAddress = ConfigurationManager.AppSettings.Get("server");
         string databaseName = ConfigurationManager.AppSettings.Get("database");
         string userID = ConfigurationManager.AppSettings.Get("username");
@@ -36,11 +37,23 @@ namespace LMS_Final_Project
         private void btnRegProg_Click(object sender, EventArgs e)
         {
             //run a query to populate flowside with a list of items from programs table, clicking on one generates a list of classes in flowmain
+            programs = d.GetPrograms();
+            lstContainer.DataSource = programs;
+            
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void lstContainer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            flowMain.Controls.Clear();
+
+            CourseControl crs = new CourseControl(this, (SchoolProgram)lstContainer.SelectedItem);
+            flowMain.Controls.Add(crs);
+
         }
     }
 }

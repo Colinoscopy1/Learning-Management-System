@@ -22,10 +22,26 @@ namespace LMS_Final_Project
 
         public void AddCourses(List<Course> tmp)
         {
+            courses = new List<Course>();
             foreach (Course crs in tmp)
             {
                 this.courses.Add(crs);
             }
+        }
+
+        public List<Course> GetCourses()
+        {
+            return courses;
+        }
+
+        public int GetID()
+        {
+            return this._ProgramID;
+        }
+
+        public override string ToString()
+        {
+            return this._ProgramName + ": Year " + this._Year + ", Semester " + this._Semester;
         }
     }
 }

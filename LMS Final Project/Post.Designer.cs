@@ -30,11 +30,11 @@ namespace LMS_Final_Project
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblClass = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblBody = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblDueDate = new System.Windows.Forms.Label();
-            this.lblClass = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -46,8 +46,18 @@ namespace LMS_Final_Project
             this.panel1.Controls.Add(this.lblTitle);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(766, 52);
+            this.panel1.Size = new System.Drawing.Size(841, 52);
             this.panel1.TabIndex = 0;
+            // 
+            // lblClass
+            // 
+            this.lblClass.AutoSize = true;
+            this.lblClass.ForeColor = System.Drawing.Color.White;
+            this.lblClass.Location = new System.Drawing.Point(804, 4);
+            this.lblClass.Name = "lblClass";
+            this.lblClass.Size = new System.Drawing.Size(34, 15);
+            this.lblClass.TabIndex = 1;
+            this.lblClass.Text = "Class";
             // 
             // lblTitle
             // 
@@ -67,7 +77,7 @@ namespace LMS_Final_Project
             this.lblBody.BackColor = System.Drawing.Color.White;
             this.lblBody.Location = new System.Drawing.Point(0, 55);
             this.lblBody.Name = "lblBody";
-            this.lblBody.Size = new System.Drawing.Size(763, 385);
+            this.lblBody.Size = new System.Drawing.Size(838, 429);
             this.lblBody.TabIndex = 1;
             this.lblBody.Text = "Body";
             // 
@@ -75,9 +85,9 @@ namespace LMS_Final_Project
             // 
             this.panel2.BackColor = System.Drawing.Color.Black;
             this.panel2.Controls.Add(this.lblDueDate);
-            this.panel2.Location = new System.Drawing.Point(0, 444);
+            this.panel2.Location = new System.Drawing.Point(0, 487);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(766, 42);
+            this.panel2.Size = new System.Drawing.Size(841, 42);
             this.panel2.TabIndex = 2;
             // 
             // lblDueDate
@@ -91,16 +101,6 @@ namespace LMS_Final_Project
             this.lblDueDate.Text = "Due Date";
             this.lblDueDate.Visible = false;
             // 
-            // lblClass
-            // 
-            this.lblClass.AutoSize = true;
-            this.lblClass.ForeColor = System.Drawing.Color.White;
-            this.lblClass.Location = new System.Drawing.Point(725, 4);
-            this.lblClass.Name = "lblClass";
-            this.lblClass.Size = new System.Drawing.Size(34, 15);
-            this.lblClass.TabIndex = 1;
-            this.lblClass.Text = "Class";
-            // 
             // Post
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -109,7 +109,7 @@ namespace LMS_Final_Project
             this.Controls.Add(this.lblBody);
             this.Controls.Add(this.panel1);
             this.Name = "Post";
-            this.Size = new System.Drawing.Size(766, 486);
+            this.Size = new System.Drawing.Size(841, 529);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

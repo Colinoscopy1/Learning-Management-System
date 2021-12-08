@@ -32,5 +32,10 @@ namespace LMS_Final_Project
         {
             return this._ClassNumber + ": " + this._ClassName;
         }
+
+        public string GetCourseId()
+        {
+            return this._ClassNumber;
+        }
     }
 }
