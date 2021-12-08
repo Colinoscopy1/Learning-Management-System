@@ -11,13 +11,13 @@ namespace LMS_Final_Project
     public partial class Post : UserControl
     {
         int assignment;
-        public Post(string title, string body, int isAssignment, DateTime dueDate, string classID)
+        public Post(string title, string body, int isAssignment, DateTime dueDate, string classNumber)
         {
             InitializeComponent();
             lblTitle.Text = title;
             lblBody.Text = body;
             lblDueDate.Text = dueDate.ToShortDateString();
-            lblClass.Text = classID;
+            lblClass.Text = classNumber;
             this.assignment = isAssignment;
 
             if (assignment == 1)

@@ -55,14 +55,11 @@ namespace LMS_Final_Project
                 CourseControl crs = new CourseControl(this, (SchoolProgram)lstContainer.SelectedItem);
                 flowMain.Controls.Add(crs);
             }
-
         }
 
         private void btnClasses_Click(object sender, EventArgs e)
         {
             lstContainer.DataSource = null;
-
-
             lstContainer.DataSource = d.GetEnrolledClasses(this.studentID);
         }
     }
