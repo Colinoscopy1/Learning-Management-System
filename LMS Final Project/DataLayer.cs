@@ -114,8 +114,9 @@ namespace LMS_Final_Project
 				conn.Close();
             }
         }
-
-		public void CreateStudent(string fname, string lname, string email, string phone)
+       
+		#region Student Stuff
+        public void CreateStudent(string fname, string lname, string email, string phone)
         {
 			string createStudentQuery = @"INSERT INTO Students VALUES (@fname, @lname, @email, @phone, 0, 0)";
 
@@ -140,6 +141,40 @@ namespace LMS_Final_Project
 				conn.Close();
             }
         }
+		public bool StudentLogin(string username, string userpassword)
+		{
+			bool ret = false;
+
+			//string studentLoginQuery = $@"SELECT COUNT(*) FROM StudentAccounts WHERE Username = '{username}' AND Password = (CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', '{userpassword}'), 2))";
+
+			string studentLoginQuery = $@"SELECT COUNT(*) FROM StudentAccounts WHERE Username = @user AND Password = (CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', @password), 2))";
+
+			conn = new SqlConnection(connectionString);
+			try
+			{
+				conn.Open();
+				SqlCommand cmd = new SqlCommand(studentLoginQuery, conn);
+				//using parameterization causes Scalar to crash
+				cmd.Parameters.AddWithValue("@user", username);
+				cmd.Parameters.AddWithValue("@password", userpassword);
+				int countRecord = Convert.ToInt32(cmd.ExecuteScalar());
+
+				if (countRecord > 0)
+					ret = true;
+				else
+					ret = false;
+			}
+			catch
+			{
+				ret = false;
+			}
+			finally
+			{
+				conn.Close();
+			}
+
+			return ret;
+		}
 
 		public int GetStudentIdbyEmail(string email)
 		{
@@ -272,8 +307,10 @@ namespace LMS_Final_Project
 				conn.Close();
 			}
 		}
+        #endregion
 
-		public int GetEmployeeIDbyUsername(string username)
+        #region Employee Stuff
+        public int GetEmployeeIDbyUsername(string username)
         {
 			int ret = 0;
 
@@ -472,41 +509,6 @@ namespace LMS_Final_Project
 			return ret;
         }
 
-		public bool StudentLogin(string username, string userpassword)
-        {
-			bool ret = false;
-
-			//string studentLoginQuery = $@"SELECT COUNT(*) FROM StudentAccounts WHERE Username = '{username}' AND Password = (CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', '{userpassword}'), 2))";
-
-			string studentLoginQuery = $@"SELECT COUNT(*) FROM StudentAccounts WHERE Username = @user AND Password = (CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', @password), 2))";
-
-			conn = new SqlConnection(connectionString);
-            try
-            {
-				conn.Open();
-				SqlCommand cmd = new SqlCommand(studentLoginQuery, conn);
-                //using parameterization causes Scalar to crash
-                cmd.Parameters.AddWithValue("@user", username);
-                cmd.Parameters.AddWithValue("@password", userpassword);
-                int countRecord = Convert.ToInt32(cmd.ExecuteScalar());
-
-				if (countRecord > 0)
-					ret = true;
-				else
-					ret = false;
-            }
-            catch
-            {
-				ret = false;
-            }
-            finally
-            {
-				conn.Close();
-            }
-
-			return ret;
-        }
-
 		public bool CheckAdminStatus(string username, string password)
         {
 			bool ret = false;
@@ -570,7 +572,70 @@ namespace LMS_Final_Project
 
 			return ret;
 		}
-	}
+        #endregion
+
+        #region Class Stuff
+        public void AddStudentToClass(string classNumber, int studentID)
+        {
+			string addStudentQuery = $@"Insert Into ClassRoster(StudentID, Class) Values (@studentID, @class)";
+
+			conn = new SqlConnection(connectionString);
+			SqlCommand cmd = new SqlCommand(addStudentQuery, conn);
+			cmd.Parameters.AddWithValue("@studentID", studentID);
+			cmd.Parameters.AddWithValue("@class", classNumber);
+
+			try
+			{
+				conn.Open();
+				cmd.ExecuteNonQuery();
+			}
+			catch (Exception ex)
+			{
+				System.Windows.Forms.MessageBox.Show(ex.ToString());
+			}
+			finally
+			{
+				conn.Close();
+			}
+
+		}
+
+		public void RemoveStudentFromClass(int studentID)
+        {
+			string addStudentQuery = $@"Delete From ClassRoster Where studentID = @studentID";
+
+			conn = new SqlConnection(connectionString);
+			SqlCommand cmd = new SqlCommand(addStudentQuery, conn);
+			cmd.Parameters.AddWithValue("@studentID", studentID);
+
+			try
+			{
+				conn.Open();
+				cmd.ExecuteNonQuery();
+			}
+			catch (Exception ex)
+			{
+				System.Windows.Forms.MessageBox.Show(ex.ToString());
+			}
+			finally
+			{
+				conn.Close();
+			}
+		}
+
+		public List<Course> GetCourseByProgram(int programID)
+        {
+			List<Course> ret = new List<Course>();
+
+
+
+
+
+
+			return ret;
+        }
+        #endregion 
+    }
 
 }
 
