@@ -330,18 +330,18 @@ namespace LMS_Final_Project
         {
 			bool ret = false;
 
-            string studentStatus = $@"SELECT s.Is_Approved FROM Students s JOIN StudentAccounts a ON s.StudentID = a.StudentID WHERE a.Username = '{username}' AND 
-									a.Password = (CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', '{userPassword}'), 2));";
+         //   string studentStatus = $@"SELECT s.Is_Approved FROM Students s JOIN StudentAccounts a ON s.StudentID = a.StudentID WHERE a.Username = '{username}' AND 
+									//a.Password = (CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', '{userPassword}'), 2));";
 
-            string studentStatusBroken = $@"SELECT s.Is_Approved FROM Students s JOIN StudentAccounts a ON s.StudentID = a.StudentID WHERE a.Username = @user AND 
+            string studentStatus = $@"SELECT s.Is_Approved FROM Students s JOIN StudentAccounts a ON s.StudentID = a.StudentID WHERE a.Username = @user AND 
 									a.Password = (CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', @password), 2));";
 
 			conn = new SqlConnection(connectionString);
 			SqlCommand cmd = new SqlCommand(studentStatus, conn);
-            //cmd.Parameters.AddWithValue("@user", username);
-            //cmd.Parameters.AddWithValue("@password", userPassword);
+            cmd.Parameters.AddWithValue("@user", username);
+            cmd.Parameters.AddWithValue("@password", userPassword);
 
-			try
+            try
             {
 				conn.Open();
 				//always returns null even though query is right!
@@ -370,17 +370,19 @@ namespace LMS_Final_Project
         {
 			bool ret = false;
 
-			string studentLoginQuery = $@"SELECT COUNT(*) FROM StudentAccounts WHERE Username = '{username}' AND Password = (CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', '{userpassword}'), 2))";
+			//string studentLoginQuery = $@"SELECT COUNT(*) FROM StudentAccounts WHERE Username = '{username}' AND Password = (CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', '{userpassword}'), 2))";
+
+			string studentLoginQuery = $@"SELECT COUNT(*) FROM StudentAccounts WHERE Username = @user AND Password = (CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', @password), 2))";
 
 			conn = new SqlConnection(connectionString);
             try
             {
 				conn.Open();
 				SqlCommand cmd = new SqlCommand(studentLoginQuery, conn);
-				//using parameterization causes Scalar to crash
-				//cmd.Parameters.AddWithValue("@user", username);
-				//cmd.Parameters.AddWithValue("@password", userpassword);
-				int countRecord = Convert.ToInt32(cmd.ExecuteScalar());
+                //using parameterization causes Scalar to crash
+                cmd.Parameters.AddWithValue("@user", username);
+                cmd.Parameters.AddWithValue("@password", userpassword);
+                int countRecord = Convert.ToInt32(cmd.ExecuteScalar());
 
 				if (countRecord > 0)
 					ret = true;
