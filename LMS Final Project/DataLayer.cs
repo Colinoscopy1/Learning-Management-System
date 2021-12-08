@@ -95,7 +95,7 @@ namespace LMS_Final_Project
 
 										INSERT INTO Employees VALUES ('Default', 'Admin', 'N/A', 'N/A', 'N/A');
 
-										INSERT INTO EmployeeAccounts VALUES ('Admin', CONVERT (VARCHAR(64), HASHBYTES('SHA2_256', 'password'), 2), 0, 1);";
+										INSERT INTO EmployeeAccounts VALUES ('Admin', CONVERT (VARCHAR(64), HASHBYTES('SHA2_256', 'password'), 2), 1, 1);";
 
 			conn = new SqlConnection(connectionString);
 			SqlCommand cmd = new SqlCommand(CreateDataBasequery, conn);
@@ -245,6 +245,60 @@ namespace LMS_Final_Project
 			{
 				conn.Close();
 			}
+		}
+
+		public int GetEmployeeIDbyUsername(string username)
+        {
+			int ret = 0;
+
+			string getIDquery = $@"SELECT EmployeeID from EmployeeAccounts WHERE Username = @user";
+
+			conn = new SqlConnection(connectionString);
+			SqlCommand cmd = new SqlCommand(getIDquery, conn);
+			cmd.Parameters.AddWithValue("@user", username);
+
+			try
+			{
+				conn.Open();
+				ret = Convert.ToInt32(cmd.ExecuteScalar());
+			}
+			catch (Exception ex)
+			{
+				System.Windows.Forms.MessageBox.Show(ex.Message);
+			}
+			finally
+			{
+				conn.Close();
+			}
+
+			return ret;
+		}
+
+		public string GetEmployeeNamebyID(int employeeID)
+        {
+			string ret = "";
+
+			string getNameQuery = $@"SELECT FName +' '+ LName [Full_Name] FROM Employees WHERE EmployeeID = {employeeID}";
+
+			conn = new SqlConnection(connectionString);
+
+			try
+			{
+				conn.Open();
+				SqlCommand cmd = new SqlCommand(getNameQuery, conn);
+				//cmd.Parameters.AddWithValue("@id", studentID);
+				ret = cmd.ExecuteScalar().ToString();
+			}
+			catch (Exception ex)
+			{
+				System.Windows.Forms.MessageBox.Show(ex.Message);
+			}
+			finally
+			{
+				conn.Close();
+			}
+
+			return ret;
 		}
 
 		public void CreateEmployee(string fname, string lname, string email, string officenum, string phone)

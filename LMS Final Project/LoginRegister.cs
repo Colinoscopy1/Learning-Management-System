@@ -48,6 +48,9 @@ namespace LMS_Final_Project
                     if (d.CheckAdminStatus(username, userPassword))
                     {
                         //launch admin home form
+                        AdminHome home = new AdminHome(username);
+                        this.Hide();
+                        home.ShowDialog();
                     }
                     else
                     {
