@@ -69,6 +69,9 @@ namespace LMS_Final_Project
                     if (d.StudentLogin(username, userPassword))
                     {
                         //launch student home form
+                        StudentHome home = new StudentHome(username);
+                        this.Hide();
+                        home.ShowDialog();
                     }
                     else
                     {

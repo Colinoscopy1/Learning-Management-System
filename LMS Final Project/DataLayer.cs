@@ -18,89 +18,84 @@ namespace LMS_Final_Project
 
         public void CreateSchema()
         {
-            string CreateDataBasequery = $@"
-                    CREATE TABLE [dbo].[Employees](
-	                [EmployeeID] [int] IDENTITY(1,1) NOT NULL,
-	                [FName] [varchar](30) NOT NULL,
-	                [LName] [varchar](30) NOT NULL,
-	                [Office_Number] [varchar](15) NULL,
-	                [Email] [varchar](50) NULL,
-	                [Phone] [varchar](14) NULL	
-                    );
+            string CreateDataBasequery = $@"CREATE TABLE [dbo].[Employees](
+											[EmployeeID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
+											[FName] [varchar](30) NOT NULL,
+											[LName] [varchar](30) NOT NULL,
+											[Office_Number] [varchar](15) NULL,
+											[Email] [varchar](50) NULL,
+											[Phone] [varchar](14) NULL	
+											);
 
-                    CREATE TABLE [dbo].[EmployeeAccounts](
-	                [Username] [varchar](25) PRIMARY KEY NOT NULL,
-	                [Password] [varchar](64) NOT NULL,
-	                [EmployeeID] [int] NOT NULL,
-	                [Is_Admin] [bit] NOT NULL
-                    );
+										CREATE TABLE [dbo].[EmployeeAccounts](
+											[Username] [varchar](25) PRIMARY KEY NOT NULL,
+											[Password] [varchar](64) NOT NULL,
+											[EmployeeID] [int] NOT NULL FOREIGN KEY REFERENCES [dbo].[Employees] (EmployeeID),
+											[Is_Admin] [bit] NOT NULL
+											);
 
-                    CREATE TABLE [dbo].[Classes](
-	                [Class_Number] [varchar](5) NOT NULL,
-	                [Building] [varchar](50) NULL,
-	                [Room_Number] [varchar](5) NULL,
-	                [Class_Time] [datetime] NOT NULL,
-	                [Class_Duration] [datetime] NOT NULL,
-	                [Instructor] [varchar](30) NOT NULL,
-	                [Program] [varchar](50) NOT NULL
-                    );
+										CREATE TABLE [dbo].[Students](
+											[StudentID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
+											[FName] [varchar](30) NOT NULL,
+											[LName] [varchar](30) NOT NULL,
+											[Email] [varchar](60) NOT NULL,
+											[Phone] [varchar](14) NOT NULL,
+											[Is_Approved] [bit] NOT NULL,
+											[Academic_Probtation] [bit] NOT NULL
+											);
 
-                    CREATE TABLE [dbo].[Programs](
-	                [ProgramID] [int] IDENTITY(1,1) NOT NULL,
-	                [Program_Name] [varchar](50) NOT NULL,
-	                [Semester] [int] NOT NULL,
-	                [Year] [datetime] NULL
-                    );
+										CREATE TABLE [dbo].[StudentAccounts](
+											[AccountNumber] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
+											[Username] [varchar](25) NOT NULL,
+											[StudentID] [int] NOT NULL FOREIGN KEY REFERENCES [dbo].[Students] (StudentID),
+											[Password] [varchar](64) NOT NULL
+											);
 
-                    CREATE TABLE [dbo].[Posts](
-					[Post_ID] [int] IDENTITY(1,1) NOT NULL,
-					[Post_Title] [varchar](50) NULL,
-					[Post_Body] [varchar](1000) NULL,
-					[Is_Assignment] [bit] NOT NULL,
-					[Due_Date] [datetime] NULL,
-					[Class] [varchar](5) NULL
-					);
+										CREATE TABLE [dbo].[Programs](
+											[ProgramID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
+											[Program_Name] [varchar](50) NOT NULL,
+											[Semester] [int] NOT NULL,
+											[Year] [int] NOT NULL
+											);
 
-					CREATE TABLE [dbo].[HandIns](
-					[Post_ID] [int] IDENTITY(1,1) NOT NULL,
-					[StudentID] [int] NOT NULL,
-					[FilePath] [varchar](max) NULL
-					);
+										CREATE TABLE [dbo].[Classes](
+											[Class_Number] [varchar](7) PRIMARY KEY NOT NULL,
+											[Building] [varchar](50) NULL,
+											[Room_Number] [varchar](5) NULL,
+											[InstructorID] [int] NOT NULL FOREIGN KEY REFERENCES [dbo].[Programs] (ProgramID),
+											[ProgramID] [int] NOT NULL FOREIGN KEY REFERENCES [dbo].[Employees] (EmployeeID)
+											);
 
-					CREATE TABLE [dbo].[ClassRoster](
-					[StudentID] [int] NOT NULL,
-					[Class] [nchar](10) NOT NULL
-					) ;
-			
-					CREATE TABLE [dbo].[Students](
-					[StudentID] [int] IDENTITY(1,1) NOT NULL,
-					[FName] [varchar](30) NOT NULL,
-					[LName] [varchar](30) NOT NULL,
-					[Email] [varchar](60) NOT NULL,
-					[Phone] [varchar](14) NOT NULL,
-					[Is_Approved] [bit] NOT NULL,
-					[Academic_Probtation] [bit] NOT NULL
-					);
+										CREATE TABLE [dbo].[ClassTimes](
+											[Day_of_Week] [varchar](8) NOT NULL,
+											[Class] [varchar](7) NOT NULL FOREIGN KEY REFERENCES [dbo].[Classes] (Class_Number),
+											[Time] [time] NOT NULL,
+											[Duration_Minutes] [int] NOT NULL
+											);
 
-					CREATE TABLE [dbo].[StudentAccounts](
-					[AccountNumber] [int] IDENTITY(1,1) NOT NULL,
-					[Username] [varchar](25) NOT NULL,
-					[StudentID] [int] NOT NULL,
-					[Password] [varchar](64) NOT NULL
-					);
+										CREATE TABLE [dbo].[Posts](
+											[Post_ID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
+											[Post_Title] [varchar](50) NULL,
+											[Post_Body] [varchar](max) NULL,
+											[Is_Assignment] [bit] NOT NULL,
+											[Due_Date] [datetime] NULL,
+											[Class] [varchar](7) NULL FOREIGN KEY REFERENCES [dbo].[Classes] (Class_Number)
+											);
 
-				    INSERT INTO [dbo].[EmployeeAccounts]
-					([Username]
-					,[Password]
-					,[EmployeeID]
-					,[Is_Admin])
-					VALUES
-					 ('Admin',
-					  CONVERT (VARCHAR(64), HASHBYTES('SHA2_256', 'password'), 2),
-					  '0',
-					  1);
+										CREATE TABLE [dbo].[HandIns](
+											[Post_ID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
+											[StudentID] [int] NOT NULL FOREIGN KEY REFERENCES [dbo].[Students] (StudentID),
+											[FilePath] [varchar](max) NULL
+											);
 
-                     ";
+										CREATE TABLE [dbo].[ClassRoster](
+											[StudentID] [int] NOT NULL FOREIGN KEY REFERENCES [dbo].[Students] (StudentID),
+											[Class] [varchar](7) NULL FOREIGN KEY REFERENCES [dbo].[Classes] (Class_Number)
+											);
+
+										INSERT INTO Employees VALUES ('Default', 'Admin', 'N/A', 'N/A', 'N/A');
+
+										INSERT INTO EmployeeAccounts VALUES ('Admin', CONVERT (VARCHAR(64), HASHBYTES('SHA2_256', 'password'), 2), 0, 1);";
 
 			conn = new SqlConnection(connectionString);
 			SqlCommand cmd = new SqlCommand(CreateDataBasequery, conn);
@@ -172,6 +167,60 @@ namespace LMS_Final_Project
 			return ret;
 
 		}
+
+		public int GetStudentIdbyUsername(string username)
+        {
+			int ret = 0;
+
+			string getIDquery = $@"SELECT StudentID from StudentAccounts WHERE Username = @user";
+
+			conn = new SqlConnection(connectionString);
+			SqlCommand cmd = new SqlCommand(getIDquery, conn);
+			cmd.Parameters.AddWithValue("@user", username);
+
+			try
+			{
+				conn.Open();
+				ret = Convert.ToInt32(cmd.ExecuteScalar());
+			}
+			catch (Exception ex)
+			{
+				System.Windows.Forms.MessageBox.Show(ex.Message);
+			}
+			finally
+			{
+				conn.Close();
+			}
+
+			return ret;
+		}
+
+		public string GetStudentNamebyID(int studentID)
+        {
+			string ret = "";
+
+			string getNameQuery = $@"SELECT FName +' '+ LName [Full_Name] FROM Students WHERE StudentID = {studentID}";
+
+			conn = new SqlConnection(connectionString);
+            
+			try
+            {
+				conn.Open();
+				SqlCommand cmd = new SqlCommand(getNameQuery, conn);
+				//cmd.Parameters.AddWithValue("@id", studentID);
+				ret = cmd.ExecuteScalar().ToString();
+			}
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+				conn.Close();
+            }
+
+			return ret;
+        }
 
 		public void CreateStudentAccount(int studentid, string username, string password)
 		{
@@ -277,30 +326,33 @@ namespace LMS_Final_Project
 			}
 		}
 
-		public bool CheckStudentApproval(string username, string password)
+		public bool CheckStudentApproval(string username, string userPassword)
         {
 			bool ret = false;
 
-			string studentStatus = @"SELECT Is_Approved FROM Students s JOIN StudentAccounts a WHERE a.Username = @user AND a.Password = 
-										CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', @password), 2)";
+			string studentStatus = $@"SELECT s.Is_Approved FROM Students s JOIN StudentAccounts a ON s.StudentID = a.StudentID WHERE a.Username = '{username}' AND 
+									a.Password = (CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', '{userPassword}'), 2));";
 
 			conn = new SqlConnection(connectionString);
-            try
+			SqlCommand cmd = new SqlCommand(studentStatus, conn);
+			//cmd.Parameters.AddWithValue("@user", username);
+			//cmd.Parameters.AddWithValue("@password", userPassword);
+
+			try
             {
 				conn.Open();
-				SqlCommand cmd = new SqlCommand(studentStatus, conn);
-				cmd.Parameters.AddWithValue("@user", username);
-				cmd.Parameters.AddWithValue("@password", password);
-				int countRecord = (int)cmd.ExecuteScalar();
+				//always returns null even though query is right!
+				int countRecord = Convert.ToInt32(cmd.ExecuteScalar());
 
-				if (countRecord == 0)
-					ret = false;
-				else
+				if (countRecord > 0)
 					ret = true;
+				else
+					ret = false;
             }
-            catch
+            catch (Exception ex)
             {
-				ret = false;
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+                //ret = false;
             }
             finally
             {
@@ -310,20 +362,21 @@ namespace LMS_Final_Project
 			return ret;
         }
 
-		public bool StudentLogin(string username, string password)
+		public bool StudentLogin(string username, string userpassword)
         {
 			bool ret = false;
 
-			string studentLoginQuery = @"SELECT COUNT(*) FROM StudentAccounts WHERE Username = @user AND Password = CONVERT(VARCHAR(64), HASHBYTES('SHA2_256',@password), 2)";
+			string studentLoginQuery = $@"SELECT COUNT(*) FROM StudentAccounts WHERE Username = '{username}' AND Password = (CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', '{userpassword}'), 2))";
 
 			conn = new SqlConnection(connectionString);
             try
             {
 				conn.Open();
 				SqlCommand cmd = new SqlCommand(studentLoginQuery, conn);
-				cmd.Parameters.AddWithValue("@user", username);
-				cmd.Parameters.AddWithValue("@password", password);
-				int countRecord = (int)cmd.ExecuteScalar();
+				//using parameterization causes Scalar to crash
+				//cmd.Parameters.AddWithValue("@user", username);
+				//cmd.Parameters.AddWithValue("@password", userpassword);
+				int countRecord = Convert.ToInt32(cmd.ExecuteScalar());
 
 				if (countRecord > 0)
 					ret = true;
@@ -346,7 +399,7 @@ namespace LMS_Final_Project
         {
 			bool ret = false;
 
-			string checkAdminQuery = @"SELECT Is_Admin FROM EmployeeAccounts WHERE Username = @user and Password = CONVERT(VARCHAR(64), HASHBYTES('SHA2_256',@password), 2)";
+			string checkAdminQuery = @"SELECT Is_Admin FROM EmployeeAccounts WHERE Username = @user and Password = (CONVERT(VARCHAR(64), HASHBYTES('SHA2_256',@password), 2))";
 
 			conn = new SqlConnection(connectionString);
             try
