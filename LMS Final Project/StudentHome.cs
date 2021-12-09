@@ -101,5 +101,10 @@ namespace LMS_Final_Project
             lstContainer.DataSource = classes;
 
         }
+
+        public void ReceiveHandin(int id, string filePath)
+        {
+
+        }
     }
 }
