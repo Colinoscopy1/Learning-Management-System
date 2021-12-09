@@ -13,9 +13,10 @@ namespace LMS_Final_Project
     {
         public string userName;
         public int employeeID;
-        DataLayer d;
-
         
+        DataLayer d;
+        List<Student> s;
+        List<Employee> e;
 
         string serverAddress = ConfigurationManager.AppSettings.Get("server");
         string databaseName = ConfigurationManager.AppSettings.Get("database");
@@ -40,7 +41,8 @@ namespace LMS_Final_Project
 
         private void btnStudents_Click(object sender, EventArgs e)
         {
-            lstContainer
+            
+            //lstContainer.DataSource = 
         }
 
         private void btnEmployees_Click(object sender, EventArgs e)

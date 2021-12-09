@@ -107,13 +107,13 @@ namespace LMS_Final_Project
 
 										INSERT INTO EmployeeAccounts VALUES ('Admin', CONVERT (VARCHAR(64), HASHBYTES('SHA2_256', 'password'), 2), 1, 1);";
 
-			conn = new SqlConnection(connectionString);
-			SqlCommand cmd = new SqlCommand(CreateDataBasequery, conn);
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(CreateDataBasequery, conn);
             try
             {
-				conn.Open();
-				cmd.ExecuteNonQuery();
-				
+                conn.Open();
+                cmd.ExecuteNonQuery();
+
             }
             catch
             {
@@ -121,386 +121,474 @@ namespace LMS_Final_Project
             }
             finally
             {
-				conn.Close();
+                conn.Close();
             }
         }
-       
-		#region Student Stuff
+
+        #region Student Stuff
         public void CreateStudent(string fname, string lname, string email, string phone)
         {
-			string createStudentQuery = @"INSERT INTO Students VALUES (@fname, @lname, @email, @phone, 0, 0)";
+            string createStudentQuery = @"INSERT INTO Students VALUES (@fname, @lname, @email, @phone, 0, 0)";
 
-			conn = new SqlConnection(connectionString);
-			SqlCommand cmd = new SqlCommand(createStudentQuery, conn);
-			cmd.Parameters.AddWithValue("@fname", fname);
-			cmd.Parameters.AddWithValue("@lname", lname);
-			cmd.Parameters.AddWithValue("@email", email);
-			cmd.Parameters.AddWithValue("@phone", phone);
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(createStudentQuery, conn);
+            cmd.Parameters.AddWithValue("@fname", fname);
+            cmd.Parameters.AddWithValue("@lname", lname);
+            cmd.Parameters.AddWithValue("@email", email);
+            cmd.Parameters.AddWithValue("@phone", phone);
 
-			try
+            try
             {
-				conn.Open();
-				cmd.ExecuteNonQuery();
+                conn.Open();
+                cmd.ExecuteNonQuery();
             }
-			catch (Exception ex)
+            catch (Exception ex)
             {
                 System.Windows.Forms.MessageBox.Show(ex.ToString());
             }
             finally
             {
-				conn.Close();
+                conn.Close();
             }
         }
-		public bool StudentLogin(string username, string userpassword)
-		{
-			bool ret = false;
-
-			//string studentLoginQuery = $@"SELECT COUNT(*) FROM StudentAccounts WHERE Username = '{username}' AND Password = (CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', '{userpassword}'), 2))";
-
-			string studentLoginQuery = $@"SELECT COUNT(*) FROM StudentAccounts WHERE Username = @user AND Password = (CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', @password), 2))";
-
-			conn = new SqlConnection(connectionString);
-			try
-			{
-				conn.Open();
-				SqlCommand cmd = new SqlCommand(studentLoginQuery, conn);
-				//using parameterization causes Scalar to crash
-				cmd.Parameters.AddWithValue("@user", username);
-				cmd.Parameters.AddWithValue("@password", userpassword);
-				int countRecord = Convert.ToInt32(cmd.ExecuteScalar());
-
-				if (countRecord > 0)
-					ret = true;
-				else
-					ret = false;
-			}
-			catch
-			{
-				ret = false;
-			}
-			finally
-			{
-				conn.Close();
-			}
-
-			return ret;
-		}
-
-		public int GetStudentIdbyEmail(string email)
-		{
-			int ret = 0;
-
-			string getIDquery = $@"SELECT StudentID from Students WHERE Email = '{email}'";
-
-			conn = new SqlConnection(connectionString);
-			SqlCommand cmd = new SqlCommand(getIDquery, conn);
-
-			try
-			{
-				conn.Open();
-				ret = Convert.ToInt32(cmd.ExecuteScalar());
-			}
-			catch (Exception ex)
-			{
-				System.Windows.Forms.MessageBox.Show(ex.ToString());
-			}
-			finally
-			{
-				conn.Close();
-			}
-
-			return ret;
-
-		}
-
-		public int GetStudentIdbyUsername(string username)
+        public bool StudentLogin(string username, string userpassword)
         {
-			int ret = 0;
+            bool ret = false;
 
-			string getIDquery = $@"SELECT StudentID from StudentAccounts WHERE Username = @user";
+            //string studentLoginQuery = $@"SELECT COUNT(*) FROM StudentAccounts WHERE Username = '{username}' AND Password = (CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', '{userpassword}'), 2))";
 
-			conn = new SqlConnection(connectionString);
-			SqlCommand cmd = new SqlCommand(getIDquery, conn);
-			cmd.Parameters.AddWithValue("@user", username);
+            string studentLoginQuery = $@"SELECT COUNT(*) FROM StudentAccounts WHERE Username = @user AND Password = (CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', @password), 2))";
 
-			try
-			{
-				conn.Open();
-				ret = Convert.ToInt32(cmd.ExecuteScalar());
-			}
-			catch (Exception ex)
-			{
-				System.Windows.Forms.MessageBox.Show(ex.Message);
-			}
-			finally
-			{
-				conn.Close();
-			}
-
-			return ret;
-		}
-
-		public string GetStudentUsernameByEmail(string email)
-		{
-			string ret = "";
-
-			string getIDquery = $@"SELECT Username FROM StudentAccounts a JOIN Students s ON a.StudentID = s.StudentID WHERE s.Email = '{email}'";
-
-			conn = new SqlConnection(connectionString);
-			SqlCommand cmd = new SqlCommand(getIDquery, conn);
-
-			try
-			{
-				conn.Open();
-				ret = cmd.ExecuteScalar().ToString();
-			}
-			catch (Exception ex)
-			{
-				System.Windows.Forms.MessageBox.Show(ex.ToString());
-			}
-			finally
-			{
-				conn.Close();
-			}
-
-			return ret;
-		}
-
-		public string GetStudentNamebyID(int studentID)
-        {
-			string ret = "";
-
-			string getNameQuery = $@"SELECT FName +' '+ LName [Full_Name] FROM Students WHERE StudentID = {studentID}";
-
-			conn = new SqlConnection(connectionString);
-            
-			try
+            conn = new SqlConnection(connectionString);
+            try
             {
-				conn.Open();
-				SqlCommand cmd = new SqlCommand(getNameQuery, conn);
-				//cmd.Parameters.AddWithValue("@id", studentID);
-				ret = cmd.ExecuteScalar().ToString();
-			}
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(studentLoginQuery, conn);
+                //using parameterization causes Scalar to crash
+                cmd.Parameters.AddWithValue("@user", username);
+                cmd.Parameters.AddWithValue("@password", userpassword);
+                int countRecord = Convert.ToInt32(cmd.ExecuteScalar());
+
+                if (countRecord > 0)
+                    ret = true;
+                else
+                    ret = false;
+            }
+            catch
+            {
+                ret = false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return ret;
+        }
+
+        public List<Student> GetAllStudents()
+        {
+            List<Student> ret = new List<Student>();
+            string GetAllStudentsQuery = $@"Select * From Students";
+
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(GetAllStudentsQuery, conn);
+
+
+            try
+            {
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        int studentID = reader.GetInt32(0);
+                        string FName = reader.GetString(1);
+                        string LName = reader.GetString(2);
+                        string Email = reader.GetString(3);
+                        string Phone = reader.GetString(4);
+                        bool approved = reader.GetBoolean(5);
+                        bool probation = reader.GetBoolean(6);
+
+                        Student tmp = new Student(studentID, FName, LName, Email, Phone, approved, probation);
+
+                        ret.Add(tmp);
+                    }
+                }
+            }
             catch (Exception ex)
             {
                 System.Windows.Forms.MessageBox.Show(ex.Message);
             }
             finally
             {
-				conn.Close();
+                conn.Close();
             }
 
-			return ret;
+            return ret;
+
         }
 
-		public void CreateStudentAccount(int studentid, string username, string password)
-		{
-			string createStudentAccount = @"INSERT INTO StudentAccounts VALUES (@username, @studentid, CONVERT (VARCHAR(64), HASHBYTES('SHA2_256', @password), 2))";
+        public int GetStudentIdbyEmail(string email)
+        {
+            int ret = 0;
 
-			conn = new SqlConnection(connectionString);
-			SqlCommand cmd = new SqlCommand(createStudentAccount, conn);
-			cmd.Parameters.AddWithValue("@studentid", studentid);
-			cmd.Parameters.AddWithValue("@username", username);
-			cmd.Parameters.AddWithValue("@password", password);
+            string getIDquery = $@"SELECT StudentID from Students WHERE Email = '{email}'";
 
-			try
-			{
-				conn.Open();
-				cmd.ExecuteNonQuery();
-			}
-			catch (Exception ex)
-			{
-				System.Windows.Forms.MessageBox.Show(ex.ToString());
-			}
-			finally
-			{
-				conn.Close();
-			}
-		}
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(getIDquery, conn);
 
-		//add method to get all students and cast to a list of Student class
+            try
+            {
+                conn.Open();
+                ret = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return ret;
+
+        }
+
+        public int GetStudentIdbyUsername(string username)
+        {
+            int ret = 0;
+
+            string getIDquery = $@"SELECT StudentID from StudentAccounts WHERE Username = @user";
+
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(getIDquery, conn);
+            cmd.Parameters.AddWithValue("@user", username);
+
+            try
+            {
+                conn.Open();
+                ret = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return ret;
+        }
+
+        public string GetStudentUsernameByEmail(string email)
+        {
+            string ret = "";
+
+            string getIDquery = $@"SELECT Username FROM StudentAccounts a JOIN Students s ON a.StudentID = s.StudentID WHERE s.Email = '{email}'";
+
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(getIDquery, conn);
+
+            try
+            {
+                conn.Open();
+                ret = cmd.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return ret;
+        }
+
+        public string GetStudentNamebyID(int studentID)
+        {
+            string ret = "";
+
+            string getNameQuery = $@"SELECT FName +' '+ LName [Full_Name] FROM Students WHERE StudentID = {studentID}";
+
+            conn = new SqlConnection(connectionString);
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(getNameQuery, conn);
+                //cmd.Parameters.AddWithValue("@id", studentID);
+                ret = cmd.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return ret;
+        }
+
+        public void CreateStudentAccount(int studentid, string username, string password)
+        {
+            string createStudentAccount = @"INSERT INTO StudentAccounts VALUES (@username, @studentid, CONVERT (VARCHAR(64), HASHBYTES('SHA2_256', @password), 2))";
+
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(createStudentAccount, conn);
+            cmd.Parameters.AddWithValue("@studentid", studentid);
+            cmd.Parameters.AddWithValue("@username", username);
+            cmd.Parameters.AddWithValue("@password", password);
+
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        //add method to get all students and cast to a list of Student class
         #endregion
 
         #region Employee Stuff
         public int GetEmployeeIDbyUsername(string username)
         {
-			int ret = 0;
+            int ret = 0;
 
-			string getIDquery = $@"SELECT EmployeeID from EmployeeAccounts WHERE Username = @user";
+            string getIDquery = $@"SELECT EmployeeID from EmployeeAccounts WHERE Username = @user";
 
-			conn = new SqlConnection(connectionString);
-			SqlCommand cmd = new SqlCommand(getIDquery, conn);
-			cmd.Parameters.AddWithValue("@user", username);
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(getIDquery, conn);
+            cmd.Parameters.AddWithValue("@user", username);
 
-			try
-			{
-				conn.Open();
-				ret = Convert.ToInt32(cmd.ExecuteScalar());
-			}
-			catch (Exception ex)
-			{
-				System.Windows.Forms.MessageBox.Show(ex.Message);
-			}
-			finally
-			{
-				conn.Close();
-			}
+            try
+            {
+                conn.Open();
+                ret = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
 
-			return ret;
-		}
+            return ret;
+        }
 
-		public string GetEmployeeUsernamebyEmail(string email)
-		{
-			string ret = "";
-
-			string getIDquery = $@"SELECT Username FROM EmployeeAccounts a JOIN Employees e ON a.EmployeeID = s.EmployeeID WHERE s.Email = '{email}'";
-
-			conn = new SqlConnection(connectionString);
-			SqlCommand cmd = new SqlCommand(getIDquery, conn);
-
-			try
-			{
-				conn.Open();
-				ret = cmd.ExecuteScalar().ToString();
-			}
-			catch (Exception ex)
-			{
-				System.Windows.Forms.MessageBox.Show(ex.ToString());
-			}
-			finally
-			{
-				conn.Close();
-			}
-
-			return ret;
-		}
-
-		public string GetEmployeeNamebyID(int employeeID)
+        public string GetEmployeeUsernamebyEmail(string email)
         {
-			string ret = "";
+            string ret = "";
 
-			string getNameQuery = $@"SELECT FName +' '+ LName [Full_Name] FROM Employees WHERE EmployeeID = {employeeID}";
+            string getIDquery = $@"SELECT Username FROM EmployeeAccounts a JOIN Employees e ON a.EmployeeID = s.EmployeeID WHERE s.Email = '{email}'";
 
-			conn = new SqlConnection(connectionString);
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(getIDquery, conn);
 
-			try
-			{
-				conn.Open();
-				SqlCommand cmd = new SqlCommand(getNameQuery, conn);
-				//cmd.Parameters.AddWithValue("@id", studentID);
-				ret = cmd.ExecuteScalar().ToString();
-			}
-			catch (Exception ex)
-			{
-				System.Windows.Forms.MessageBox.Show(ex.Message);
-			}
-			finally
-			{
-				conn.Close();
-			}
+            try
+            {
+                conn.Open();
+                ret = cmd.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
 
-			return ret;
-		}
+            return ret;
+        }
 
-		public void CreateEmployee(string fname, string lname, string email, string officenum, string phone)
+        public string GetEmployeeNamebyID(int employeeID)
         {
-			string createEmployeeQuery = @"INSERT INTO Employees VALUES (@fname, @lname, @officenum, @email,  @phone)";
+            string ret = "";
 
-			conn = new SqlConnection(connectionString);
-			SqlCommand cmd = new SqlCommand(createEmployeeQuery, conn);
-			cmd.Parameters.AddWithValue("@fname", fname);
-			cmd.Parameters.AddWithValue("@lname", lname);
-			cmd.Parameters.AddWithValue("@email", email);
-			cmd.Parameters.AddWithValue("@officenum", officenum);
-			cmd.Parameters.AddWithValue("@phone", phone);
+            string getNameQuery = $@"SELECT FName +' '+ LName [Full_Name] FROM Employees WHERE EmployeeID = {employeeID}";
 
-			try
-			{
-				conn.Open();
-				cmd.ExecuteNonQuery();
-			}
-			catch (Exception ex)
-			{
-				System.Windows.Forms.MessageBox.Show(ex.ToString());
-			}
-			finally
-			{
-				conn.Close();
-			}
-		}
+            conn = new SqlConnection(connectionString);
 
-		public int GetEmployeeIDbyEmail(string email)
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(getNameQuery, conn);
+                //cmd.Parameters.AddWithValue("@id", studentID);
+                ret = cmd.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return ret;
+        }
+
+        public List<Employee> GetAllEmployees()
         {
-			int ret = 0;
+            List<Employee> ret = new List<Employee>();
+            string GetAllEmployeesQuery = $@"Select * From Employees";
 
-			string getEmployeeIDQuery = $@"SELECT EmployeeID from Employees WHERE Email = '{email}'";
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(GetAllEmployeesQuery, conn);
 
-			conn = new SqlConnection(connectionString);
-			SqlCommand cmd = new SqlCommand(getEmployeeIDQuery, conn);
 
-			try
-			{
-				conn.Open();
-				ret = Convert.ToInt32(cmd.ExecuteScalar());
-			}
-			catch (Exception ex)
-			{
-				System.Windows.Forms.MessageBox.Show(ex.ToString());
-			}
-			finally
-			{
-				conn.Close();
-			}
+            try
+            {
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
 
-			return ret;
-		}
-         
-		public void CreateEmployeeAccount(string username, string password, int employeeid, int admin)
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        int EmployeeID = reader.GetInt32(0);
+                        string FName = reader.GetString(1);
+                        string LName = reader.GetString(2);
+                        string OfficeNumber = reader.GetString(3);
+                        string Email = reader.GetString(4);
+                        string Phone = reader.GetString(5);
+
+                        Employee tmp = new Employee(EmployeeID, FName, LName, OfficeNumber, Email, Phone);
+
+                        ret.Add(tmp);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return ret;
+        }
+
+        public void CreateEmployee(string fname, string lname, string email, string officenum, string phone)
         {
-			string createEmployeeAccount = @"INSERT INTO EmployeeAccounts VALUES (@username, CONVERT (VARCHAR(64), HASHBYTES('SHA2_256', @password), 2), @employeeid, @admin)";
+            string createEmployeeQuery = @"INSERT INTO Employees VALUES (@fname, @lname, @officenum, @email,  @phone)";
 
-			conn = new SqlConnection(connectionString);
-			SqlCommand cmd = new SqlCommand(createEmployeeAccount, conn);
-			cmd.Parameters.AddWithValue("@employeeid", employeeid);
-			cmd.Parameters.AddWithValue("@username", username);
-			cmd.Parameters.AddWithValue("@password", password);
-			cmd.Parameters.AddWithValue("@admin", admin);
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(createEmployeeQuery, conn);
+            cmd.Parameters.AddWithValue("@fname", fname);
+            cmd.Parameters.AddWithValue("@lname", lname);
+            cmd.Parameters.AddWithValue("@email", email);
+            cmd.Parameters.AddWithValue("@officenum", officenum);
+            cmd.Parameters.AddWithValue("@phone", phone);
 
-			try
-			{
-				conn.Open();
-				cmd.ExecuteNonQuery();
-			}
-			catch (Exception ex)
-			{
-				System.Windows.Forms.MessageBox.Show(ex.ToString());
-			}
-			finally
-			{
-				conn.Close();
-			}
-		}
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
 
-		public bool CheckStudentApproval(string username, string userPassword)
+        public int GetEmployeeIDbyEmail(string email)
         {
-			bool ret = false;
+            int ret = 0;
 
-         //   string studentStatus = $@"SELECT s.Is_Approved FROM Students s JOIN StudentAccounts a ON s.StudentID = a.StudentID WHERE a.Username = '{username}' AND 
-									//a.Password = (CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', '{userPassword}'), 2));";
+            string getEmployeeIDQuery = $@"SELECT EmployeeID from Employees WHERE Email = '{email}'";
+
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(getEmployeeIDQuery, conn);
+
+            try
+            {
+                conn.Open();
+                ret = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return ret;
+        }
+
+        public void CreateEmployeeAccount(string username, string password, int employeeid, int admin)
+        {
+            string createEmployeeAccount = @"INSERT INTO EmployeeAccounts VALUES (@username, CONVERT (VARCHAR(64), HASHBYTES('SHA2_256', @password), 2), @employeeid, @admin)";
+
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(createEmployeeAccount, conn);
+            cmd.Parameters.AddWithValue("@employeeid", employeeid);
+            cmd.Parameters.AddWithValue("@username", username);
+            cmd.Parameters.AddWithValue("@password", password);
+            cmd.Parameters.AddWithValue("@admin", admin);
+
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public bool CheckStudentApproval(string username, string userPassword)
+        {
+            bool ret = false;
+
+            //   string studentStatus = $@"SELECT s.Is_Approved FROM Students s JOIN StudentAccounts a ON s.StudentID = a.StudentID WHERE a.Username = '{username}' AND 
+            //a.Password = (CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', '{userPassword}'), 2));";
 
             string studentStatus = $@"SELECT s.Is_Approved FROM Students s JOIN StudentAccounts a ON s.StudentID = a.StudentID WHERE a.Username = @user AND 
 									a.Password = (CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', @password), 2));";
 
-			conn = new SqlConnection(connectionString);
-			SqlCommand cmd = new SqlCommand(studentStatus, conn);
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(studentStatus, conn);
             cmd.Parameters.AddWithValue("@user", username);
             cmd.Parameters.AddWithValue("@password", userPassword);
 
             try
             {
-				conn.Open();
-				//always returns null even though query is right!
-				object test = cmd.ExecuteScalar();
+                conn.Open();
+                //always returns null even though query is right!
+                object test = cmd.ExecuteScalar();
                 int countRecord = Convert.ToInt32(cmd.ExecuteScalar());
 
                 if (countRecord > 0)
@@ -515,235 +603,156 @@ namespace LMS_Final_Project
             }
             finally
             {
-				conn.Close();
+                conn.Close();
             }
 
-			return ret;
+            return ret;
         }
 
-		public bool CheckAdminStatus(string username, string password)
+        public bool CheckAdminStatus(string username, string password)
         {
-			bool ret = false;
+            bool ret = false;
 
-			string checkAdminQuery = @"SELECT Is_Admin FROM EmployeeAccounts WHERE Username = @user and Password = (CONVERT(VARCHAR(64), HASHBYTES('SHA2_256',@password), 2))";
+            string checkAdminQuery = @"SELECT Is_Admin FROM EmployeeAccounts WHERE Username = @user and Password = (CONVERT(VARCHAR(64), HASHBYTES('SHA2_256',@password), 2))";
 
-			conn = new SqlConnection(connectionString);
+            conn = new SqlConnection(connectionString);
             try
             {
-				conn.Open();
-				SqlCommand cmd = new SqlCommand(checkAdminQuery, conn);
-				cmd.Parameters.AddWithValue("@user", username);
-				cmd.Parameters.AddWithValue("@password", password);
-				int countRecord = (int)cmd.ExecuteScalar();
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(checkAdminQuery, conn);
+                cmd.Parameters.AddWithValue("@user", username);
+                cmd.Parameters.AddWithValue("@password", password);
+                int countRecord = (int)cmd.ExecuteScalar();
 
-				if (countRecord == 1)
-					ret = true;
-				else
-					ret = false;
+                if (countRecord == 1)
+                    ret = true;
+                else
+                    ret = false;
             }
             catch
             {
-				ret = false;
+                ret = false;
             }
             finally
             {
-				conn.Close();
+                conn.Close();
             }
 
-			return ret;
+            return ret;
         }
 
-		public bool EmployeeLogin(string username, string password)
-		{
-			bool ret = false;
+        public bool EmployeeLogin(string username, string password)
+        {
+            bool ret = false;
 
-			string employeeLoginQuery = @"SELECT COUNT(*) FROM EmployeeAccounts WHERE Username = @user AND Password = CONVERT(VARCHAR(64), HASHBYTES('SHA2_256',@password), 2)";
+            string employeeLoginQuery = @"SELECT COUNT(*) FROM EmployeeAccounts WHERE Username = @user AND Password = CONVERT(VARCHAR(64), HASHBYTES('SHA2_256',@password), 2)";
 
-			conn = new SqlConnection(connectionString);
-			try
-			{
-				conn.Open();
-				SqlCommand cmd = new SqlCommand(employeeLoginQuery, conn);
-				cmd.Parameters.AddWithValue("@user", username);
-				cmd.Parameters.AddWithValue("@password", password);
-				int countRecord = (int)cmd.ExecuteScalar();
+            conn = new SqlConnection(connectionString);
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(employeeLoginQuery, conn);
+                cmd.Parameters.AddWithValue("@user", username);
+                cmd.Parameters.AddWithValue("@password", password);
+                int countRecord = (int)cmd.ExecuteScalar();
 
-				if (countRecord > 0)
-					ret = true;
-				else
-					ret = false;
-			}
-			catch
-			{
-				ret = false;
-			}
-			finally
-			{
-				conn.Close();
-			}
+                if (countRecord > 0)
+                    ret = true;
+                else
+                    ret = false;
+            }
+            catch
+            {
+                ret = false;
+            }
+            finally
+            {
+                conn.Close();
+            }
 
-			return ret;
-		}
+            return ret;
+        }
         #endregion
 
         #region Class Stuff
         public void AddStudentToClass(string classNumber, int studentID)
         {
-			string addStudentQuery = $@"Insert Into ClassRoster(StudentID, Class) Values (@studentID, @class)";
+            string addStudentQuery = $@"Insert Into ClassRoster(StudentID, Class) Values (@studentID, @class)";
 
-			conn = new SqlConnection(connectionString);
-			SqlCommand cmd = new SqlCommand(addStudentQuery, conn);
-			cmd.Parameters.AddWithValue("@studentID", studentID);
-			cmd.Parameters.AddWithValue("@class", classNumber);
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(addStudentQuery, conn);
+            cmd.Parameters.AddWithValue("@studentID", studentID);
+            cmd.Parameters.AddWithValue("@class", classNumber);
 
-			try
-			{
-				conn.Open();
-				cmd.ExecuteNonQuery();
-			}
-			catch (Exception ex)
-			{
-				System.Windows.Forms.MessageBox.Show(ex.ToString());
-			}
-			finally
-			{
-				conn.Close();
-			}
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
 
-		}
+        }
 
-		public void RemoveStudentFromClass(int studentID)
+        public void RemoveStudentFromClass(int studentID)
         {
-			string addStudentQuery = $@"Delete From ClassRoster Where studentID = @studentID";
+            string addStudentQuery = $@"Delete From ClassRoster Where studentID = @studentID";
 
-			conn = new SqlConnection(connectionString);
-			SqlCommand cmd = new SqlCommand(addStudentQuery, conn);
-			cmd.Parameters.AddWithValue("@studentID", studentID);
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(addStudentQuery, conn);
+            cmd.Parameters.AddWithValue("@studentID", studentID);
 
-			try
-			{
-				conn.Open();
-				cmd.ExecuteNonQuery();
-			}
-			catch (Exception ex)
-			{
-				System.Windows.Forms.MessageBox.Show(ex.ToString());
-			}
-			finally
-			{
-				conn.Close();
-			}
-		}
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
 
-		public List<Course> GetEnrolledClasses(int studentID)
+        public List<Course> GetEnrolledClasses(int studentID)
         {
-			List<Course> ret = new List<Course>();
+            List<Course> ret = new List<Course>();
 
-			string yourcoursequery = $@"SELECT c.Class_Number, c.Class_Name, c.Building, c.Room_Number, c.InstructorID, c.ProgramID FROM ClassRoster r JOIN Classes c 
+            string yourcoursequery = $@"SELECT c.Class_Number, c.Class_Name, c.Building, c.Room_Number, c.InstructorID, c.ProgramID FROM ClassRoster r JOIN Classes c 
 										ON r.Class = c.Class_Number WHERE r.StudentID = @id";
 
-			conn = new SqlConnection(connectionString);
-			SqlCommand cmd = new SqlCommand(yourcoursequery, conn);
-			cmd.Parameters.AddWithValue("@id", studentID);
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(yourcoursequery, conn);
+            cmd.Parameters.AddWithValue("@id", studentID);
 
             try
             {
-				conn.Open();
-				SqlDataReader reader = cmd.ExecuteReader();
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
 
-				if (reader.HasRows)
+                if (reader.HasRows)
                 {
-					while (reader.Read())
+                    while (reader.Read())
                     {
-						string classNum = reader.GetString(0);
-						string className = reader.GetString(1);
-						string building = reader.GetString(2);
-						string roomNum = reader.GetString(3);
-						int instructor = reader.GetInt32(4);
-						int progID = reader.GetInt32(5);
+                        string classNum = reader.GetString(0);
+                        string className = reader.GetString(1);
+                        string building = reader.GetString(2);
+                        string roomNum = reader.GetString(3);
+                        int instructor = reader.GetInt32(4);
+                        int progID = reader.GetInt32(5);
 
-						Course tmp = new Course(classNum, className, building, roomNum, instructor, progID);
+                        Course tmp = new Course(classNum, className, building, roomNum, instructor, progID);
 
-						ret.Add(tmp);
-					}
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-				conn.Close();
-            }
-
-			return ret;
-        }
-
-		public List<Course> GetAllClasses()
-        {
-			List<Course> ret = new List<Course>();
-
-			string allclassquery = $@"SELECT Class_Number, Class_Name, Building, Room_Number, InstructorID, ProgramID FROM Classes";
-
-			conn = new SqlConnection(connectionString);
-			SqlCommand cmd = new SqlCommand(allclassquery, conn);
-
-			try
-			{
-				conn.Open();
-				SqlDataReader reader = cmd.ExecuteReader();
-
-				if (reader.HasRows)
-				{
-					while (reader.Read())
-					{
-						string classNum = reader.GetString(0);
-						string className = reader.GetString(1);
-						string building = reader.GetString(2);
-						string roomNum = reader.GetString(3);
-						int instructor = reader.GetInt32(4);
-						int progID = reader.GetInt32(5);
-
-						Course tmp = new Course(classNum, className, building, roomNum, instructor, progID);
-
-						ret.Add(tmp);
-					}
-				}
-			}
-			catch (Exception ex)
-			{
-				System.Windows.Forms.MessageBox.Show(ex.Message);
-			}
-			finally
-			{
-				conn.Close();
-			}
-
-			return ret;
-        }
-
-		public List<string> GetClassTimes(string classNum)
-        {
-			List<string> ret = new List<string>();
-
-			string timequery = $@"SELECT Day_of_Week +'s at '+ Time [DayTime] FROM ClassTimes WHERE Class = @num";
-
-			conn = new SqlConnection(connectionString);
-			SqlCommand cmd = new SqlCommand(timequery, conn);
-			cmd.Parameters.AddWithValue("@num", classNum);
-
-            try
-            {
-				conn.Open();
-				SqlDataReader reader = cmd.ExecuteReader();
-
-				if (reader.HasRows)
-                {
-					while (reader.Read())
-                    {
-						string tmp = reader.GetString(0);
-						ret.Add(tmp);
+                        ret.Add(tmp);
                     }
                 }
             }
@@ -753,196 +762,275 @@ namespace LMS_Final_Project
             }
             finally
             {
-				conn.Close();
+                conn.Close();
             }
 
-			return ret;
+            return ret;
         }
 
-		public List<Course> GetClassesbyInstructor(int employeeID)
+        public List<Course> GetAllClasses()
         {
-			List<Course> ret = new List<Course>();
+            List<Course> ret = new List<Course>();
 
-			string allclassquery = $@"SELECT Class_Number, Class_Name, Building, Room_Number, InstructorID, ProgramID FROM Classes WHERE InstructorID = @id";
+            string allclassquery = $@"SELECT Class_Number, Class_Name, Building, Room_Number, InstructorID, ProgramID FROM Classes";
 
-			conn = new SqlConnection(connectionString);
-			SqlCommand cmd = new SqlCommand(allclassquery, conn);
-			cmd.Parameters.AddWithValue("id", employeeID);
-
-			try
-			{
-				conn.Open();
-				SqlDataReader reader = cmd.ExecuteReader();
-
-				if (reader.HasRows)
-				{
-					while (reader.Read())
-					{
-						string classNum = reader.GetString(0);
-						string className = reader.GetString(1);
-						string building = reader.GetString(2);
-						string roomNum = reader.GetString(3);
-						int instructor = reader.GetInt32(4);
-						int progID = reader.GetInt32(5);
-
-						Course tmp = new Course(classNum, className, building, roomNum, instructor, progID);
-
-						ret.Add(tmp);
-					}
-				}
-			}
-			catch (Exception ex)
-			{
-				System.Windows.Forms.MessageBox.Show(ex.Message);
-			}
-			finally
-			{
-				conn.Close();
-			}
-
-			return ret;
-		}
-
-		public List<string> GetStudentsFromRoster(string classNum)
-        {
-			List<string> ret = new List<string>();
-
-			string rosterquery = $@"SELECT s.FirstName +' '+ s.LastName [FullName] FROM ClassRoster r JOIN Students s ON r.StudentID = s.StudentID WHERE r.Class = @num";
-
-			conn = new SqlConnection(connectionString);
-			SqlCommand cmd = new SqlCommand(rosterquery, conn);
-			cmd.Parameters.AddWithValue("@num", classNum);
-
-			try
-			{
-				conn.Open();
-				SqlDataReader reader = cmd.ExecuteReader();
-
-				if (reader.HasRows)
-				{
-					while (reader.Read())
-					{
-						string tmp = reader.GetString(0);
-						ret.Add(tmp);
-					}
-				}
-			}
-			catch (Exception ex)
-			{
-				System.Windows.Forms.MessageBox.Show(ex.Message);
-			}
-			finally
-			{
-				conn.Close();
-			}
-
-			return ret;
-        }
-
-		public List<SchoolProgram> GetPrograms()
-        {
-			List<SchoolProgram> ret = new List<SchoolProgram>();
-
-			string programquery = $@"SELECT ProgramID, Program_Name, Semester, Year FROM Programs";
-
-			conn = new SqlConnection(connectionString);
-			SqlCommand cmd = new SqlCommand(programquery, conn);
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(allclassquery, conn);
 
             try
             {
-				conn.Open();
-				SqlDataReader reader = cmd.ExecuteReader();
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
 
-				if (reader.HasRows)
+                if (reader.HasRows)
                 {
-					while (reader.Read())
+                    while (reader.Read())
                     {
-						int programID = reader.GetInt32(0);
-						string progName = reader.GetString(1);
-						int semester = reader.GetInt32(2);
-						int year = reader.GetInt32(3);
+                        string classNum = reader.GetString(0);
+                        string className = reader.GetString(1);
+                        string building = reader.GetString(2);
+                        string roomNum = reader.GetString(3);
+                        int instructor = reader.GetInt32(4);
+                        int progID = reader.GetInt32(5);
 
-						SchoolProgram tmp = new SchoolProgram(programID, progName, semester, year);
-						tmp.AddCourses(GetCourseByProgram(programID));
-						ret.Add(tmp);
+                        Course tmp = new Course(classNum, className, building, roomNum, instructor, progID);
+
+                        ret.Add(tmp);
                     }
                 }
             }
-			catch (Exception ex)
+            catch (Exception ex)
             {
                 System.Windows.Forms.MessageBox.Show(ex.Message);
             }
             finally
             {
-				conn.Close();
+                conn.Close();
             }
 
-			return ret;
+            return ret;
         }
 
-		public List<Course> GetCourseByProgram(int programID)
+        public List<string> GetClassTimes(string classNum)
         {
-			List<Course> ret = new List<Course>();
+            List<string> ret = new List<string>();
 
-			string coursequery = $@"SELECT Class_Number, Class_Name, Building, Room_Number, InstructorID, ProgramID from Classes WHERE ProgramID = @progID";
+            string timequery = $@"SELECT Day_of_Week +'s at '+ Time [DayTime] FROM ClassTimes WHERE Class = @num";
 
-			conn = new SqlConnection(connectionString);
-			SqlCommand cmd = new SqlCommand(coursequery, conn);
-			cmd.Parameters.AddWithValue("@progID", programID);
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(timequery, conn);
+            cmd.Parameters.AddWithValue("@num", classNum);
 
             try
             {
-				conn.Open();
-				SqlDataReader reader = cmd.ExecuteReader();
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
 
-				if (reader.HasRows)
+                if (reader.HasRows)
                 {
-					while (reader.Read())
+                    while (reader.Read())
                     {
-						string classNum = reader.GetString(0);
-						string className = reader.GetString(1);
-						string building = reader.GetString(2);
-						string roomNum = reader.GetString(3);
-						int instructor = reader.GetInt32(4);
-						int progID = reader.GetInt32(5);
-
-						Course tmp = new Course(classNum, className, building, roomNum, instructor, progID);
-
-						ret.Add(tmp);
+                        string tmp = reader.GetString(0);
+                        ret.Add(tmp);
                     }
                 }
             }
-			catch (Exception ex)
+            catch (Exception ex)
             {
                 System.Windows.Forms.MessageBox.Show(ex.Message);
             }
             finally
             {
-				conn.Close();
+                conn.Close();
             }
 
-			return ret;
+            return ret;
+        }
+
+        public List<Course> GetClassesbyInstructor(int employeeID)
+        {
+            List<Course> ret = new List<Course>();
+
+            string allclassquery = $@"SELECT Class_Number, Class_Name, Building, Room_Number, InstructorID, ProgramID FROM Classes WHERE InstructorID = @id";
+
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(allclassquery, conn);
+            cmd.Parameters.AddWithValue("id", employeeID);
+
+            try
+            {
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        string classNum = reader.GetString(0);
+                        string className = reader.GetString(1);
+                        string building = reader.GetString(2);
+                        string roomNum = reader.GetString(3);
+                        int instructor = reader.GetInt32(4);
+                        int progID = reader.GetInt32(5);
+
+                        Course tmp = new Course(classNum, className, building, roomNum, instructor, progID);
+
+                        ret.Add(tmp);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return ret;
+        }
+
+        public List<string> GetStudentsFromRoster(string classNum)
+        {
+            List<string> ret = new List<string>();
+
+            string rosterquery = $@"SELECT s.FirstName +' '+ s.LastName [FullName] FROM ClassRoster r JOIN Students s ON r.StudentID = s.StudentID WHERE r.Class = @num";
+
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(rosterquery, conn);
+            cmd.Parameters.AddWithValue("@num", classNum);
+
+            try
+            {
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        string tmp = reader.GetString(0);
+                        ret.Add(tmp);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return ret;
+        }
+
+        public List<SchoolProgram> GetPrograms()
+        {
+            List<SchoolProgram> ret = new List<SchoolProgram>();
+
+            string programquery = $@"SELECT ProgramID, Program_Name, Semester, Year FROM Programs";
+
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(programquery, conn);
+
+            try
+            {
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        int programID = reader.GetInt32(0);
+                        string progName = reader.GetString(1);
+                        int semester = reader.GetInt32(2);
+                        int year = reader.GetInt32(3);
+
+                        SchoolProgram tmp = new SchoolProgram(programID, progName, semester, year);
+                        tmp.AddCourses(GetCourseByProgram(programID));
+                        ret.Add(tmp);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return ret;
+        }
+
+        public List<Course> GetCourseByProgram(int programID)
+        {
+            List<Course> ret = new List<Course>();
+
+            string coursequery = $@"SELECT Class_Number, Class_Name, Building, Room_Number, InstructorID, ProgramID from Classes WHERE ProgramID = @progID";
+
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(coursequery, conn);
+            cmd.Parameters.AddWithValue("@progID", programID);
+
+            try
+            {
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        string classNum = reader.GetString(0);
+                        string className = reader.GetString(1);
+                        string building = reader.GetString(2);
+                        string roomNum = reader.GetString(3);
+                        int instructor = reader.GetInt32(4);
+                        int progID = reader.GetInt32(5);
+
+                        Course tmp = new Course(classNum, className, building, roomNum, instructor, progID);
+
+                        ret.Add(tmp);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return ret;
         }
         #endregion
 
         #region posts/handins
 
-		public void CreatePost(string title, string body, int isAssignment, DateTime dueDate, string classNum)
+        public void CreatePost(string title, string body, int isAssignment, DateTime dueDate, string classNum)
         {
-			string makepostQuery = $@"INSERT INTO Posts VALUES (@title, @body, @assign, @due, @class)";
+            string makepostQuery = $@"INSERT INTO Posts VALUES (@title, @body, @assign, @due, @class)";
 
-			conn = new SqlConnection(connectionString);
-			SqlCommand cmd = new SqlCommand(makepostQuery, conn);
-			cmd.Parameters.AddWithValue("@title", title);
-			cmd.Parameters.AddWithValue("@body", body);
-			cmd.Parameters.AddWithValue("@assign", isAssignment);
-			cmd.Parameters.AddWithValue("@due", dueDate);
-			cmd.Parameters.AddWithValue("@class", classNum);
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(makepostQuery, conn);
+            cmd.Parameters.AddWithValue("@title", title);
+            cmd.Parameters.AddWithValue("@body", body);
+            cmd.Parameters.AddWithValue("@assign", isAssignment);
+            cmd.Parameters.AddWithValue("@due", dueDate);
+            cmd.Parameters.AddWithValue("@class", classNum);
 
             try
             {
-				conn.Open();
-				cmd.ExecuteNonQuery();
+                conn.Open();
+                cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
@@ -950,111 +1038,111 @@ namespace LMS_Final_Project
             }
             finally
             {
-				conn.Close();
+                conn.Close();
             }
-		}
-
-		public List<Post> GetPostsbyClass(string classNumber)
-        {
-			List<Post> ret = new List<Post>();
-
-			string postquery = $@"SELECT Post_Title +'|'+ Post_Body +'|'+ Is_Assignment +'|'+ Due_Date [PostDetails] WHERE Class = @class";
-
-			conn = new SqlConnection(connectionString);
-			SqlCommand cmd = new SqlCommand(postquery, conn);
-			cmd.Parameters.AddWithValue("@class", classNumber);
-
-            try
-            {
-				conn.Open();
-				SqlDataReader reader = cmd.ExecuteReader();
-
-				if (reader.HasRows)
-				{
-					while (reader.Read())
-					{
-						string tmp = reader.GetString(0);
-						string title = tmp.Split("|")[0];
-						string body = tmp.Split("|")[1];
-						int assign = Convert.ToInt32(tmp.Split("|")[2]);
-						DateTime due;
-						if (assign == 1)
-                        {
-							due = DateTime.Parse(tmp.Split("|")[3]);
-							Post pst = new Post(title, body, assign, due, classNumber);
-							ret.Add(pst);
-						}
-                        else
-                        {
-							Post pst = new Post(title, body, assign, classNumber);
-							ret.Add(pst);
-                        }
-					}
-				}
-			}
-            catch (Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-				conn.Close();
-            }
-
-			return ret;
         }
 
-		public void CreateHandIn(int postId, int studentID, string filePath, DateTime submitted)
+        public List<Post> GetPostsbyClass(string classNumber)
         {
-			string makehandinquery = $@"INSERT INTO HandIns VALUES (@postid, @studentid, @filepath, @submitted)";
+            List<Post> ret = new List<Post>();
 
-			conn = new SqlConnection(connectionString);
-			SqlCommand cmd = new SqlCommand(makehandinquery, conn);
-			cmd.Parameters.AddWithValue("@postid", postId);
-			cmd.Parameters.AddWithValue("@studentid", studentID);
-			cmd.Parameters.AddWithValue("@filepath", filePath);
-			cmd.Parameters.AddWithValue("@submitted", submitted);
+            string postquery = $@"SELECT Post_Title +'|'+ Post_Body +'|'+ Is_Assignment +'|'+ Due_Date [PostDetails] WHERE Class = @class";
 
-			try
-			{
-				conn.Open();
-				cmd.ExecuteNonQuery();
-			}
-			catch (Exception ex)
-			{
-				System.Windows.Forms.MessageBox.Show(ex.Message);
-			}
-			finally
-			{
-				conn.Close();
-			}
-		}
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(postquery, conn);
+            cmd.Parameters.AddWithValue("@class", classNumber);
 
-		public void GradeHandIn(int postID, int studentID, int grade, DateTime graded)
+            try
+            {
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        string tmp = reader.GetString(0);
+                        string title = tmp.Split("|")[0];
+                        string body = tmp.Split("|")[1];
+                        int assign = Convert.ToInt32(tmp.Split("|")[2]);
+                        DateTime due;
+                        if (assign == 1)
+                        {
+                            due = DateTime.Parse(tmp.Split("|")[3]);
+                            Post pst = new Post(title, body, assign, due, classNumber);
+                            ret.Add(pst);
+                        }
+                        else
+                        {
+                            Post pst = new Post(title, body, assign, classNumber);
+                            ret.Add(pst);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return ret;
+        }
+
+        public void CreateHandIn(int postId, int studentID, string filePath, DateTime submitted)
         {
-			string updatehandin = $@"UPDATE HandIns SET [Grade] = @grade, [Graded] = @graded WHERE Post_ID = @post AND StudentID = @student";
+            string makehandinquery = $@"INSERT INTO HandIns VALUES (@postid, @studentid, @filepath, @submitted)";
 
-			conn = new SqlConnection(connectionString);
-			SqlCommand cmd = new SqlCommand(updatehandin, conn);
-			cmd.Parameters.AddWithValue("@grade", grade);
-			cmd.Parameters.AddWithValue("@graded", graded);
-			cmd.Parameters.AddWithValue("@post", postID);
-			cmd.Parameters.AddWithValue("@student", studentID);
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(makehandinquery, conn);
+            cmd.Parameters.AddWithValue("@postid", postId);
+            cmd.Parameters.AddWithValue("@studentid", studentID);
+            cmd.Parameters.AddWithValue("@filepath", filePath);
+            cmd.Parameters.AddWithValue("@submitted", submitted);
 
-			try
-			{
-				conn.Open();
-				cmd.ExecuteNonQuery();
-			}
-			catch (Exception ex)
-			{
-				System.Windows.Forms.MessageBox.Show(ex.Message);
-			}
-			finally
-			{
-				conn.Close();
-			}
-		}
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public void GradeHandIn(int postID, int studentID, int grade, DateTime graded)
+        {
+            string updatehandin = $@"UPDATE HandIns SET [Grade] = @grade, [Graded] = @graded WHERE Post_ID = @post AND StudentID = @student";
+
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(updatehandin, conn);
+            cmd.Parameters.AddWithValue("@grade", grade);
+            cmd.Parameters.AddWithValue("@graded", graded);
+            cmd.Parameters.AddWithValue("@post", postID);
+            cmd.Parameters.AddWithValue("@student", studentID);
+
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
 
         #endregion
 
@@ -1062,52 +1150,52 @@ namespace LMS_Final_Project
 
         public List<string> GetPendingStudents()
         {
-			List<string> ret = new List<string>();
+            List<string> ret = new List<string>();
 
-			string pendingstudentQuery = $@"SELECT FName +' '+ LName +','+ StudentID FROM Students WHERE Is_Approved = 0";
+            string pendingstudentQuery = $@"SELECT FName +' '+ LName +','+ StudentID FROM Students WHERE Is_Approved = 0";
 
-			conn = new SqlConnection(connectionString);
-			SqlCommand cmd = new SqlCommand(pendingstudentQuery, conn);
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(pendingstudentQuery, conn);
 
             try
             {
-				conn.Open();
-				SqlDataReader reader = cmd.ExecuteReader();
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
 
-				if (reader.HasRows)
-				{
-					while (reader.Read())
-					{
-						string tmp = reader.GetString(0);
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        string tmp = reader.GetString(0);
 
-						ret.Add(tmp);
-					}
-				}
-			}
+                        ret.Add(tmp);
+                    }
+                }
+            }
             catch (Exception ex)
             {
                 System.Windows.Forms.MessageBox.Show(ex.Message);
             }
             finally
             {
-				conn.Close();
+                conn.Close();
             }
 
-			return ret;
+            return ret;
         }
 
-		public void ApprovePendingStudent(int studentID)
+        public void ApprovePendingStudent(int studentID)
         {
-			string approveStudent = $@"UPDATE Students SET Is_Approved = 1 WHERE StudentID = @id";
+            string approveStudent = $@"UPDATE Students SET Is_Approved = 1 WHERE StudentID = @id";
 
-			conn = new SqlConnection(connectionString);
-			SqlCommand cmd = new SqlCommand(approveStudent, conn);
-			cmd.Parameters.AddWithValue("@id", studentID);
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(approveStudent, conn);
+            cmd.Parameters.AddWithValue("@id", studentID);
 
             try
             {
-				conn.Open();
-				cmd.ExecuteNonQuery();
+                conn.Open();
+                cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
@@ -1115,9 +1203,9 @@ namespace LMS_Final_Project
             }
             finally
             {
-				conn.Close();
+                conn.Close();
             }
-		}
+        }
 
         #endregion
     }
