@@ -1062,7 +1062,7 @@ namespace LMS_Final_Project
                     while (reader.Read())
                     {
                         string tmp = reader.GetString(0);
-                        int id = Convert.ToInt32(tmp.Split("|")[0])
+                        int id = Convert.ToInt32(tmp.Split("|")[0]);
                         string title = tmp.Split("|")[1];
                         string body = tmp.Split("|")[2];
                         int assign = Convert.ToInt32(tmp.Split("|")[3]);
