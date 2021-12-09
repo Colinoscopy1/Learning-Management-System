@@ -622,7 +622,7 @@ namespace LMS_Final_Project
                 SqlCommand cmd = new SqlCommand(checkAdminQuery, conn);
                 cmd.Parameters.AddWithValue("@user", username);
                 cmd.Parameters.AddWithValue("@password", password);
-                int countRecord = (int)cmd.ExecuteScalar();
+                int countRecord = Convert.ToInt32(cmd.ExecuteScalar());
 
                 if (countRecord == 1)
                     ret = true;
@@ -654,7 +654,7 @@ namespace LMS_Final_Project
                 SqlCommand cmd = new SqlCommand(employeeLoginQuery, conn);
                 cmd.Parameters.AddWithValue("@user", username);
                 cmd.Parameters.AddWithValue("@password", password);
-                int countRecord = (int)cmd.ExecuteScalar();
+                int countRecord = Convert.ToInt32(cmd.ExecuteScalar());
 
                 if (countRecord > 0)
                     ret = true;
@@ -1046,7 +1046,7 @@ namespace LMS_Final_Project
         {
             List<Post> ret = new List<Post>();
 
-            string postquery = $@"SELECT Post_ID +'|'+ Post_Title +'|'+ Post_Body +'|'+ Is_Assignment +'|'+ Due_Date [PostDetails] WHERE Class = @class";
+            string postquery = $@"SELECT Post_ID +'|'+ Post_Title +'|'+ Post_Body +'|'+ Is_Assignment +'|'+ Due_Date [PostDetails] FROM Posts WHERE Class = @class";
 
             conn = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand(postquery, conn);
