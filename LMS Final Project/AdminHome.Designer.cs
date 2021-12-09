@@ -111,6 +111,7 @@ namespace LMS_Final_Project
             this.lstContainer.Name = "lstContainer";
             this.lstContainer.Size = new System.Drawing.Size(268, 529);
             this.lstContainer.TabIndex = 0;
+            this.lstContainer.SelectedIndexChanged += new System.EventHandler(this.lstContainer_SelectedIndexChanged);
             // 
             // flowMain
             // 

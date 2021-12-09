@@ -13,10 +13,11 @@ namespace LMS_Final_Project
     {
         public string userName;
         public int employeeID;
+        string datasource = "";
         
         DataLayer d;
-        List<Student> s;
-        List<Employee> e;
+        List<Student> stdnt;
+        List<Employee> emply;
 
         string serverAddress = ConfigurationManager.AppSettings.Get("server");
         string databaseName = ConfigurationManager.AppSettings.Get("database");
@@ -41,12 +42,36 @@ namespace LMS_Final_Project
 
         private void btnStudents_Click(object sender, EventArgs e)
         {
-            
-            //lstContainer.DataSource = 
+            datasource = "Students";
+            stdnt = d.GetAllStudents();
+
+            lstContainer.DataSource = stdnt;
+
         }
 
         private void btnEmployees_Click(object sender, EventArgs e)
         {
+            datasource = "Employees";
+            emply = d.GetAllEmployees();
+
+            lstContainer.DataSource = emply;
+        }
+
+        private void lstContainer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (datasource == "Employees")
+            {
+                flowMain.Controls.Clear();
+                EmployeeInfo emi = new EmployeeInfo();
+                flowMain.Controls.Add(emi);
+            }
+            else if (datasource == "Students")
+            {
+                flowMain.Controls.Clear();
+                StudentInfo stdnti = new StudentInfo();
+                flowMain.Controls.Add(stdnti);
+            }
+           
 
         }
     }
