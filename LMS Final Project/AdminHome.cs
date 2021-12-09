@@ -14,6 +14,9 @@ namespace LMS_Final_Project
         public string userName;
         public int employeeID;
         DataLayer d;
+
+        
+
         string serverAddress = ConfigurationManager.AppSettings.Get("server");
         string databaseName = ConfigurationManager.AppSettings.Get("database");
         string userID = ConfigurationManager.AppSettings.Get("username");
@@ -33,7 +36,14 @@ namespace LMS_Final_Project
             lblWelcome.Text = "Welcome, " + employeeName + "!";
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
+      
+
+        private void btnStudents_Click(object sender, EventArgs e)
+        {
+            lstContainer
+        }
+
+        private void btnEmployees_Click(object sender, EventArgs e)
         {
 
         }
