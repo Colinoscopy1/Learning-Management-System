@@ -35,6 +35,7 @@ namespace LMS_Final_Project
             this.lblBody = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblDueDate = new System.Windows.Forms.Label();
+            this.btnHandin = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -84,6 +85,7 @@ namespace LMS_Final_Project
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Black;
+            this.panel2.Controls.Add(this.btnHandin);
             this.panel2.Controls.Add(this.lblDueDate);
             this.panel2.Location = new System.Drawing.Point(0, 487);
             this.panel2.Name = "panel2";
@@ -94,12 +96,23 @@ namespace LMS_Final_Project
             // 
             this.lblDueDate.AutoSize = true;
             this.lblDueDate.ForeColor = System.Drawing.Color.White;
-            this.lblDueDate.Location = new System.Drawing.Point(4, 4);
+            this.lblDueDate.Location = new System.Drawing.Point(4, 13);
             this.lblDueDate.Name = "lblDueDate";
             this.lblDueDate.Size = new System.Drawing.Size(55, 15);
             this.lblDueDate.TabIndex = 0;
             this.lblDueDate.Text = "Due Date";
             this.lblDueDate.Visible = false;
+            this.lblDueDate.Click += new System.EventHandler(this.lblDueDate_Click);
+            // 
+            // btnHandin
+            // 
+            this.btnHandin.Location = new System.Drawing.Point(703, 9);
+            this.btnHandin.Name = "btnHandin";
+            this.btnHandin.Size = new System.Drawing.Size(135, 23);
+            this.btnHandin.TabIndex = 1;
+            this.btnHandin.Text = "Upload Assignment";
+            this.btnHandin.UseVisualStyleBackColor = true;
+            this.btnHandin.Click += new System.EventHandler(this.btnHandin_Click);
             // 
             // Post
             // 
@@ -126,5 +139,6 @@ namespace LMS_Final_Project
         private System.Windows.Forms.Label lblBody;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lblDueDate;
+        private System.Windows.Forms.Button btnHandin;
     }
 }

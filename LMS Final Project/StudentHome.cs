@@ -65,8 +65,12 @@ namespace LMS_Final_Project
             else if(datasource == "classes")
             {
                 flowMain.Controls.Clear();
-                ClassInfo clsi = new ClassInfo();
-                flowMain.Controls.Add(clsi);
+                //ClassInfo clsi = new ClassInfo();
+                Course tmp = (Course)lstContainer.SelectedItem;
+                string classnum = tmp.GetCourseId();
+                List<Post> posts = 
+                foreach (Post crs in )
+                flowMain.Controls.Add();
             }
             else if(datasource == "allClasses")
             {
