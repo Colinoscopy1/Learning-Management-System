@@ -1046,7 +1046,7 @@ namespace LMS_Final_Project
         {
             List<Post> ret = new List<Post>();
 
-            string postquery = $@"SELECT Post_Title +'|'+ Post_Body +'|'+ Is_Assignment +'|'+ Due_Date [PostDetails] WHERE Class = @class";
+            string postquery = $@"SELECT Post_ID +'|'+ Post_Title +'|'+ Post_Body +'|'+ Is_Assignment +'|'+ Due_Date [PostDetails] WHERE Class = @class";
 
             conn = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand(postquery, conn);
@@ -1062,19 +1062,20 @@ namespace LMS_Final_Project
                     while (reader.Read())
                     {
                         string tmp = reader.GetString(0);
-                        string title = tmp.Split("|")[0];
-                        string body = tmp.Split("|")[1];
-                        int assign = Convert.ToInt32(tmp.Split("|")[2]);
+                        int id = Convert.ToInt32(tmp.Split("|")[0])
+                        string title = tmp.Split("|")[1];
+                        string body = tmp.Split("|")[2];
+                        int assign = Convert.ToInt32(tmp.Split("|")[3]);
                         DateTime due;
                         if (assign == 1)
                         {
                             due = DateTime.Parse(tmp.Split("|")[3]);
-                            Post pst = new Post(title, body, assign, due, classNumber);
+                            Post pst = new Post(id, title, body, assign, due, classNumber);
                             ret.Add(pst);
                         }
                         else
                         {
-                            Post pst = new Post(title, body, assign, classNumber);
+                            Post pst = new Post(id, title, body, assign, classNumber);
                             ret.Add(pst);
                         }
                     }
