@@ -59,13 +59,13 @@ namespace LMS_Final_Project
             // 
             // btnYourClasses
             // 
-            this.btnYourClasses.Enabled = false;
             this.btnYourClasses.Location = new System.Drawing.Point(948, 11);
             this.btnYourClasses.Name = "btnYourClasses";
             this.btnYourClasses.Size = new System.Drawing.Size(148, 23);
             this.btnYourClasses.TabIndex = 4;
             this.btnYourClasses.Text = "Your Classes";
             this.btnYourClasses.UseVisualStyleBackColor = true;
+            this.btnYourClasses.Click += new System.EventHandler(this.btnYourClasses_Click);
             // 
             // btnClasses
             // 

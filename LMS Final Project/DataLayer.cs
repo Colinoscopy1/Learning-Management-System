@@ -63,8 +63,8 @@ namespace LMS_Final_Project
 											[Class_Name] [varchar](MAX) NOT NULL,
 											[Building] [varchar](50) NULL,
 											[Room_Number] [varchar](5) NULL,
-											[InstructorID] [int] NOT NULL FOREIGN KEY REFERENCES [dbo].[Programs] (ProgramID),
-											[ProgramID] [int] NOT NULL FOREIGN KEY REFERENCES [dbo].[Employees] (EmployeeID)
+											[InstructorID] [int] NOT NULL FOREIGN KEY REFERENCES [dbo].[Programs] (EmployeeID),
+											[ProgramID] [int] NOT NULL FOREIGN KEY REFERENCES [dbo].[Employees] (ProgramID)
 											);
 
 										CREATE TABLE [dbo].[ClassTimes](

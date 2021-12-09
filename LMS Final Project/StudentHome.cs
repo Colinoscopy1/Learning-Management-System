@@ -60,7 +60,14 @@ namespace LMS_Final_Project
         private void btnClasses_Click(object sender, EventArgs e)
         {
             lstContainer.DataSource = null;
+            lstContainer.DataSource = d.GetAllClasses();
+        }
+
+        private void btnYourClasses_Click(object sender, EventArgs e)
+        {
+            lstContainer.DataSource = null;
             lstContainer.DataSource = d.GetEnrolledClasses(this.studentID);
+
         }
     }
 }
