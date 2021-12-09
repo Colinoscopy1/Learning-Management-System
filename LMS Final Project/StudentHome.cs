@@ -68,9 +68,11 @@ namespace LMS_Final_Project
                 //ClassInfo clsi = new ClassInfo();
                 Course tmp = (Course)lstContainer.SelectedItem;
                 string classnum = tmp.GetCourseId();
-                List<Post> posts = 
-                foreach (Post crs in )
-                flowMain.Controls.Add();
+                List<Post> posts = d.GetPostsbyClass(classnum);
+                foreach (Post pst in posts)
+                {
+                    flowMain.Controls.Add(pst);
+                }
             }
             else if(datasource == "allClasses")
             {

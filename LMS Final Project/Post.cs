@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -11,6 +13,9 @@ namespace LMS_Final_Project
     public partial class Post : UserControl
     {
         int assignment;
+        DataLayer d;
+        public delegate void CreateHandin
+
         public Post(string title, string body, int isAssignment, DateTime dueDate, string classNumber)
         {
             InitializeComponent();
@@ -54,7 +59,12 @@ namespace LMS_Final_Project
 
         private void btnHandin_Click(object sender, EventArgs e)
         {
+            OpenFileDialog op = new OpenFileDialog();
+            op.ShowDialog();
+            File.Copy(op.FileName, Environment.CurrentDirectory + "\\Upload\\" + op.FileName.Split("\\").LastOrDefault());
+            string filePath = "\\Upload\\" + op.FileName.Split("\\").LastOrDefault();
 
+            d.CreateHandIn()
         }
 
         private void lblDueDate_Click(object sender, EventArgs e)
