@@ -100,6 +100,7 @@ namespace LMS_Final_Project
             this.btnLogOut.TabIndex = 9;
             this.btnLogOut.Text = "Log Out";
             this.btnLogOut.UseVisualStyleBackColor = true;
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
             // btnClassRoster
             // 
@@ -109,6 +110,7 @@ namespace LMS_Final_Project
             this.btnClassRoster.TabIndex = 9;
             this.btnClassRoster.Text = "Your Class Rosters";
             this.btnClassRoster.UseVisualStyleBackColor = true;
+            this.btnClassRoster.Click += new System.EventHandler(this.btnClassRoster_Click);
             // 
             // btnPosts
             // 

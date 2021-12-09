@@ -37,5 +37,16 @@ namespace LMS_Final_Project
         {
 
         }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnClassRoster_Click(object sender, EventArgs e)
+        {
+            lstContainer.DataSource = null;
+            lstContainer.DataSource = d.GetClassesbyInstructor(employeeID);
+        }
     }
 }

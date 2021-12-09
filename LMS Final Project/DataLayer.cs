@@ -84,14 +84,23 @@ namespace LMS_Final_Project
 											);
 
 										CREATE TABLE [dbo].[HandIns](
-											[Post_ID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
+											[Post_ID] [int] IDENTITY(1,1) NOT NULL FOREIGN KEY REFERENCES [dbo].[Posts] (Post_ID),
 											[StudentID] [int] NOT NULL FOREIGN KEY REFERENCES [dbo].[Students] (StudentID),
-											[FilePath] [varchar](max) NULL
+											[FilePath] [varchar](max) NULL,
+											[Submitted] [datetime] NOT NULL,
+											[Grade] [int] NULL,
+											[Graded] [datetime] NULL
 											);
 
 										CREATE TABLE [dbo].[ClassRoster](
 											[StudentID] [int] NOT NULL FOREIGN KEY REFERENCES [dbo].[Students] (StudentID),
 											[Class] [varchar](7) NULL FOREIGN KEY REFERENCES [dbo].[Classes] (Class_Number)
+											);
+
+										CREATE TABLE [dbo].[StudentGrades](
+											[StudentID] [int] NOT NULL FOREIGN KEY REFERENCES [dbo].[Students] (StudentID),
+											[Class_Num] [varchar] (7) NOT NULL FOREIGN KEY REFERENCES [dbo].[Classes] (Class_Number),
+											[Grade] [int] NULL
 											);
 
 										INSERT INTO Employees VALUES ('Default', 'Admin', 'N/A', 'N/A', 'N/A');
@@ -941,6 +950,58 @@ namespace LMS_Final_Project
             {
 				conn.Close();
             }
+		}
+
+		public void CreateHandIn(int postId, int studentID, string filePath, DateTime submitted)
+        {
+			string makehandinquery = $@"INSERT INTO HandIns VALUES (@postid, @studentid, @filepath, @submitted)";
+
+			conn = new SqlConnection(connectionString);
+			SqlCommand cmd = new SqlCommand(makehandinquery, conn);
+			cmd.Parameters.AddWithValue("@postid", postId);
+			cmd.Parameters.AddWithValue("@studentid", studentID);
+			cmd.Parameters.AddWithValue("@filepath", filePath);
+			cmd.Parameters.AddWithValue("@submitted", submitted);
+
+			try
+			{
+				conn.Open();
+				cmd.ExecuteNonQuery();
+			}
+			catch (Exception ex)
+			{
+				System.Windows.Forms.MessageBox.Show(ex.Message);
+			}
+			finally
+			{
+				conn.Close();
+			}
+		}
+
+		public void GradeHandIn(int postID, int studentID, int grade, DateTime graded)
+        {
+			string updatehandin = $@"UPDATE HandIns SET [Grade] = @grade, [Graded] = @graded WHERE Post_ID = @post AND StudentID = @student";
+
+			conn = new SqlConnection(connectionString);
+			SqlCommand cmd = new SqlCommand(updatehandin, conn);
+			cmd.Parameters.AddWithValue("@grade", grade);
+			cmd.Parameters.AddWithValue("@graded", graded);
+			cmd.Parameters.AddWithValue("@post", postID);
+			cmd.Parameters.AddWithValue("@student", studentID);
+
+			try
+			{
+				conn.Open();
+				cmd.ExecuteNonQuery();
+			}
+			catch (Exception ex)
+			{
+				System.Windows.Forms.MessageBox.Show(ex.Message);
+			}
+			finally
+			{
+				conn.Close();
+			}
 		}
 
         #endregion
