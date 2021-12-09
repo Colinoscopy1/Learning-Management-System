@@ -15,6 +15,7 @@ namespace LMS_Final_Project
         public int studentID;
         DataLayer d;
         List<SchoolProgram> programs;
+        List<Course> classes;
         string serverAddress = ConfigurationManager.AppSettings.Get("server");
         string databaseName = ConfigurationManager.AppSettings.Get("database");
         string userID = ConfigurationManager.AppSettings.Get("username");
@@ -39,6 +40,7 @@ namespace LMS_Final_Project
             //run a query to populate flowside with a list of items from programs table, clicking on one generates a list of classes in flowmain
             programs = d.GetPrograms();
             lstContainer.DataSource = programs;
+
             
         }
 
@@ -49,22 +51,31 @@ namespace LMS_Final_Project
 
         private void lstContainer_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             if (lstContainer.DataSource == programs)
             {
                 flowMain.Controls.Clear();
                 CourseControl crs = new CourseControl(this, (SchoolProgram)lstContainer.SelectedItem);
                 flowMain.Controls.Add(crs);
             }
+            else
+            {
+                flowMain.Controls.Clear();
+            }
+            
         }
 
         private void btnClasses_Click(object sender, EventArgs e)
         {
+            flowMain.Controls.Clear();
+            classes = d.GetAllClasses();
             lstContainer.DataSource = null;
-            lstContainer.DataSource = d.GetAllClasses();
+            lstContainer.DataSource = classes;
         }
 
         private void btnYourClasses_Click(object sender, EventArgs e)
         {
+            flowMain.Controls.Clear();
             lstContainer.DataSource = null;
             lstContainer.DataSource = d.GetEnrolledClasses(this.studentID);
 
