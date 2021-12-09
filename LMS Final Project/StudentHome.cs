@@ -13,9 +13,14 @@ namespace LMS_Final_Project
     {
         public string userName;
         public int studentID;
+        private string datasource = "";
+       
         DataLayer d;
         List<SchoolProgram> programs;
         List<Course> classes;
+        List<Course> allClasses;
+
+
         string serverAddress = ConfigurationManager.AppSettings.Get("server");
         string databaseName = ConfigurationManager.AppSettings.Get("database");
         string userID = ConfigurationManager.AppSettings.Get("username");
@@ -37,11 +42,10 @@ namespace LMS_Final_Project
 
         private void btnRegProg_Click(object sender, EventArgs e)
         {
-            //run a query to populate flowside with a list of items from programs table, clicking on one generates a list of classes in flowmain
+            datasource = "programs";
+            
             programs = d.GetPrograms();
             lstContainer.DataSource = programs;
-
-            
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)
@@ -52,32 +56,43 @@ namespace LMS_Final_Project
         private void lstContainer_SelectedIndexChanged(object sender, EventArgs e)
         {
             
-            if (lstContainer.DataSource == programs)
+            if (datasource == "programs")
             {
                 flowMain.Controls.Clear();
                 CourseControl crs = new CourseControl(this, (SchoolProgram)lstContainer.SelectedItem);
                 flowMain.Controls.Add(crs);
             }
-            else
+            else if(datasource == "classes")
             {
                 flowMain.Controls.Clear();
+                ClassInfo clsi = new ClassInfo();
+                flowMain.Controls.Add(clsi);
+            }
+            else if(datasource == "allClasses")
+            {
+                flowMain.Controls.Clear();
+                AddDropControl add = new AddDropControl();
+                flowMain.Controls.Add(add);
             }
             
         }
 
         private void btnClasses_Click(object sender, EventArgs e)
         {
+            datasource = "allClasses";
+            
             flowMain.Controls.Clear();
-            classes = d.GetAllClasses();
-            lstContainer.DataSource = null;
-            lstContainer.DataSource = classes;
+            allClasses = d.GetAllClasses();
+            lstContainer.DataSource = allClasses;
         }
 
         private void btnYourClasses_Click(object sender, EventArgs e)
         {
+            datasource = "classes";
+            
+            classes = d.GetEnrolledClasses(this.studentID);
             flowMain.Controls.Clear();
-            lstContainer.DataSource = null;
-            lstContainer.DataSource = d.GetEnrolledClasses(this.studentID);
+            lstContainer.DataSource = classes;
 
         }
     }
