@@ -55,6 +55,9 @@ namespace LMS_Final_Project
                     else
                     {
                         //launch instructor home form
+                        InstructorHome home = new InstructorHome(username);
+                        this.Hide();
+                        home.ShowDialog();
                     }
                 }
                 else

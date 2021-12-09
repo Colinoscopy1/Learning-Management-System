@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace LMS_Final_Project
 {
-    public partial class AdminHome : Form
+    public partial class InstructorHome : Form
     {
         public string userName;
         public int employeeID;
@@ -20,7 +20,7 @@ namespace LMS_Final_Project
         string password = ConfigurationManager.AppSettings.Get("password");
         string connectionString;
 
-        public AdminHome(string username)
+        public InstructorHome(string username)
         {
             InitializeComponent();
             userName = username;
@@ -28,7 +28,7 @@ namespace LMS_Final_Project
 
             d = new DataLayer(connectionString);
             employeeID = d.GetEmployeeIDbyUsername(userName);
-            string employeeName = d.GetStudentNamebyID(employeeID);
+            string employeeName = d.GetEmployeeNamebyID(employeeID);
 
             lblWelcome.Text = "Welcome, " + employeeName + "!";
         }

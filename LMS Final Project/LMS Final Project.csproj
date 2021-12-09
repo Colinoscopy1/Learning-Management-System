@@ -12,6 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="InstructorHome.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="AdminHome.cs">
       <SubType>Form</SubType>
     </Compile>

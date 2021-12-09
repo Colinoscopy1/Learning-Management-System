@@ -1,7 +1,7 @@
 ﻿
 namespace LMS_Final_Project
 {
-    partial class AdminHome
+    partial class InstructorHome
     {
         /// <summary>
         /// Required designer variable.
@@ -33,10 +33,11 @@ namespace LMS_Final_Project
             this.lblWelcome = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lstContainer = new System.Windows.Forms.ListBox();
-            this.btnLogOut = new System.Windows.Forms.Button();
             this.flowMain = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnEmployees = new System.Windows.Forms.Button();
-            this.btnStudents = new System.Windows.Forms.Button();
+            this.btnLogOut = new System.Windows.Forms.Button();
+            this.btnClassRoster = new System.Windows.Forms.Button();
+            this.btnPosts = new System.Windows.Forms.Button();
+            this.btnHandin = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -44,13 +45,14 @@ namespace LMS_Final_Project
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.WindowText;
-            this.panel1.Controls.Add(this.btnStudents);
-            this.panel1.Controls.Add(this.btnEmployees);
+            this.panel1.Controls.Add(this.btnHandin);
+            this.panel1.Controls.Add(this.btnPosts);
+            this.panel1.Controls.Add(this.btnClassRoster);
             this.panel1.Controls.Add(this.btnLogOut);
             this.panel1.Controls.Add(this.lblWelcome);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1183, 50);
+            this.panel1.Size = new System.Drawing.Size(1184, 50);
             this.panel1.TabIndex = 0;
             // 
             // lblWelcome
@@ -83,50 +85,59 @@ namespace LMS_Final_Project
             this.lstContainer.Size = new System.Drawing.Size(268, 529);
             this.lstContainer.TabIndex = 0;
             // 
-            // btnLogOut
-            // 
-            this.btnLogOut.Location = new System.Drawing.Point(1096, 14);
-            this.btnLogOut.Name = "btnLogOut";
-            this.btnLogOut.Size = new System.Drawing.Size(75, 23);
-            this.btnLogOut.TabIndex = 2;
-            this.btnLogOut.Text = "Log Out";
-            this.btnLogOut.UseVisualStyleBackColor = true;
-            // 
             // flowMain
             // 
             this.flowMain.Location = new System.Drawing.Point(330, 86);
             this.flowMain.Name = "flowMain";
             this.flowMain.Size = new System.Drawing.Size(841, 529);
-            this.flowMain.TabIndex = 7;
+            this.flowMain.TabIndex = 8;
             // 
-            // btnEmployees
+            // btnLogOut
             // 
-            this.btnEmployees.Location = new System.Drawing.Point(942, 14);
-            this.btnEmployees.Name = "btnEmployees";
-            this.btnEmployees.Size = new System.Drawing.Size(148, 23);
-            this.btnEmployees.TabIndex = 5;
-            this.btnEmployees.Text = "Add/Remove Employee";
-            this.btnEmployees.UseVisualStyleBackColor = true;
+            this.btnLogOut.Location = new System.Drawing.Point(1096, 14);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(75, 23);
+            this.btnLogOut.TabIndex = 9;
+            this.btnLogOut.Text = "Log Out";
+            this.btnLogOut.UseVisualStyleBackColor = true;
             // 
-            // btnStudents
+            // btnClassRoster
             // 
-            this.btnStudents.Location = new System.Drawing.Point(788, 14);
-            this.btnStudents.Name = "btnStudents";
-            this.btnStudents.Size = new System.Drawing.Size(148, 23);
-            this.btnStudents.TabIndex = 6;
-            this.btnStudents.Text = "Edit Student Accounts";
-            this.btnStudents.UseVisualStyleBackColor = true;
+            this.btnClassRoster.Location = new System.Drawing.Point(942, 14);
+            this.btnClassRoster.Name = "btnClassRoster";
+            this.btnClassRoster.Size = new System.Drawing.Size(148, 23);
+            this.btnClassRoster.TabIndex = 9;
+            this.btnClassRoster.Text = "Your Class Rosters";
+            this.btnClassRoster.UseVisualStyleBackColor = true;
             // 
-            // AdminHome
+            // btnPosts
+            // 
+            this.btnPosts.Location = new System.Drawing.Point(596, 14);
+            this.btnPosts.Name = "btnPosts";
+            this.btnPosts.Size = new System.Drawing.Size(186, 23);
+            this.btnPosts.TabIndex = 10;
+            this.btnPosts.Text = "Manage Posts/Assignments";
+            this.btnPosts.UseVisualStyleBackColor = true;
+            // 
+            // btnHandin
+            // 
+            this.btnHandin.Location = new System.Drawing.Point(788, 14);
+            this.btnHandin.Name = "btnHandin";
+            this.btnHandin.Size = new System.Drawing.Size(148, 23);
+            this.btnHandin.TabIndex = 11;
+            this.btnHandin.Text = "View/Grade Handins";
+            this.btnHandin.UseVisualStyleBackColor = true;
+            // 
+            // InstructorHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1183, 623);
             this.Controls.Add(this.flowMain);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "AdminHome";
-            this.Text = "Admin Home";
+            this.Controls.Add(this.panel2);
+            this.Name = "InstructorHome";
+            this.Text = "Instructor Home";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -140,9 +151,10 @@ namespace LMS_Final_Project
         private System.Windows.Forms.Label lblWelcome;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ListBox lstContainer;
-        private System.Windows.Forms.Button btnLogOut;
         private System.Windows.Forms.FlowLayoutPanel flowMain;
-        private System.Windows.Forms.Button btnStudents;
-        private System.Windows.Forms.Button btnEmployees;
+        private System.Windows.Forms.Button btnLogOut;
+        private System.Windows.Forms.Button btnHandin;
+        private System.Windows.Forms.Button btnPosts;
+        private System.Windows.Forms.Button btnClassRoster;
     }
 }
