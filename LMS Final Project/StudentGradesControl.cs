@@ -30,11 +30,55 @@ namespace LMS_Final_Project
             thiscourse = crs;
             home = prev;
 
-            handIns = d.GetGradedHandins(home.studentID);
+            handIns = d.GetGradedHandins(home.studentID, thiscourse.GetCourseId());
 
             foreach(string item in handIns)
             {
                 lstPosts.Items.Add(item.Split("|")[0] + ": " + item.Split("|")[1]);
+            }
+
+            string grade = d.GetFinalGradebyStudentID(home.studentID, thiscourse.GetCourseId());
+
+            if (grade == "")
+            {
+                lblFinal.Visible = false;
+                lblFinalGrade.Visible = false;
+            }
+
+            else
+            {
+                lblFinal.Visible = true;
+                lblFinalGrade.Visible = true;
+                lblFinalGrade.Text = grade;
+            }
+
+            if (lstPosts.SelectedItem != null)
+            {
+                lblPostName.Visible = true;
+                lblHIGrade.Visible = true;
+                lblPostName.Text = "Your Grade For " + lstPosts.SelectedItem.ToString().Split(": ")[1];
+                lblHIGrade.Text = d.GetHandInGradeByPostID(Convert.ToInt32(lstPosts.SelectedItem.ToString().Split(": ")[0]), home.studentID).ToString();
+            }
+            else
+            {
+                lblPostName.Visible = false;
+                lblHIGrade.Visible = false;
+            }
+        }
+
+        private void lstPosts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstPosts.SelectedItem != null)
+            {
+                lblPostName.Visible = true;
+                lblHIGrade.Visible = true;
+                lblPostName.Text = "Your Grade For " + lstPosts.SelectedItem.ToString().Split(": ")[1];
+                lblHIGrade.Text = d.GetHandInGradeByPostID(Convert.ToInt32(lstPosts.SelectedItem.ToString().Split(": ")[0]), home.studentID).ToString();
+            }
+            else
+            {
+                lblPostName.Visible = false;
+                lblHIGrade.Visible = false;
             }
         }
     }

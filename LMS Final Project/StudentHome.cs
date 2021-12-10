@@ -81,6 +81,13 @@ namespace LMS_Final_Project
                 AddDropControl add = new AddDropControl(this, tmp);
                 flowMain.Controls.Add(add);
             }
+            else if(datasource == "grades")
+            {
+                flowMain.Controls.Clear();
+                Course tmp = (Course)lstContainer.SelectedItem;
+                StudentGradesControl grade = new StudentGradesControl(this, tmp);
+                flowMain.Controls.Add(grade);
+            }
             
         }
 
@@ -103,14 +110,13 @@ namespace LMS_Final_Project
 
         }
 
-        public void ReceiveHandin(int id, string filePath)
-        {
-
-        }
-
         private void btnGrades_Click(object sender, EventArgs e)
         {
+            datasource = "grades";
 
+            classes = d.GetEnrolledClasses(this.studentID);
+            flowMain.Controls.Clear();
+            lstContainer.DataSource = classes;
         }
     }
 }

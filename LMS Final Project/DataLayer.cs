@@ -1213,15 +1213,17 @@ namespace LMS_Final_Project
             return ret;
         }
 
-        public List<string> GetGradedHandins(int studentID)
+        public List<string> GetGradedHandins(int studentID, string classNum)
         {
             List<string> ret = new List<string>();
 
-            string getPostsbyGraded = $@"SELECT Convert(varchar, (p.Post_ID),1) +'|'+ p.Post_Title FROM HandIns h JOIN Posts p ON h.Post_ID = p.Post_ID WHERE h.Grade is not null AND h.StudentID = @id";
+            string getPostsbyGraded = $@"SELECT Convert(varchar, (p.Post_ID),1) +'|'+ p.Post_Title FROM HandIns h JOIN Posts p ON h.Post_ID = p.Post_ID WHERE h.Grade is not null AND h.StudentID = @id 
+                                                    AND p.Class = @class";
 
             conn = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand(getPostsbyGraded, conn);
             cmd.Parameters.AddWithValue("@id", studentID);
+            cmd.Parameters.AddWithValue("@class", classNum);
 
             try
             {
@@ -1240,6 +1242,35 @@ namespace LMS_Final_Project
             catch (Exception ex)
             {
                 System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return ret;
+        }
+
+        public int GetHandInGradeByPostID(int postID, int studentID)
+        {
+            int ret = 0;
+
+            string gethandingrade = $@"SELECT h.Grade FROM HandIns h JOIN Posts p ON h.Post_ID = p.Post_ID WHERE p.Post_ID = @post AND h.Grade is not null AND h.StudentID = @student";
+
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(gethandingrade, conn);
+            cmd.Parameters.AddWithValue("@post", postID);
+            cmd.Parameters.AddWithValue("@student", studentID);
+
+            try
+            {
+                conn.Open();
+                if (cmd.ExecuteScalar() != null)
+                    ret = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch
+            {
+
             }
             finally
             {
