@@ -68,7 +68,7 @@ namespace LMS_Final_Project
                 flowMain.Controls.Clear();
                 btnAddPost.Visible = false;
                 Course crs = (Course)lstContainer.SelectedItem;
-                InstructorHandIns handins = new InstructorHandIns();
+                InstructorHandIns handins = new InstructorHandIns(crs);
                 flowMain.Controls.Add(handins);
             }
             else if(datasource == "Posts")
