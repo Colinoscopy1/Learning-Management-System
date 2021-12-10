@@ -74,7 +74,6 @@ namespace LMS_Final_Project
 
         private void btnApprove_Click(object sender, EventArgs e)
         {
-            
             if(student.is_Approved == false)
                 dl.ApprovePendingStudent(student.studentID);
             else
@@ -85,10 +84,6 @@ namespace LMS_Final_Project
                 lblApproval.Text = "Approved";
                 student.is_Approved = true;
             }
-
-            lblApproval.Refresh();
-
-            
 
             lstClasses.DataSource = dl.GetEnrolledClasses(student.studentID);
         }

@@ -64,15 +64,15 @@ namespace LMS_Final_Project
 
             if (datasource == "Employees")
             {
-                flowMain.Controls.Clear();
+                createEmployee.Controls.Clear();
                 EmployeeInfo emi = new EmployeeInfo((Employee)lstContainer.SelectedItem);
-                flowMain.Controls.Add(emi);
+                createEmployee.Controls.Add(emi);
             }
             else if (datasource == "Students")
             {
-                flowMain.Controls.Clear();
+                createEmployee.Controls.Clear();
                 StudentInfo stdnti = new StudentInfo((Student)lstContainer.SelectedItem);
-                flowMain.Controls.Add(stdnti);
+                createEmployee.Controls.Add(stdnti);
             }
            
 
@@ -81,6 +81,12 @@ namespace LMS_Final_Project
         private void btnLogOut_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            RegisterEmployee rgstr = new RegisterEmployee();
+            rgstr.ShowDialog();
         }
     }
 }

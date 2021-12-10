@@ -36,7 +36,8 @@ namespace LMS_Final_Project
             this.lblWelcome = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lstContainer = new System.Windows.Forms.ListBox();
-            this.flowMain = new System.Windows.Forms.FlowLayoutPanel();
+            this.createEmployee = new System.Windows.Forms.FlowLayoutPanel();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -44,6 +45,7 @@ namespace LMS_Final_Project
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.WindowText;
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.btnStudents);
             this.panel1.Controls.Add(this.btnEmployees);
             this.panel1.Controls.Add(this.btnLogOut);
@@ -114,19 +116,29 @@ namespace LMS_Final_Project
             this.lstContainer.TabIndex = 0;
             this.lstContainer.SelectedIndexChanged += new System.EventHandler(this.lstContainer_SelectedIndexChanged);
             // 
-            // flowMain
+            // createEmployee
             // 
-            this.flowMain.Location = new System.Drawing.Point(330, 86);
-            this.flowMain.Name = "flowMain";
-            this.flowMain.Size = new System.Drawing.Size(841, 529);
-            this.flowMain.TabIndex = 7;
+            this.createEmployee.Location = new System.Drawing.Point(330, 86);
+            this.createEmployee.Name = "createEmployee";
+            this.createEmployee.Size = new System.Drawing.Size(841, 529);
+            this.createEmployee.TabIndex = 7;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(634, 14);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(148, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Create an Employee";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // AdminHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1183, 623);
-            this.Controls.Add(this.flowMain);
+            this.Controls.Add(this.createEmployee);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "AdminHome";
@@ -145,8 +157,9 @@ namespace LMS_Final_Project
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ListBox lstContainer;
         private System.Windows.Forms.Button btnLogOut;
-        private System.Windows.Forms.FlowLayoutPanel flowMain;
+        private System.Windows.Forms.FlowLayoutPanel createEmployee;
         private System.Windows.Forms.Button btnStudents;
         private System.Windows.Forms.Button btnEmployees;
+        private System.Windows.Forms.Button button1;
     }
 }

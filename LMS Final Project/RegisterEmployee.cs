@@ -96,6 +96,8 @@ namespace LMS_Final_Project
                     adminBit = 0;
 
                 d.CreateEmployeeAccount(username, password, employeeID, adminBit);
+                MessageBox.Show("Employee Created Successfully");
+                this.Close();
             }
         }
 
