@@ -50,53 +50,53 @@ namespace LMS_Final_Project
                 this.officeNumber = txtOfficeNumber.Text.Trim();
                 this.phone = txtPhone.Text.Trim();
                 this.password = txtPass.Text.Trim();
-            }
 
-            try
-            {
-                d.CreateEmployee(firstName, lastName, email, officeNumber, phone);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-            string username = "";
-            int employeeID = d.GetEmployeeIDbyEmail(email);
-
-            if (txtFname.Text.Length > 12)
-            {
-                for (int i = 0; i < 12; i++)
+                try
                 {
-                    username += firstName.ToCharArray()[i];
+                    d.CreateEmployee(firstName, lastName, email, officeNumber, phone);
                 }
-            }
-            else
-            {
-                username += firstName;
-            }
-
-            username += ".";
-
-            if (txtLname.Text.Length > 12)
-            {
-                for (int i = 0; i < 12; i++)
+                catch (Exception ex)
                 {
-                    username += lastName.ToCharArray()[i];
+                    MessageBox.Show(ex.Message);
                 }
-            }
-            else
-            {
-                username += lastName;
-            }
 
-            int adminBit = 0;
-            if (admin == true)
-                adminBit = 1;
-            else if (admin == false)
-                adminBit = 0;
+                string username = "";
+                int employeeID = d.GetEmployeeIDbyEmail(email);
 
-            d.CreateEmployeeAccount(username, password, employeeID, adminBit);
+                if (txtFname.Text.Length > 12)
+                {
+                    for (int i = 0; i < 12; i++)
+                    {
+                        username += firstName.ToCharArray()[i];
+                    }
+                }
+                else
+                {
+                    username += firstName;
+                }
+
+                username += ".";
+
+                if (txtLname.Text.Length > 12)
+                {
+                    for (int i = 0; i < 12; i++)
+                    {
+                        username += lastName.ToCharArray()[i];
+                    }
+                }
+                else
+                {
+                    username += lastName;
+                }
+
+                int adminBit = 0;
+                if (admin == true)
+                    adminBit = 1;
+                else if (admin == false)
+                    adminBit = 0;
+
+                d.CreateEmployeeAccount(username, password, employeeID, adminBit);
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

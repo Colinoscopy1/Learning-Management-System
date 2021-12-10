@@ -301,7 +301,8 @@ namespace LMS_Final_Project
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show(ex.ToString());
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+                
             }
             finally
             {
@@ -727,13 +728,18 @@ namespace LMS_Final_Project
 
         public void RemoveStudentEntirely(Student student)
         {
-            string FName = student.FName;
+            int ID = student.studentID;
 
-            string RemoveEmployeeQuery = $@"Delete From Students Where FName = @student";
+            string RemoveStudentQuery = $@"
+                                           Delete From StudentAccounts where studentID = @student;
+                                           Delete From ClassRoster where studentID = @student;
+                                           Delete From HandIns where studentID = @student;
+                                           Delete From StudentGrades where studentID = @student;
+                                           Delete From Students Where studentID = @student";
 
             conn = new SqlConnection(connectionString);
-            SqlCommand cmd = new SqlCommand(RemoveEmployeeQuery, conn);
-            cmd.Parameters.AddWithValue("@student", FName);
+            SqlCommand cmd = new SqlCommand(RemoveStudentQuery, conn);
+            cmd.Parameters.AddWithValue("@student", ID);
 
             try
             {
@@ -750,13 +756,14 @@ namespace LMS_Final_Project
             }
         }
 
-        public void RemoveStudentFromClass(int studentID)
+        public void RemoveStudentFromClass(int studentID, Course course)
         {
-            string addStudentQuery = $@"Delete From ClassRoster Where studentID = @studentID";
-
+            string addStudentQuery = $@"Delete From ClassRoster Where studentID = @studentID and Class = @class";
+            string courseID = course.GetCourseId();
             conn = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand(addStudentQuery, conn);
             cmd.Parameters.AddWithValue("@studentID", studentID);
+            cmd.Parameters.AddWithValue("@class", courseID);
 
             try
             {

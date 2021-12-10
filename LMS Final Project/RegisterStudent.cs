@@ -40,7 +40,7 @@ namespace LMS_Final_Project
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            if(txtPass.Text != txtConfirmPass.Text)
+            if (txtPass.Text != txtConfirmPass.Text)
             {
                 MessageBox.Show("Passwords do not match, try again");
                 txtPass.Clear();
@@ -53,51 +53,51 @@ namespace LMS_Final_Project
                 this.email = txtEmail.Text;
                 this.phone = txtPhone.Text;
                 this.password = txtPass.Text;
-            }
 
-            try
-            {
-                d.CreateStudent(firstName, lastName, email, phone);
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-            int studentID = d.GetStudentIdbyEmail(email);
-            string username = "";
-
-            if (txtFname.Text.Length > 12)
-            {
-                for (int i = 0; i < 12; i++)
+                try
                 {
-                    username += txtFname.Text.Trim().ToCharArray()[i];
+                    d.CreateStudent(firstName, lastName, email, phone);
                 }
-            }
-            else
-            {
-                username += txtFname.Text.Trim();
-            }
-
-            username += ".";
-
-            if (txtLname.Text.Length > 12)
-            {
-                for (int i = 0; i < 12; i++)
+                catch (Exception ex)
                 {
-                    username += txtLname.Text.Trim().ToCharArray()[i];
+                    MessageBox.Show(ex.Message);
                 }
+
+                int studentID = d.GetStudentIdbyEmail(email);
+                string username = "";
+
+                if (txtFname.Text.Length > 12)
+                {
+                    for (int i = 0; i < 12; i++)
+                    {
+                        username += txtFname.Text.Trim().ToCharArray()[i];
+                    }
+                }
+                else
+                {
+                    username += txtFname.Text.Trim();
+                }
+
+                username += ".";
+
+                if (txtLname.Text.Length > 12)
+                {
+                    for (int i = 0; i < 12; i++)
+                    {
+                        username += txtLname.Text.Trim().ToCharArray()[i];
+                    }
+                }
+                else
+                {
+                    username += txtLname.Text.Trim();
+                }
+
+                d.CreateStudentAccount(studentID, username, password);
+
+                string tmp = d.GetStudentUsernameByEmail(email);
+
+                MessageBox.Show("Your username is: " + tmp);
             }
-            else
-            {
-                username += txtLname.Text.Trim();
-            }
-
-            d.CreateStudentAccount(studentID, username, password);
-
-            string tmp = d.GetStudentUsernameByEmail(email);
-
-            MessageBox.Show("Your username is: " + tmp);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

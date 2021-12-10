@@ -58,9 +58,17 @@ namespace LMS_Final_Project
         {
             dl.PlaceStudentOnProbation(student);
 
+            if (lblProbation.Text == "On Probation")
+            {
+                lblProbation.Text = "Not on Probation";
+                student.Academic_Probation = false;
+            }
+            else
+            {
+                lblProbation.Text = "On Probation";
+                student.Academic_Probation = true;
+            }
             
-            
-
             lstClasses.DataSource = dl.GetEnrolledClasses(student.studentID);
         }
 
@@ -72,17 +80,23 @@ namespace LMS_Final_Project
             else
                 MessageBox.Show("Student is Already Approved");
 
-            if (student.is_Approved == false)
-                approved = "Not Approved";
-            else if (student.is_Approved == true)
-                approved = "Approved";
+            if(lblApproval.Text == "Not Approved")
+            {
+                lblApproval.Text = "Approved";
+                student.is_Approved = true;
+            }
 
-            lblApproval.Text = approved;
-            lblEmail.Text = student.email;
-            lblFirstName.Text = student.FName + " " + student.LName;
-            lblPhone.Text = student.phone;
-            lblProbation.Text = probation;
+            lblApproval.Refresh();
 
+            
+
+            lstClasses.DataSource = dl.GetEnrolledClasses(student.studentID);
+        }
+
+        private void btnRemoveFromClass_Click(object sender, EventArgs e)
+        {
+            Course course = (Course)lstClasses.SelectedItem;
+            dl.RemoveStudentFromClass(student.studentID, course);
             lstClasses.DataSource = dl.GetEnrolledClasses(student.studentID);
         }
     }

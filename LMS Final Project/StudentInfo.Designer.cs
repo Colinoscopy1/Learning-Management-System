@@ -46,6 +46,7 @@ namespace LMS_Final_Project
             this.btnProbation = new System.Windows.Forms.Button();
             this.btnApprove = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRemoveFromClass = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblName
@@ -217,10 +218,21 @@ namespace LMS_Final_Project
             this.panel1.Size = new System.Drawing.Size(841, 60);
             this.panel1.TabIndex = 31;
             // 
+            // btnRemoveFromClass
+            // 
+            this.btnRemoveFromClass.Location = new System.Drawing.Point(690, 433);
+            this.btnRemoveFromClass.Name = "btnRemoveFromClass";
+            this.btnRemoveFromClass.Size = new System.Drawing.Size(136, 40);
+            this.btnRemoveFromClass.TabIndex = 32;
+            this.btnRemoveFromClass.Text = "Remove Student From Class";
+            this.btnRemoveFromClass.UseVisualStyleBackColor = true;
+            this.btnRemoveFromClass.Click += new System.EventHandler(this.btnRemoveFromClass_Click);
+            // 
             // StudentInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnRemoveFromClass);
             this.Controls.Add(this.btnApprove);
             this.Controls.Add(this.btnProbation);
             this.Controls.Add(this.lblProbation);
@@ -264,5 +276,6 @@ namespace LMS_Final_Project
         private System.Windows.Forms.Button btnProbation;
         private System.Windows.Forms.Button btnApprove;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnRemoveFromClass;
     }
 }

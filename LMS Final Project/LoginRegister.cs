@@ -63,6 +63,7 @@ namespace LMS_Final_Project
                 else
                 {
                     MessageBox.Show("Username or password is incorrect.");
+                    return;
                 }
             }
             //if the account is a student
@@ -81,6 +82,7 @@ namespace LMS_Final_Project
                     else
                     {
                         MessageBox.Show("Username or password is incorrect.");
+                        return;
                     }
                 }
                 else
