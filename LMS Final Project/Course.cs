@@ -12,11 +12,7 @@ namespace LMS_Final_Project
         private string _RoomNumber;
         private int _InstructorID;
         private int _ProgramID;
-        //add a list of posts here
-        //not sure about these
-        private DateTime _classTime;
-        private int _classFrequency;
-        private int _classDuration;
+
 
         public Course(string classNum, string className, string building, string roomNum, int instructorID, int programID)
         {
@@ -36,6 +32,31 @@ namespace LMS_Final_Project
         public string GetCourseId()
         {
             return this._ClassNumber;
+        }
+
+        public string GetCourseName()
+        {
+            return this._ClassName;
+        }
+
+        public int GetCourseInstructorID()
+        {
+            return this._InstructorID;
+        }
+
+        public string GetCourseBuilding()
+        {
+            return this._Building;
+        }
+
+        public string GetCourseRoom()
+        {
+            return this._RoomNumber;
+        }
+
+        public int GetCourseProgram()
+        {
+            return this._ProgramID;
         }
     }
 }

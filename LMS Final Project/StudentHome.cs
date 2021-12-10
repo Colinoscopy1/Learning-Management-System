@@ -77,7 +77,8 @@ namespace LMS_Final_Project
             else if(datasource == "allClasses")
             {
                 flowMain.Controls.Clear();
-                AddDropControl add = new AddDropControl();
+                Course tmp = (Course)lstContainer.SelectedItem;
+                AddDropControl add = new AddDropControl(this, tmp);
                 flowMain.Controls.Add(add);
             }
             

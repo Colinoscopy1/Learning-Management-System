@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Text;
@@ -10,9 +11,51 @@ namespace LMS_Final_Project
 {
     public partial class AddDropControl : UserControl
     {
-        public AddDropControl()
+        StudentHome previousForm;
+        DataLayer d;
+        Course tmp;
+        string serverAddress = ConfigurationManager.AppSettings.Get("server");
+        string databaseName = ConfigurationManager.AppSettings.Get("database");
+        string userID = ConfigurationManager.AppSettings.Get("username");
+        string password = ConfigurationManager.AppSettings.Get("password");
+        string connectionString;
+
+        public AddDropControl(StudentHome prev, Course selected)
         {
             InitializeComponent();
+            previousForm = prev;
+            tmp = selected;
+            connectionString = $"server={serverAddress};database={databaseName};user id={userID};password={password}";
+            d = new DataLayer(connectionString);
+
+            lstEnrolled.DataSource = d.GetEnrolledClasses(previousForm.studentID);
+            if (lstEnrolled.Items.Count >= 6)
+            {
+                btnAdd.Visible = false;
+            }
+            else if (lstEnrolled.Items.Count > 0)
+            {
+                btnDrop.Visible = true;
+            }
+            else
+            {
+                btnDrop.Visible = false;
+            }
+
+            lblClassName.Text = tmp.GetCourseName();
+            lblClassNum.Text = tmp.GetCourseId();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            d.AddStudentToClass(tmp.GetCourseId(), previousForm.studentID);
+            lstEnrolled.DataSource = null;
+            lstEnrolled.DataSource = d.GetEnrolledClasses(previousForm.studentID);
+        }
+
+        private void btnDrop_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
