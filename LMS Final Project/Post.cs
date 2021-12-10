@@ -75,14 +75,20 @@ namespace LMS_Final_Project
             FlowLayoutPanel panel = (this.Parent as FlowLayoutPanel);
             StudentHome parent = (panel.Parent as StudentHome);
 
-            OpenFileDialog op = new OpenFileDialog();
-            op.ShowDialog();
-            File.Copy(op.FileName, Environment.CurrentDirectory + "\\Upload\\" + op.FileName.Split("\\").LastOrDefault());
-            string filePath = "\\Upload\\" + op.FileName.Split("\\").LastOrDefault();
+            try
+            {
+                OpenFileDialog op = new OpenFileDialog();
+                op.ShowDialog();
+                File.Copy(op.FileName, Environment.CurrentDirectory + "\\Upload\\" + op.FileName.Split("\\").LastOrDefault());
+                string filePath = "\\Upload\\" + op.FileName.Split("\\").LastOrDefault();
 
-            d.CreateHandIn(this.id, parent.studentID, filePath, DateTime.Now);
-
-            //SendHandin(this.id, filePath);
+                d.CreateHandIn(this.id, parent.studentID, filePath, DateTime.Now);
+            }
+            catch
+            {
+                MessageBox.Show("File already exists, please rename file.");
+            }
+            
         }
 
         private void lblDueDate_Click(object sender, EventArgs e)

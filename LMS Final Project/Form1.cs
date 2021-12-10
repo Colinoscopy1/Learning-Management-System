@@ -48,12 +48,6 @@ namespace LMS_Final_Project
             rs.ShowDialog();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            RegisterEmployee re = new RegisterEmployee();
-            re.ShowDialog();
-        }
-
         private void btnEmployeeLogin_Click(object sender, EventArgs e)
         {
             LoginRegister lr = new LoginRegister(1);

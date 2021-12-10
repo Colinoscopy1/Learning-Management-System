@@ -31,7 +31,6 @@ namespace LMS_Final_Project
         {
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnRegister = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.grpStudents = new System.Windows.Forms.GroupBox();
             this.grpEmployees = new System.Windows.Forms.GroupBox();
             this.btnEmployeeLogin = new System.Windows.Forms.Button();
@@ -61,16 +60,6 @@ namespace LMS_Final_Project
             this.btnRegister.UseVisualStyleBackColor = true;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(6, 88);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(188, 45);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Employee Register";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // grpStudents
             // 
             this.grpStudents.Controls.Add(this.btnLogin);
@@ -86,7 +75,6 @@ namespace LMS_Final_Project
             // grpEmployees
             // 
             this.grpEmployees.Controls.Add(this.btnEmployeeLogin);
-            this.grpEmployees.Controls.Add(this.button1);
             this.grpEmployees.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.grpEmployees.Location = new System.Drawing.Point(12, 12);
             this.grpEmployees.Name = "grpEmployees";
@@ -125,7 +113,6 @@ namespace LMS_Final_Project
 
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnRegister;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox grpStudents;
         private System.Windows.Forms.GroupBox grpEmployees;
         private System.Windows.Forms.Button btnEmployeeLogin;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -41,24 +42,54 @@ namespace LMS_Final_Project
             if (lstPosts.SelectedItem != null)
             {
                 hand = (HandIn)lstPosts.SelectedItem;
+                lblDetails.Visible = true;
+                btnFile.Visible = true;
+                btnGrade.Visible = true;
                 lblDetails.Text = "Submitted by " + hand.studentName + " on " + hand.submittedDate;
+            }
+            else
+            {
+                lblDetails.Visible = false;
+                btnFile.Visible = false;
+                btnGrade.Visible = false;
             }
         }
 
         private void lstPosts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            hand = (HandIn)lstPosts.SelectedItem;
-
-            lblDetails.Text = "Submitted by " + hand.studentName + " on " + hand.submittedDate;
+            if (lstPosts.SelectedItem != null)
+            {
+                hand = (HandIn)lstPosts.SelectedItem;
+                lblDetails.Visible = true;
+                btnFile.Visible = true;
+                btnGrade.Visible = true;
+                lblDetails.Text = "Submitted by " + hand.studentName + " on " + hand.submittedDate;
+            }
+            else
+            {
+                lblDetails.Visible = false;
+                btnFile.Visible = false;
+                btnGrade.Visible = false;
+            }
         }
 
         private void btnFile_Click(object sender, EventArgs e)
         {
-            //string filepath = Environment.CurrentDirectory + hand.filePath;
-            //string filename = hand.filePath.Split("\\").LastOrDefault();
-            //SaveFileDialog save = new SaveFileDialog();
-            //save.ShowDialog();
-            //File.Copy(filepath, filename);
+            if (lstPosts.SelectedItem != null)
+            {
+                string filepath = Environment.CurrentDirectory + hand.filePath;
+                string filename = hand.filePath.Split("\\").LastOrDefault();
+                SaveFileDialog save = new SaveFileDialog();
+                save.FileName = filename;
+                save.ShowDialog();
+                File.Copy(filepath, save.FileName);
+                Process.Start("explorer.exe", save.FileName);
+            }
+            else
+            {
+                MessageBox.Show("Please select a handin");
+            }
+            
         }
 
         private void btnGrade_Click(object sender, EventArgs e)

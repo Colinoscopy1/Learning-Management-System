@@ -36,9 +36,9 @@ namespace LMS_Final_Project
             this.btnLogOut = new System.Windows.Forms.Button();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.lstContainer = new System.Windows.Forms.ListBox();
             this.createEmployee = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnRefresh = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -82,7 +82,7 @@ namespace LMS_Final_Project
             this.btnEmployees.Name = "btnEmployees";
             this.btnEmployees.Size = new System.Drawing.Size(148, 23);
             this.btnEmployees.TabIndex = 5;
-            this.btnEmployees.Text = "Add/Remove Employee";
+            this.btnEmployees.Text = "View/Remove Employee";
             this.btnEmployees.UseVisualStyleBackColor = true;
             this.btnEmployees.Click += new System.EventHandler(this.btnEmployees_Click);
             // 
@@ -118,6 +118,16 @@ namespace LMS_Final_Project
             this.panel2.Size = new System.Drawing.Size(308, 576);
             this.panel2.TabIndex = 1;
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(13, 9);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(75, 23);
+            this.btnRefresh.TabIndex = 1;
+            this.btnRefresh.Text = "Refresh List";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // lstContainer
             // 
             this.lstContainer.FormattingEnabled = true;
@@ -134,16 +144,6 @@ namespace LMS_Final_Project
             this.createEmployee.Name = "createEmployee";
             this.createEmployee.Size = new System.Drawing.Size(841, 529);
             this.createEmployee.TabIndex = 7;
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Location = new System.Drawing.Point(13, 9);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(75, 23);
-            this.btnRefresh.TabIndex = 1;
-            this.btnRefresh.Text = "Refresh List";
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // AdminHome
             // 

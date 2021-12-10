@@ -30,6 +30,7 @@ namespace LMS_Final_Project
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnGrades = new System.Windows.Forms.Button();
             this.btnYourClasses = new System.Windows.Forms.Button();
             this.btnClasses = new System.Windows.Forms.Button();
             this.btnRegProg = new System.Windows.Forms.Button();
@@ -38,7 +39,6 @@ namespace LMS_Final_Project
             this.panel2 = new System.Windows.Forms.Panel();
             this.lstContainer = new System.Windows.Forms.ListBox();
             this.flowMain = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnGrades = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -56,6 +56,16 @@ namespace LMS_Final_Project
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1185, 50);
             this.panel1.TabIndex = 0;
+            // 
+            // btnGrades
+            // 
+            this.btnGrades.Location = new System.Drawing.Point(794, 11);
+            this.btnGrades.Name = "btnGrades";
+            this.btnGrades.Size = new System.Drawing.Size(148, 23);
+            this.btnGrades.TabIndex = 5;
+            this.btnGrades.Text = "Your Grades";
+            this.btnGrades.UseVisualStyleBackColor = true;
+            this.btnGrades.Click += new System.EventHandler(this.btnGrades_Click);
             // 
             // btnYourClasses
             // 
@@ -130,20 +140,11 @@ namespace LMS_Final_Project
             // 
             // flowMain
             // 
+            this.flowMain.AutoScroll = true;
             this.flowMain.Location = new System.Drawing.Point(330, 86);
             this.flowMain.Name = "flowMain";
             this.flowMain.Size = new System.Drawing.Size(841, 529);
             this.flowMain.TabIndex = 6;
-            // 
-            // btnGrades
-            // 
-            this.btnGrades.Location = new System.Drawing.Point(794, 11);
-            this.btnGrades.Name = "btnGrades";
-            this.btnGrades.Size = new System.Drawing.Size(148, 23);
-            this.btnGrades.TabIndex = 5;
-            this.btnGrades.Text = "Your Grades";
-            this.btnGrades.UseVisualStyleBackColor = true;
-            this.btnGrades.Click += new System.EventHandler(this.btnGrades_Click);
             // 
             // StudentHome
             // 
