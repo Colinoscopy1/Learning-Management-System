@@ -1068,6 +1068,33 @@ namespace LMS_Final_Project
 
             return ret;
         }
+
+        public string GetProgNamebyID(int progID)
+        {
+            string ret = "";
+
+            string namequery = $@"SELECT Program_Name FROM Programs WHERE ProgramID = @id";
+
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(namequery, conn);
+            cmd.Parameters.AddWithValue("@id", progID);
+
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return ret;
+        }
         #endregion
 
         #region posts/handins

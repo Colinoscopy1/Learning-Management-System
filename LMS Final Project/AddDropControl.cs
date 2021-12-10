@@ -44,6 +44,10 @@ namespace LMS_Final_Project
 
             lblClassName.Text = tmp.GetCourseName();
             lblClassNum.Text = tmp.GetCourseId();
+            lblInst.Text = d.GetEmployeeNamebyID(tmp.GetCourseInstructorID());
+            lblBuilding.Text = tmp.GetCourseBuilding();
+            lblRoom.Text = tmp.GetCourseRoom();
+            lblProgram.Text = "testing";
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -55,7 +59,10 @@ namespace LMS_Final_Project
 
         private void btnDrop_Click(object sender, EventArgs e)
         {
-            
+            Course crs = (Course)lstEnrolled.SelectedItem;
+            d.RemoveStudentFromClass(previousForm.studentID, crs);
+            lstEnrolled.DataSource = null;
+            lstEnrolled.DataSource = d.GetEnrolledClasses(previousForm.studentID);
         }
     }
 }

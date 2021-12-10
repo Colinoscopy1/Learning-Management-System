@@ -35,6 +35,13 @@ namespace LMS_Final_Project
             this.lblClassName = new System.Windows.Forms.Label();
             this.lblClassNum = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblInst = new System.Windows.Forms.Label();
+            this.lblBuilding = new System.Windows.Forms.Label();
+            this.lblRoom = new System.Windows.Forms.Label();
+            this.lblProgram = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lstEnrolled
@@ -92,14 +99,91 @@ namespace LMS_Final_Project
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(364, 161);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 21);
+            this.label1.Size = new System.Drawing.Size(80, 21);
             this.label1.TabIndex = 6;
-            this.label1.Text = "ITEC999";
+            this.label1.Text = "Instructor:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(364, 196);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 21);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Building:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(364, 229);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(117, 21);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Room Number:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(364, 461);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(74, 21);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Program:";
+            // 
+            // lblInst
+            // 
+            this.lblInst.AutoSize = true;
+            this.lblInst.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblInst.Location = new System.Drawing.Point(521, 161);
+            this.lblInst.Name = "lblInst";
+            this.lblInst.Size = new System.Drawing.Size(80, 21);
+            this.lblInst.TabIndex = 10;
+            this.lblInst.Text = "Instructor:";
+            // 
+            // lblBuilding
+            // 
+            this.lblBuilding.AutoSize = true;
+            this.lblBuilding.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblBuilding.Location = new System.Drawing.Point(521, 196);
+            this.lblBuilding.Name = "lblBuilding";
+            this.lblBuilding.Size = new System.Drawing.Size(80, 21);
+            this.lblBuilding.TabIndex = 11;
+            this.lblBuilding.Text = "Instructor:";
+            // 
+            // lblRoom
+            // 
+            this.lblRoom.AutoSize = true;
+            this.lblRoom.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblRoom.Location = new System.Drawing.Point(521, 229);
+            this.lblRoom.Name = "lblRoom";
+            this.lblRoom.Size = new System.Drawing.Size(80, 21);
+            this.lblRoom.TabIndex = 12;
+            this.lblRoom.Text = "Instructor:";
+            // 
+            // lblProgram
+            // 
+            this.lblProgram.AutoSize = true;
+            this.lblProgram.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblProgram.Location = new System.Drawing.Point(521, 461);
+            this.lblProgram.Name = "lblProgram";
+            this.lblProgram.Size = new System.Drawing.Size(80, 21);
+            this.lblProgram.TabIndex = 13;
+            this.lblProgram.Text = "Instructor:";
             // 
             // AddDropControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblProgram);
+            this.Controls.Add(this.lblRoom);
+            this.Controls.Add(this.lblBuilding);
+            this.Controls.Add(this.lblInst);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblClassNum);
             this.Controls.Add(this.lblClassName);
@@ -120,5 +204,12 @@ namespace LMS_Final_Project
         private System.Windows.Forms.Label lblClassName;
         private System.Windows.Forms.Label lblClassNum;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblInst;
+        private System.Windows.Forms.Label lblBuilding;
+        private System.Windows.Forms.Label lblRoom;
+        private System.Windows.Forms.Label lblProgram;
     }
 }
