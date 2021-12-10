@@ -107,5 +107,10 @@ namespace LMS_Final_Project
         {
 
         }
+
+        private void btnGrades_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

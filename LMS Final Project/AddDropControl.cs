@@ -47,7 +47,7 @@ namespace LMS_Final_Project
             lblInst.Text = d.GetEmployeeNamebyID(tmp.GetCourseInstructorID());
             lblBuilding.Text = tmp.GetCourseBuilding();
             lblRoom.Text = tmp.GetCourseRoom();
-            lblProgram.Text = "testing";
+            lblProgram.Text = d.GetProgNamebyID(tmp.GetCourseProgram());
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

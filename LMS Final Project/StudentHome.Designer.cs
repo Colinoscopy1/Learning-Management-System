@@ -38,8 +38,7 @@ namespace LMS_Final_Project
             this.panel2 = new System.Windows.Forms.Panel();
             this.lstContainer = new System.Windows.Forms.ListBox();
             this.flowMain = new System.Windows.Forms.FlowLayoutPanel();
-            this.lnklblAdd = new System.Windows.Forms.LinkLabel();
-            this.lnklblDrop = new System.Windows.Forms.LinkLabel();
+            this.btnGrades = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -47,6 +46,7 @@ namespace LMS_Final_Project
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.WindowText;
+            this.panel1.Controls.Add(this.btnGrades);
             this.panel1.Controls.Add(this.btnYourClasses);
             this.panel1.Controls.Add(this.btnClasses);
             this.panel1.Controls.Add(this.btnRegProg);
@@ -69,7 +69,7 @@ namespace LMS_Final_Project
             // 
             // btnClasses
             // 
-            this.btnClasses.Location = new System.Drawing.Point(794, 11);
+            this.btnClasses.Location = new System.Drawing.Point(640, 11);
             this.btnClasses.Name = "btnClasses";
             this.btnClasses.Size = new System.Drawing.Size(148, 23);
             this.btnClasses.TabIndex = 3;
@@ -79,7 +79,7 @@ namespace LMS_Final_Project
             // 
             // btnRegProg
             // 
-            this.btnRegProg.Location = new System.Drawing.Point(640, 11);
+            this.btnRegProg.Location = new System.Drawing.Point(486, 11);
             this.btnRegProg.Name = "btnRegProg";
             this.btnRegProg.Size = new System.Drawing.Size(148, 23);
             this.btnRegProg.TabIndex = 2;
@@ -135,35 +135,21 @@ namespace LMS_Final_Project
             this.flowMain.Size = new System.Drawing.Size(841, 529);
             this.flowMain.TabIndex = 6;
             // 
-            // lnklblAdd
+            // btnGrades
             // 
-            this.lnklblAdd.AutoSize = true;
-            this.lnklblAdd.Location = new System.Drawing.Point(330, 53);
-            this.lnklblAdd.Name = "lnklblAdd";
-            this.lnklblAdd.Size = new System.Drawing.Size(59, 15);
-            this.lnklblAdd.TabIndex = 7;
-            this.lnklblAdd.TabStop = true;
-            this.lnklblAdd.Text = "Add Class";
-            this.lnklblAdd.Visible = false;
-            // 
-            // lnklblDrop
-            // 
-            this.lnklblDrop.AutoSize = true;
-            this.lnklblDrop.Location = new System.Drawing.Point(396, 53);
-            this.lnklblDrop.Name = "lnklblDrop";
-            this.lnklblDrop.Size = new System.Drawing.Size(63, 15);
-            this.lnklblDrop.TabIndex = 8;
-            this.lnklblDrop.TabStop = true;
-            this.lnklblDrop.Text = "Drop Class";
-            this.lnklblDrop.Visible = false;
+            this.btnGrades.Location = new System.Drawing.Point(794, 11);
+            this.btnGrades.Name = "btnGrades";
+            this.btnGrades.Size = new System.Drawing.Size(148, 23);
+            this.btnGrades.TabIndex = 5;
+            this.btnGrades.Text = "Your Grades";
+            this.btnGrades.UseVisualStyleBackColor = true;
+            this.btnGrades.Click += new System.EventHandler(this.btnGrades_Click);
             // 
             // StudentHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1183, 623);
-            this.Controls.Add(this.lnklblDrop);
-            this.Controls.Add(this.lnklblAdd);
             this.Controls.Add(this.flowMain);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
@@ -173,7 +159,6 @@ namespace LMS_Final_Project
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -188,7 +173,6 @@ namespace LMS_Final_Project
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.FlowLayoutPanel flowMain;
         private System.Windows.Forms.ListBox lstContainer;
-        private System.Windows.Forms.LinkLabel lnklblAdd;
-        private System.Windows.Forms.LinkLabel lnklblDrop;
+        private System.Windows.Forms.Button btnGrades;
     }
 }

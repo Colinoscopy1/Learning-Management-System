@@ -29,8 +29,14 @@ namespace LMS_Final_Project
             this.programs = prgrm;
             
             this.home = tmp;
-            lstCourses.DataSource = dl.GetCourseByProgram(prgrm.GetID()); 
+            lstCourses.DataSource = dl.GetCourseByProgram(prgrm.GetID());
 
+            List<Course> crslist = dl.GetEnrolledClasses(home.studentID);
+
+            if (crslist.Count >= 4)
+            {
+                btnRegister.Enabled = false;
+            }
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
@@ -38,6 +44,15 @@ namespace LMS_Final_Project
             foreach (Course tmp in this.programs.GetCourses())
             {
                 dl.AddStudentToClass(tmp.GetCourseId(), home.studentID);
+            }
+
+            lstCourses.DataSource = dl.GetCourseByProgram(programs.GetID());
+
+            List<Course> crslist = dl.GetEnrolledClasses(home.studentID);
+
+            if (crslist.Count >= 4)
+            {
+                btnRegister.Enabled = false;
             }
         }
     }
