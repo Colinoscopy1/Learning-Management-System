@@ -30,14 +30,14 @@ namespace LMS_Final_Project
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnHandin = new System.Windows.Forms.Button();
+            this.btnPosts = new System.Windows.Forms.Button();
+            this.btnClassRoster = new System.Windows.Forms.Button();
+            this.btnLogOut = new System.Windows.Forms.Button();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lstContainer = new System.Windows.Forms.ListBox();
             this.flowMain = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnLogOut = new System.Windows.Forms.Button();
-            this.btnClassRoster = new System.Windows.Forms.Button();
-            this.btnPosts = new System.Windows.Forms.Button();
-            this.btnHandin = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -54,6 +54,44 @@ namespace LMS_Final_Project
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1184, 50);
             this.panel1.TabIndex = 0;
+            // 
+            // btnHandin
+            // 
+            this.btnHandin.Location = new System.Drawing.Point(788, 14);
+            this.btnHandin.Name = "btnHandin";
+            this.btnHandin.Size = new System.Drawing.Size(148, 23);
+            this.btnHandin.TabIndex = 11;
+            this.btnHandin.Text = "View/Grade Handins";
+            this.btnHandin.UseVisualStyleBackColor = true;
+            // 
+            // btnPosts
+            // 
+            this.btnPosts.Location = new System.Drawing.Point(596, 14);
+            this.btnPosts.Name = "btnPosts";
+            this.btnPosts.Size = new System.Drawing.Size(186, 23);
+            this.btnPosts.TabIndex = 10;
+            this.btnPosts.Text = "Manage Posts/Assignments";
+            this.btnPosts.UseVisualStyleBackColor = true;
+            // 
+            // btnClassRoster
+            // 
+            this.btnClassRoster.Location = new System.Drawing.Point(942, 14);
+            this.btnClassRoster.Name = "btnClassRoster";
+            this.btnClassRoster.Size = new System.Drawing.Size(148, 23);
+            this.btnClassRoster.TabIndex = 9;
+            this.btnClassRoster.Text = "Your Class Rosters";
+            this.btnClassRoster.UseVisualStyleBackColor = true;
+            this.btnClassRoster.Click += new System.EventHandler(this.btnClassRoster_Click);
+            // 
+            // btnLogOut
+            // 
+            this.btnLogOut.Location = new System.Drawing.Point(1096, 14);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(75, 23);
+            this.btnLogOut.TabIndex = 9;
+            this.btnLogOut.Text = "Log Out";
+            this.btnLogOut.UseVisualStyleBackColor = true;
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
             // lblWelcome
             // 
@@ -84,6 +122,7 @@ namespace LMS_Final_Project
             this.lstContainer.Name = "lstContainer";
             this.lstContainer.Size = new System.Drawing.Size(268, 529);
             this.lstContainer.TabIndex = 0;
+            this.lstContainer.SelectedIndexChanged += new System.EventHandler(this.lstContainer_SelectedIndexChanged);
             // 
             // flowMain
             // 
@@ -91,44 +130,6 @@ namespace LMS_Final_Project
             this.flowMain.Name = "flowMain";
             this.flowMain.Size = new System.Drawing.Size(841, 529);
             this.flowMain.TabIndex = 8;
-            // 
-            // btnLogOut
-            // 
-            this.btnLogOut.Location = new System.Drawing.Point(1096, 14);
-            this.btnLogOut.Name = "btnLogOut";
-            this.btnLogOut.Size = new System.Drawing.Size(75, 23);
-            this.btnLogOut.TabIndex = 9;
-            this.btnLogOut.Text = "Log Out";
-            this.btnLogOut.UseVisualStyleBackColor = true;
-            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
-            // 
-            // btnClassRoster
-            // 
-            this.btnClassRoster.Location = new System.Drawing.Point(942, 14);
-            this.btnClassRoster.Name = "btnClassRoster";
-            this.btnClassRoster.Size = new System.Drawing.Size(148, 23);
-            this.btnClassRoster.TabIndex = 9;
-            this.btnClassRoster.Text = "Your Class Rosters";
-            this.btnClassRoster.UseVisualStyleBackColor = true;
-            this.btnClassRoster.Click += new System.EventHandler(this.btnClassRoster_Click);
-            // 
-            // btnPosts
-            // 
-            this.btnPosts.Location = new System.Drawing.Point(596, 14);
-            this.btnPosts.Name = "btnPosts";
-            this.btnPosts.Size = new System.Drawing.Size(186, 23);
-            this.btnPosts.TabIndex = 10;
-            this.btnPosts.Text = "Manage Posts/Assignments";
-            this.btnPosts.UseVisualStyleBackColor = true;
-            // 
-            // btnHandin
-            // 
-            this.btnHandin.Location = new System.Drawing.Point(788, 14);
-            this.btnHandin.Name = "btnHandin";
-            this.btnHandin.Size = new System.Drawing.Size(148, 23);
-            this.btnHandin.TabIndex = 11;
-            this.btnHandin.Text = "View/Grade Handins";
-            this.btnHandin.UseVisualStyleBackColor = true;
             // 
             // InstructorHome
             // 

@@ -14,6 +14,10 @@ namespace LMS_Final_Project
         public string userName;
         public int employeeID;
         DataLayer d;
+        string datasource = "";
+
+        List<Student> student;
+
         string serverAddress = ConfigurationManager.AppSettings.Get("server");
         string databaseName = ConfigurationManager.AppSettings.Get("database");
         string userID = ConfigurationManager.AppSettings.Get("username");
@@ -33,11 +37,6 @@ namespace LMS_Final_Project
             lblWelcome.Text = "Welcome, " + employeeName + "!";
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void btnLogOut_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -45,8 +44,15 @@ namespace LMS_Final_Project
 
         private void btnClassRoster_Click(object sender, EventArgs e)
         {
+            datasource = "Class Roster";
             lstContainer.DataSource = null;
             lstContainer.DataSource = d.GetClassesbyInstructor(employeeID);
+        }
+
+        private void lstContainer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Course crs = (Course)lstContainer.SelectedItem;
+            InstructorRoster inst = new InstructorRoster(crs);
         }
     }
 }
