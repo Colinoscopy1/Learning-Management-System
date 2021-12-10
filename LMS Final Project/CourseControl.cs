@@ -37,6 +37,21 @@ namespace LMS_Final_Project
             {
                 btnRegister.Enabled = false;
             }
+
+            List<Course> enrolled = dl.GetEnrolledClasses(home.studentID);
+
+            if (enrolled.Count >= 6)
+            {
+                btnClassEnroll.Visible = false;
+            }
+            else if (enrolled.Count > 0)
+            {
+                btnClassEnroll.Visible = true;
+            }
+            else
+            {
+                btnClassEnroll.Visible = false;
+            }
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
@@ -53,6 +68,44 @@ namespace LMS_Final_Project
             if (crslist.Count >= 4)
             {
                 btnRegister.Enabled = false;
+            }
+        }
+
+        private void btnClassEnroll_Click(object sender, EventArgs e)
+        {
+            
+            Course crs = (Course)lstCourses.SelectedItem;
+
+            dl.AddStudentToClass(crs.GetCourseId(), home.studentID);
+            MessageBox.Show("Class Enrollment Successful");
+        }
+
+        private void lstCourses_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Course crs = (Course)lstCourses.SelectedItem;
+
+            string instructor = dl.GetEmployeeNamebyID(crs.GetCourseInstructorID());
+
+            lblBuilding.Text = crs.GetCourseBuilding();
+            lblClassName.Text = crs.GetCourseName();
+            lblClassNum.Text = crs.GetCourseId();
+            lblInst.Text = instructor;
+            lblProgram.Text = crs.GetCourseProgram().ToString();
+            lblRoom.Text = crs.GetCourseRoom();
+
+            List<Course> enrolled = dl.GetEnrolledClasses(home.studentID);
+
+            if (enrolled.Count >= 6)
+            {
+                btnClassEnroll.Visible = false;
+            }
+            else if (enrolled.Count > 0)
+            {
+                btnClassEnroll.Visible = true;
+            }
+            else
+            {
+                btnClassEnroll.Visible = false;
             }
         }
     }

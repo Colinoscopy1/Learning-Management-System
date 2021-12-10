@@ -47,6 +47,7 @@ namespace LMS_Final_Project
             this.btnApprove = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnRemoveFromClass = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // lblName
@@ -137,7 +138,7 @@ namespace LMS_Final_Project
             this.lstClasses.ItemHeight = 15;
             this.lstClasses.Location = new System.Drawing.Point(15, 96);
             this.lstClasses.Name = "lstClasses";
-            this.lstClasses.Size = new System.Drawing.Size(262, 424);
+            this.lstClasses.Size = new System.Drawing.Size(262, 364);
             this.lstClasses.TabIndex = 14;
             // 
             // label1
@@ -220,13 +221,21 @@ namespace LMS_Final_Project
             // 
             // btnRemoveFromClass
             // 
-            this.btnRemoveFromClass.Location = new System.Drawing.Point(690, 433);
+            this.btnRemoveFromClass.Location = new System.Drawing.Point(262, 479);
             this.btnRemoveFromClass.Name = "btnRemoveFromClass";
             this.btnRemoveFromClass.Size = new System.Drawing.Size(136, 40);
             this.btnRemoveFromClass.TabIndex = 32;
             this.btnRemoveFromClass.Text = "Remove Student From Class";
             this.btnRemoveFromClass.UseVisualStyleBackColor = true;
             this.btnRemoveFromClass.Click += new System.EventHandler(this.btnRemoveFromClass_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Black;
+            this.panel2.Location = new System.Drawing.Point(0, 474);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(850, 55);
+            this.panel2.TabIndex = 33;
             // 
             // StudentInfo
             // 
@@ -250,6 +259,7 @@ namespace LMS_Final_Project
             this.Controls.Add(this.lstClasses);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel2);
             this.Name = "StudentInfo";
             this.Size = new System.Drawing.Size(841, 529);
             this.ResumeLayout(false);
@@ -277,5 +287,6 @@ namespace LMS_Final_Project
         private System.Windows.Forms.Button btnApprove;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnRemoveFromClass;
+        private System.Windows.Forms.Panel panel2;
     }
 }

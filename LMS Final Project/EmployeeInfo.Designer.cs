@@ -42,6 +42,8 @@ namespace LMS_Final_Project
             this.label4 = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -60,7 +62,7 @@ namespace LMS_Final_Project
             this.lstClasses.ItemHeight = 15;
             this.lstClasses.Location = new System.Drawing.Point(4, 92);
             this.lstClasses.Name = "lstClasses";
-            this.lstClasses.Size = new System.Drawing.Size(262, 424);
+            this.lstClasses.Size = new System.Drawing.Size(262, 379);
             this.lstClasses.TabIndex = 1;
             // 
             // lblFirstName
@@ -117,7 +119,7 @@ namespace LMS_Final_Project
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(679, 475);
+            this.btnRemove.Location = new System.Drawing.Point(693, 3);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(136, 40);
             this.btnRemove.TabIndex = 8;
@@ -173,6 +175,15 @@ namespace LMS_Final_Project
             this.panel1.Size = new System.Drawing.Size(841, 56);
             this.panel1.TabIndex = 13;
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Black;
+            this.panel2.Controls.Add(this.btnRemove);
+            this.panel2.Location = new System.Drawing.Point(0, 475);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(841, 54);
+            this.panel2.TabIndex = 14;
+            // 
             // EmployeeInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -181,7 +192,6 @@ namespace LMS_Final_Project
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.lblPhone);
             this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.lblOfficeNumber);
@@ -190,8 +200,10 @@ namespace LMS_Final_Project
             this.Controls.Add(this.lstClasses);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel2);
             this.Name = "EmployeeInfo";
             this.Size = new System.Drawing.Size(841, 529);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -212,5 +224,6 @@ namespace LMS_Final_Project
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }
