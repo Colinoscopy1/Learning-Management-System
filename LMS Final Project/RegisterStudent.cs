@@ -97,6 +97,8 @@ namespace LMS_Final_Project
                 string tmp = d.GetStudentUsernameByEmail(email);
 
                 MessageBox.Show("Your username is: " + tmp);
+
+                this.Close();
             }
         }
 
