@@ -1098,6 +1098,34 @@ namespace LMS_Final_Project
 
             return ret;
         }
+
+        public string GetFinalGradebyStudentID(int studentID, string classnum)
+        {
+            string ret = "";
+
+            string finalgradequery = $@"SELECT Grade FROM StudentGrades WHERE StudentID = @id AND Class_Num = @class";
+
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(finalgradequery, conn);
+            cmd.Parameters.AddWithValue("@id", studentID);
+            cmd.Parameters.AddWithValue("@class", classnum);
+
+            try
+            {
+                conn.Open();
+                ret = cmd.ExecuteScalar().ToString();
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return ret;
+        }
         #endregion
 
         #region posts/handins
@@ -1217,6 +1245,31 @@ namespace LMS_Final_Project
             cmd.Parameters.AddWithValue("@graded", graded);
             cmd.Parameters.AddWithValue("@post", postID);
             cmd.Parameters.AddWithValue("@student", studentID);
+
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public void SetStudentFinalGrade(int studentID, string classID, string grade)
+        {
+            string finalgrade = $@"UPDATE StudentGrades SET [Grade] = @grade WHERE StudentID = @id AND Class_Num = @class";
+
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(finalgrade, conn);
+            cmd.Parameters.AddWithValue("@grade", grade);
+            cmd.Parameters.AddWithValue("@id", studentID);
+            cmd.Parameters.AddWithValue("@class", classID);
 
             try
             {

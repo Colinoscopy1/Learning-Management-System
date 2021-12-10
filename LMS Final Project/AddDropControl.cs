@@ -48,6 +48,14 @@ namespace LMS_Final_Project
             lblBuilding.Text = tmp.GetCourseBuilding();
             lblRoom.Text = tmp.GetCourseRoom();
             lblProgram.Text = d.GetProgNamebyID(tmp.GetCourseProgram());
+
+            Course crs = (Course)lstEnrolled.SelectedItem;
+            string grade = d.GetFinalGradebyStudentID(previousForm.studentID, crs.GetCourseId());
+
+            if (grade != "" && grade != "W")
+                btnDrop.Enabled = false;
+            else
+                btnDrop.Enabled = true;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -63,6 +71,17 @@ namespace LMS_Final_Project
             d.RemoveStudentFromClass(previousForm.studentID, crs);
             lstEnrolled.DataSource = null;
             lstEnrolled.DataSource = d.GetEnrolledClasses(previousForm.studentID);
+        }
+
+        private void lstEnrolled_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Course crs = (Course)lstEnrolled.SelectedItem;
+            string grade = d.GetFinalGradebyStudentID(previousForm.studentID, crs.GetCourseId());
+
+            if (grade != "" && grade != "W")
+                btnDrop.Enabled = false;
+            else
+                btnDrop.Enabled = true;
         }
     }
 }

@@ -29,23 +29,23 @@ namespace LMS_Final_Project
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.lstPosts = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
-            // listBox1
+            // lstPosts
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(13, 60);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(244, 454);
-            this.listBox1.TabIndex = 0;
+            this.lstPosts.FormattingEnabled = true;
+            this.lstPosts.ItemHeight = 15;
+            this.lstPosts.Location = new System.Drawing.Point(13, 60);
+            this.lstPosts.Name = "lstPosts";
+            this.lstPosts.Size = new System.Drawing.Size(244, 454);
+            this.lstPosts.TabIndex = 0;
             // 
             // StudentGradesControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.lstPosts);
             this.Name = "StudentGradesControl";
             this.Size = new System.Drawing.Size(841, 529);
             this.ResumeLayout(false);
@@ -54,6 +54,6 @@ namespace LMS_Final_Project
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox lstPosts;
     }
 }

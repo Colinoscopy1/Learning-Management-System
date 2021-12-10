@@ -52,6 +52,7 @@ namespace LMS_Final_Project
             this.lstEnrolled.Name = "lstEnrolled";
             this.lstEnrolled.Size = new System.Drawing.Size(323, 409);
             this.lstEnrolled.TabIndex = 1;
+            this.lstEnrolled.SelectedIndexChanged += new System.EventHandler(this.lstEnrolled_SelectedIndexChanged);
             // 
             // btnDrop
             // 
