@@ -1226,7 +1226,7 @@ namespace LMS_Final_Project
         {
             List<string[]> ret = new List<string[]>();
 
-            string getungradedhandins = $@"SELECT Convert(varchar, (p.Post_ID),1) + '|'+ h.StudentID +'|' + h.FilePath FROM HandIns h JOIN Posts p ON h.Post_ID = p.Post_ID WHERE h.Grae is null AND 
+            string getungradedhandins = $@"SELECT Convert(varchar, (p.Post_ID),1) + '|'+ h.StudentID +'|' + h.FilePath FROM HandIns h JOIN Posts p ON h.Post_ID = p.Post_ID WHERE h.Grade is null AND 
                                                     AND p.Class = @class";
 
             conn = new SqlConnection(connectionString);
