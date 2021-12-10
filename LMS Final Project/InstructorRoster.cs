@@ -25,6 +25,7 @@ namespace LMS_Final_Project
         public InstructorRoster(Course course)
         {
             InitializeComponent();
+            
             string connectionString = $"server={serverAddress};database={databaseName};user id={userID};password={password}";
             dl = new DataLayer(connectionString);
             this.crs = course;

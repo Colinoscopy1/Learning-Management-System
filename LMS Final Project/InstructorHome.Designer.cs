@@ -63,6 +63,7 @@ namespace LMS_Final_Project
             this.btnHandin.TabIndex = 11;
             this.btnHandin.Text = "View/Grade Handins";
             this.btnHandin.UseVisualStyleBackColor = true;
+            this.btnHandin.Click += new System.EventHandler(this.btnHandin_Click);
             // 
             // btnPosts
             // 
@@ -72,6 +73,7 @@ namespace LMS_Final_Project
             this.btnPosts.TabIndex = 10;
             this.btnPosts.Text = "Manage Posts/Assignments";
             this.btnPosts.UseVisualStyleBackColor = true;
+            this.btnPosts.Click += new System.EventHandler(this.btnPosts_Click);
             // 
             // btnClassRoster
             // 

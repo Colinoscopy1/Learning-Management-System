@@ -44,16 +44,45 @@ namespace LMS_Final_Project
 
         private void btnClassRoster_Click(object sender, EventArgs e)
         {
+            btnClassRoster.Enabled = false;
             datasource = "Class Roster";
-            lstContainer.DataSource = null;
+            flowMain.Controls.Clear();
             lstContainer.DataSource = d.GetClassesbyInstructor(employeeID);
+            
         }
 
         private void lstContainer_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Course crs = (Course)lstContainer.SelectedItem;
-            InstructorRoster inst = new InstructorRoster(crs);
-            flowMain.Controls.Add(inst);
+            if (datasource == "Class Roster")
+            {
+                flowMain.Controls.Clear();
+                Course crs = (Course)lstContainer.SelectedItem;
+                InstructorRoster inst = new InstructorRoster(crs);
+                flowMain.Controls.Add(inst);
+            }
+            else if (datasource == "Hand Ins")
+            {
+                flowMain.Controls.Clear();
+            }
+            else if(datasource == "Posts")
+            {
+                flowMain.Controls.Clear();
+            }
+        }
+
+        private void btnHandin_Click(object sender, EventArgs e)
+        {
+            datasource = "Hand Ins";
+            btnClassRoster.Enabled = true;
+
+            lstContainer.DataSource = null;
+        }
+
+        private void btnPosts_Click(object sender, EventArgs e)
+        {
+            datasource = "Posts";
+            btnClassRoster.Enabled = true;
+            lstContainer.DataSource = null;
         }
     }
 }

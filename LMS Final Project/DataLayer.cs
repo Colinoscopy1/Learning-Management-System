@@ -951,11 +951,11 @@ namespace LMS_Final_Project
             return ret;
         }
 
-        public List<string> GetStudentsFromRoster(string classNum)
+        public List<Student> GetStudentsFromRoster(string classNum)
         {
-            List<string> ret = new List<string>();
+            List<Student> ret = new List<Student>();
 
-            string rosterquery = $@"SELECT s.FName +' '+ s.LName [FullName] FROM ClassRoster r JOIN Students s ON r.StudentID = s.StudentID WHERE r.Class = @num";
+            string rosterquery = $@"SELECT s.* FROM ClassRoster r JOIN Students s ON r.StudentID = s.StudentID WHERE r.Class = @num";
 
             conn = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand(rosterquery, conn);
@@ -970,7 +970,16 @@ namespace LMS_Final_Project
                 {
                     while (reader.Read())
                     {
-                        string tmp = reader.GetString(0);
+                        int studentID = reader.GetInt32(0);
+                        string FName = reader.GetString(1);
+                        string LName = reader.GetString(2);
+                        string Email = reader.GetString(3);
+                        string Phone = reader.GetString(4);
+                        bool Approved = reader.GetBoolean(5);
+                        bool probation = reader.GetBoolean(6);
+
+                        Student tmp = new Student(studentID, FName, LName, Email, Phone, Approved, probation);
+
                         ret.Add(tmp);
                     }
                 }
