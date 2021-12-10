@@ -1046,7 +1046,8 @@ namespace LMS_Final_Project
         {
             List<Post> ret = new List<Post>();
 
-            string postquery = $@"SELECT Post_ID +'|'+ Post_Title +'|'+ Post_Body +'|'+ Is_Assignment +'|'+ Due_Date [PostDetails] FROM Posts WHERE Class = @class";
+            string postquery = $@"SELECT Convert(varchar, (Post_ID),1) +'|'+ Post_Title +'|'+ Post_Body +'|'+ Convert(varchar, (Is_Assignment),1) +'|'+ 
+                                    Convert(varchar, (Due_Date),1) [PostDetails] FROM Posts WHERE Class = @class";
 
             conn = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand(postquery, conn);
@@ -1069,7 +1070,7 @@ namespace LMS_Final_Project
                         DateTime due;
                         if (assign == 1)
                         {
-                            due = DateTime.Parse(tmp.Split("|")[3]);
+                            due = DateTime.Parse(tmp.Split("|")[4]);
                             Post pst = new Post(id, title, body, assign, due, classNumber);
                             ret.Add(pst);
                         }
@@ -1095,7 +1096,7 @@ namespace LMS_Final_Project
 
         public void CreateHandIn(int postId, int studentID, string filePath, DateTime submitted)
         {
-            string makehandinquery = $@"INSERT INTO HandIns VALUES (@postid, @studentid, @filepath, @submitted)";
+            string makehandinquery = $@"INSERT INTO HandIns ([Post_ID], [StudentID], [FilePath], [Submitted]) VALUES (@postid, @studentid, @filepath, @submitted)";
 
             conn = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand(makehandinquery, conn);

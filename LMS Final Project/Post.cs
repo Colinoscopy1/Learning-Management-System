@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -18,9 +19,18 @@ namespace LMS_Final_Project
         public delegate void CreateHandin(int postID, string filePath);
         public CreateHandin SendHandin;
 
+        string serverAddress = ConfigurationManager.AppSettings.Get("server");
+        string databaseName = ConfigurationManager.AppSettings.Get("database");
+        string userID = ConfigurationManager.AppSettings.Get("username");
+        string password = ConfigurationManager.AppSettings.Get("password");
+        string connectionString;
+
         public Post(int id, string title, string body, int isAssignment, DateTime dueDate, string classNumber)
         {
             InitializeComponent();
+            connectionString = $"server={serverAddress};database={databaseName};user id={userID};password={password}";
+            d = new DataLayer(connectionString);
+
             lblTitle.Text = title;
             lblBody.Text = body;
             lblDueDate.Text = dueDate.ToShortDateString();
@@ -62,7 +72,8 @@ namespace LMS_Final_Project
 
         private void btnHandin_Click(object sender, EventArgs e)
         {
-            StudentHome parent = (this.Parent as StudentHome);
+            FlowLayoutPanel panel = (this.Parent as FlowLayoutPanel);
+            StudentHome parent = (panel.Parent as StudentHome);
 
             OpenFileDialog op = new OpenFileDialog();
             op.ShowDialog();
