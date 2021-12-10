@@ -24,6 +24,8 @@ namespace LMS_Final_Project
         string password = ConfigurationManager.AppSettings.Get("password");
         string connectionString;
 
+        Course course;
+
         public InstructorHome(string username)
         {
             InitializeComponent();
@@ -33,6 +35,8 @@ namespace LMS_Final_Project
             d = new DataLayer(connectionString);
             employeeID = d.GetEmployeeIDbyUsername(userName);
             string employeeName = d.GetEmployeeNamebyID(employeeID);
+
+            
 
             lblWelcome.Text = "Welcome, " + employeeName + "!";
         }
@@ -63,6 +67,7 @@ namespace LMS_Final_Project
             {
                 flowMain.Controls.Clear();
                 btnAddPost.Visible = false;
+                Course crs = (Course)lstContainer.SelectedItem;
                 InstructorHandIns handins = new InstructorHandIns();
                 flowMain.Controls.Add(handins);
             }
@@ -70,8 +75,12 @@ namespace LMS_Final_Project
             {
                 flowMain.Controls.Clear();
                 btnAddPost.Visible = true;
-                InstructorPosts posts = new InstructorPosts();
-                flowMain.Controls.Add(posts);
+                Course crs = (Course)lstContainer.SelectedItem;
+                foreach (Post post in d.GetPostsbyClass(crs.GetCourseId()))
+                {
+                    flowMain.Controls.Add(post);
+                }
+                
             }
         }
 
@@ -87,6 +96,13 @@ namespace LMS_Final_Project
             datasource = "Posts";
             btnClassRoster.Enabled = true;
             lstContainer.DataSource = d.GetClassesbyInstructor(employeeID);
+        }
+
+        private void btnAddPost_Click(object sender, EventArgs e)
+        {
+            Course course = (Course)lstContainer.SelectedItem;
+            CreatePost post = new CreatePost(course);
+            post.ShowDialog();
         }
     }
 }

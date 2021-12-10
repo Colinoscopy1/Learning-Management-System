@@ -53,7 +53,7 @@ namespace LMS_Final_Project
             this.panel1.Controls.Add(this.lblWelcome);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1184, 50);
+            this.panel1.Size = new System.Drawing.Size(1184, 42);
             this.panel1.TabIndex = 0;
             // 
             // btnHandin
@@ -129,20 +129,22 @@ namespace LMS_Final_Project
             // 
             // flowMain
             // 
-            this.flowMain.Location = new System.Drawing.Point(330, 86);
+            this.flowMain.AutoScroll = true;
+            this.flowMain.Location = new System.Drawing.Point(314, 75);
             this.flowMain.Name = "flowMain";
-            this.flowMain.Size = new System.Drawing.Size(841, 529);
+            this.flowMain.Size = new System.Drawing.Size(857, 540);
             this.flowMain.TabIndex = 8;
             // 
             // btnAddPost
             // 
-            this.btnAddPost.Location = new System.Drawing.Point(1096, 57);
+            this.btnAddPost.Location = new System.Drawing.Point(314, 48);
             this.btnAddPost.Name = "btnAddPost";
             this.btnAddPost.Size = new System.Drawing.Size(75, 23);
             this.btnAddPost.TabIndex = 9;
             this.btnAddPost.Text = "Add Post";
             this.btnAddPost.UseVisualStyleBackColor = true;
             this.btnAddPost.Visible = false;
+            this.btnAddPost.Click += new System.EventHandler(this.btnAddPost_Click);
             // 
             // InstructorHome
             // 
