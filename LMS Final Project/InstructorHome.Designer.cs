@@ -38,6 +38,7 @@ namespace LMS_Final_Project
             this.panel2 = new System.Windows.Forms.Panel();
             this.lstContainer = new System.Windows.Forms.ListBox();
             this.flowMain = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnAddPost = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -133,11 +134,22 @@ namespace LMS_Final_Project
             this.flowMain.Size = new System.Drawing.Size(841, 529);
             this.flowMain.TabIndex = 8;
             // 
+            // btnAddPost
+            // 
+            this.btnAddPost.Location = new System.Drawing.Point(1096, 57);
+            this.btnAddPost.Name = "btnAddPost";
+            this.btnAddPost.Size = new System.Drawing.Size(75, 23);
+            this.btnAddPost.TabIndex = 9;
+            this.btnAddPost.Text = "Add Post";
+            this.btnAddPost.UseVisualStyleBackColor = true;
+            this.btnAddPost.Visible = false;
+            // 
             // InstructorHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1183, 623);
+            this.Controls.Add(this.btnAddPost);
             this.Controls.Add(this.flowMain);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
@@ -161,5 +173,6 @@ namespace LMS_Final_Project
         private System.Windows.Forms.Button btnHandin;
         private System.Windows.Forms.Button btnPosts;
         private System.Windows.Forms.Button btnClassRoster;
+        private System.Windows.Forms.Button btnAddPost;
     }
 }
