@@ -676,13 +676,16 @@ namespace LMS_Final_Project
 
         public void RemoveEmployee(Employee employee)
         {
-            string FName = employee.FName;
+            int ID = employee.employeeID;
 
-            string RemoveEmployeeQuery = $@"Delete From Employees Where FName = @employee";
+            string RemoveEmployeeQuery = $@"
+                Delete From EmployeeAccounts Where EmployeeID = @ID;
+                Delete From Employees Where EmployeeID = @ID";
 
             conn = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand(RemoveEmployeeQuery, conn);
-            cmd.Parameters.AddWithValue("@employee", FName);
+            cmd.Parameters.AddWithValue("@ID", ID);
+
 
             try
             {

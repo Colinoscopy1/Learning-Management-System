@@ -39,6 +39,7 @@ namespace LMS_Final_Project
         private void btnRemove_Click(object sender, EventArgs e)
         {
             dl.RemoveEmployee(employee);
+            lstClasses.DataSource = dl.GetClassesbyInstructor(employee.employeeID);
         }
     }
 }

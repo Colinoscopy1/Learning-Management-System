@@ -60,19 +60,24 @@ namespace LMS_Final_Project
 
         private void lstContainer_SelectedIndexChanged(object sender, EventArgs e)
         {
-            employee = lstContainer.SelectedItem.ToString();
+            
 
             if (datasource == "Employees")
             {
                 createEmployee.Controls.Clear();
                 EmployeeInfo emi = new EmployeeInfo((Employee)lstContainer.SelectedItem);
                 createEmployee.Controls.Add(emi);
+                employee = lstContainer.SelectedItem.ToString();
             }
             else if (datasource == "Students")
             {
                 createEmployee.Controls.Clear();
                 StudentInfo stdnti = new StudentInfo((Student)lstContainer.SelectedItem);
                 createEmployee.Controls.Add(stdnti);
+            }
+            else
+            {
+                createEmployee.Controls.Clear();
             }
            
 
@@ -87,6 +92,26 @@ namespace LMS_Final_Project
         {
             RegisterEmployee rgstr = new RegisterEmployee();
             rgstr.ShowDialog();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            string tmp = datasource;
+
+            datasource = "";
+            
+            lstContainer.DataSource = null;
+
+            if (tmp == "Employees")
+            {
+                emply = d.GetAllEmployees();
+                lstContainer.DataSource = emply;
+            }
+            else
+            {
+                stdnt = d.GetAllStudents();
+                lstContainer.DataSource = stdnt;
+            }
         }
     }
 }
