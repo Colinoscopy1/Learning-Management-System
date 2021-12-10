@@ -955,7 +955,7 @@ namespace LMS_Final_Project
         {
             List<string> ret = new List<string>();
 
-            string rosterquery = $@"SELECT s.FirstName +' '+ s.LastName [FullName] FROM ClassRoster r JOIN Students s ON r.StudentID = s.StudentID WHERE r.Class = @num";
+            string rosterquery = $@"SELECT s.FName +' '+ s.LName [FullName] FROM ClassRoster r JOIN Students s ON r.StudentID = s.StudentID WHERE r.Class = @num";
 
             conn = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand(rosterquery, conn);
@@ -1194,6 +1194,42 @@ namespace LMS_Final_Project
                             Post pst = new Post(id, title, body, assign, classNumber);
                             ret.Add(pst);
                         }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return ret;
+        }
+
+        public List<string> GetGradedHandins(int studentID)
+        {
+            List<string> ret = new List<string>();
+
+            string getPostsbyGraded = $@"SELECT Convert(varchar, (p.Post_ID),1) +'|'+ p.Post_Title FROM HandIns h JOIN Posts p ON h.Post_ID = p.Post_ID WHERE h.Grade is not null AND h.StudentID = @id";
+
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(getPostsbyGraded, conn);
+            cmd.Parameters.AddWithValue("@id", studentID);
+
+            try
+            {
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        string tmp = reader.GetString(0);
+                        ret.Add(tmp);
                     }
                 }
             }

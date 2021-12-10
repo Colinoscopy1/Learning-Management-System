@@ -36,9 +36,9 @@ namespace LMS_Final_Project
             // 
             this.lstPosts.FormattingEnabled = true;
             this.lstPosts.ItemHeight = 15;
-            this.lstPosts.Location = new System.Drawing.Point(13, 60);
+            this.lstPosts.Location = new System.Drawing.Point(13, 105);
             this.lstPosts.Name = "lstPosts";
-            this.lstPosts.Size = new System.Drawing.Size(244, 454);
+            this.lstPosts.Size = new System.Drawing.Size(244, 349);
             this.lstPosts.TabIndex = 0;
             // 
             // StudentGradesControl
