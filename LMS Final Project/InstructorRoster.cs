@@ -20,6 +20,8 @@ namespace LMS_Final_Project
 
         DataLayer dl;
 
+        Student student;
+
         public InstructorRoster(Course course)
         {
             InitializeComponent();
@@ -30,6 +32,16 @@ namespace LMS_Final_Project
             
         }
 
+        private void lstStudents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            student = (Student)lstStudents.SelectedItem;
 
+            lblApproval.Text = student.is_Approved.ToString();
+            lblEmail.Text = student.email;
+            lblPhone.Text = student.phone;
+            lblProbation.Text = student.Academic_Probation.ToString();
+            lblStudentID.Text = student.studentID.ToString();
+
+        }
     }
 }

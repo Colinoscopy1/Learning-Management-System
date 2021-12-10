@@ -31,6 +31,7 @@ namespace LMS_Final_Project
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnFinalGrade = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lstStudents = new System.Windows.Forms.ListBox();
             this.lblProbation = new System.Windows.Forms.Label();
@@ -43,7 +44,6 @@ namespace LMS_Final_Project
             this.lblPhone = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
             this.lblStudentID = new System.Windows.Forms.Label();
-            this.btnFinalGrade = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,6 +65,15 @@ namespace LMS_Final_Project
             this.panel2.Size = new System.Drawing.Size(841, 56);
             this.panel2.TabIndex = 1;
             // 
+            // btnFinalGrade
+            // 
+            this.btnFinalGrade.Location = new System.Drawing.Point(725, 20);
+            this.btnFinalGrade.Name = "btnFinalGrade";
+            this.btnFinalGrade.Size = new System.Drawing.Size(113, 33);
+            this.btnFinalGrade.TabIndex = 39;
+            this.btnFinalGrade.Text = "Assign Final Grade";
+            this.btnFinalGrade.UseVisualStyleBackColor = true;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -82,6 +91,7 @@ namespace LMS_Final_Project
             this.lstStudents.Name = "lstStudents";
             this.lstStudents.Size = new System.Drawing.Size(246, 379);
             this.lstStudents.TabIndex = 3;
+            this.lstStudents.SelectedIndexChanged += new System.EventHandler(this.lstStudents_SelectedIndexChanged);
             // 
             // lblProbation
             // 
@@ -182,15 +192,6 @@ namespace LMS_Final_Project
             this.lblStudentID.Size = new System.Drawing.Size(45, 40);
             this.lblStudentID.TabIndex = 29;
             this.lblStudentID.Text = "ID";
-            // 
-            // btnFinalGrade
-            // 
-            this.btnFinalGrade.Location = new System.Drawing.Point(725, 20);
-            this.btnFinalGrade.Name = "btnFinalGrade";
-            this.btnFinalGrade.Size = new System.Drawing.Size(113, 33);
-            this.btnFinalGrade.TabIndex = 39;
-            this.btnFinalGrade.Text = "Assign Final Grade";
-            this.btnFinalGrade.UseVisualStyleBackColor = true;
             // 
             // InstructorRoster
             // 

@@ -75,13 +75,16 @@ namespace LMS_Final_Project
 
         private void lstEnrolled_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Course crs = (Course)lstEnrolled.SelectedItem;
-            string grade = d.GetFinalGradebyStudentID(previousForm.studentID, crs.GetCourseId());
+            if (lstEnrolled.SelectedItem != null)
+            {
+                Course crs = (Course)lstEnrolled.SelectedItem;
+                string grade = d.GetFinalGradebyStudentID(previousForm.studentID, crs.GetCourseId());
 
-            if (grade != "" && grade != "W")
-                btnDrop.Enabled = false;
-            else
-                btnDrop.Enabled = true;
+                if (grade != "" && grade != "W")
+                    btnDrop.Enabled = false;
+                else
+                    btnDrop.Enabled = true;
+            }
         }
     }
 }

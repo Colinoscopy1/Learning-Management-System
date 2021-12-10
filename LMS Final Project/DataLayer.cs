@@ -1112,8 +1112,12 @@ namespace LMS_Final_Project
 
             try
             {
+
                 conn.Open();
-                ret = cmd.ExecuteScalar().ToString();
+                if (cmd.ExecuteScalar() != null)
+                    ret = cmd.ExecuteScalar().ToString();
+                else
+                    ret = "";
             }
             catch
             {

@@ -53,6 +53,7 @@ namespace LMS_Final_Project
         {
             Course crs = (Course)lstContainer.SelectedItem;
             InstructorRoster inst = new InstructorRoster(crs);
+            flowMain.Controls.Add(inst);
         }
     }
 }
