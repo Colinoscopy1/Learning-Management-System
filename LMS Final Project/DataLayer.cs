@@ -1222,6 +1222,46 @@ namespace LMS_Final_Project
             return ret;
         }
 
+        public List<string[]> GetUngradedHandins(string classNum)
+        {
+            List<string[]> ret = new List<string[]>();
+
+            string getungradedhandins = $@"SELECT Convert(varchar, (p.Post_ID),1) + '|'+ h.StudentID +'|' + h.FilePath FROM HandIns h JOIN Posts p ON h.Post_ID = p.Post_ID WHERE h.Grae is null AND 
+                                                    AND p.Class = @class";
+
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(getungradedhandins, conn);
+            cmd.Parameters.AddWithValue("@class", classNum);
+
+            try
+            {
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        string tmp = reader.GetString(0);
+
+                        string[] deets = tmp.Split("|");
+
+                        ret.Add(deets);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return ret;
+        }
+
         public List<string> GetGradedHandins(int studentID, string classNum)
         {
             List<string> ret = new List<string>();
