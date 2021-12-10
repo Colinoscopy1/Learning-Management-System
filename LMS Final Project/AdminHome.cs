@@ -33,7 +33,7 @@ namespace LMS_Final_Project
 
             d = new DataLayer(connectionString);
             employeeID = d.GetEmployeeIDbyUsername(userName);
-            string employeeName = d.GetStudentNamebyID(employeeID);
+            string employeeName = d.GetEmployeeNamebyID(employeeID);
 
             lblWelcome.Text = "Welcome, " + employeeName + "!";
         }
