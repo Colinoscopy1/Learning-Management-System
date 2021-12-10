@@ -14,6 +14,7 @@ namespace LMS_Final_Project
         public string userName;
         public int employeeID;
         string datasource = "";
+        string employee = "";
         
         DataLayer d;
         List<Student> stdnt;
@@ -59,20 +60,27 @@ namespace LMS_Final_Project
 
         private void lstContainer_SelectedIndexChanged(object sender, EventArgs e)
         {
+            employee = lstContainer.SelectedItem.ToString();
+
             if (datasource == "Employees")
             {
                 flowMain.Controls.Clear();
-                EmployeeInfo emi = new EmployeeInfo();
+                EmployeeInfo emi = new EmployeeInfo((Employee)lstContainer.SelectedItem);
                 flowMain.Controls.Add(emi);
             }
             else if (datasource == "Students")
             {
                 flowMain.Controls.Clear();
-                StudentInfo stdnti = new StudentInfo();
+                StudentInfo stdnti = new StudentInfo((Student)lstContainer.SelectedItem);
                 flowMain.Controls.Add(stdnti);
             }
            
 
+        }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

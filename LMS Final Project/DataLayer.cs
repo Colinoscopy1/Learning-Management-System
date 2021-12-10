@@ -672,6 +672,31 @@ namespace LMS_Final_Project
 
             return ret;
         }
+
+        public void RemoveEmployee(Employee employee)
+        {
+            string FName = employee.FName;
+
+            string RemoveEmployeeQuery = $@"Delete From Employees Where FName = @employee";
+
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(RemoveEmployeeQuery, conn);
+            cmd.Parameters.AddWithValue("@employee", FName);
+
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
         #endregion
 
         #region Class Stuff
@@ -698,6 +723,31 @@ namespace LMS_Final_Project
                 conn.Close();
             }
 
+        }
+
+        public void RemoveStudentEntirely(Student student)
+        {
+            string FName = student.FName;
+
+            string RemoveEmployeeQuery = $@"Delete From Students Where FName = @student";
+
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(RemoveEmployeeQuery, conn);
+            cmd.Parameters.AddWithValue("@student", FName);
+
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         public void RemoveStudentFromClass(int studentID)
@@ -1149,6 +1199,37 @@ namespace LMS_Final_Project
         #endregion
 
         #region admin controls
+
+        public void PlaceStudentOnProbation(Student student)
+        {
+            int tmp;
+
+            if (student.Academic_Probation == true)
+                tmp = 0;
+            else
+                tmp = 1;
+
+            string probateStudent = $@"UPDATE Students SET Academic_Probation = @status WHERE StudentID = @id";
+
+            conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(probateStudent, conn);
+            cmd.Parameters.AddWithValue("@id", student.studentID);
+            cmd.Parameters.AddWithValue("@status", tmp);
+
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
 
         public List<string> GetPendingStudents()
         {
