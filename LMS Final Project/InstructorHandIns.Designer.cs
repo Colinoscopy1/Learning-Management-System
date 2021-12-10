@@ -88,7 +88,7 @@ namespace LMS_Final_Project
             // 
             // txtGrade
             // 
-            this.txtGrade.Location = new System.Drawing.Point(501, 333);
+            this.txtGrade.Location = new System.Drawing.Point(629, 126);
             this.txtGrade.Name = "txtGrade";
             this.txtGrade.Size = new System.Drawing.Size(64, 23);
             this.txtGrade.TabIndex = 6;
@@ -105,7 +105,7 @@ namespace LMS_Final_Project
             // 
             // btnGrade
             // 
-            this.btnGrade.Location = new System.Drawing.Point(571, 332);
+            this.btnGrade.Location = new System.Drawing.Point(699, 125);
             this.btnGrade.Name = "btnGrade";
             this.btnGrade.Size = new System.Drawing.Size(113, 23);
             this.btnGrade.TabIndex = 8;
@@ -116,7 +116,7 @@ namespace LMS_Final_Project
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(454, 336);
+            this.label2.Location = new System.Drawing.Point(582, 129);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 15);
             this.label2.TabIndex = 9;
