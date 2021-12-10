@@ -45,6 +45,8 @@ namespace LMS_Final_Project
                 lblDetails.Visible = true;
                 btnFile.Visible = true;
                 btnGrade.Visible = true;
+                label2.Visible = true;
+                txtGrade.Visible = true;
                 lblDetails.Text = "Submitted by " + hand.studentName + " on " + hand.submittedDate;
             }
             else
@@ -52,6 +54,8 @@ namespace LMS_Final_Project
                 lblDetails.Visible = false;
                 btnFile.Visible = false;
                 btnGrade.Visible = false;
+                label2.Visible = false;
+                txtGrade.Visible = false;
             }
         }
 
@@ -63,6 +67,8 @@ namespace LMS_Final_Project
                 lblDetails.Visible = true;
                 btnFile.Visible = true;
                 btnGrade.Visible = true;
+                label2.Visible = true;
+                txtGrade.Visible = true;
                 lblDetails.Text = "Submitted by " + hand.studentName + " on " + hand.submittedDate;
             }
             else
@@ -70,6 +76,8 @@ namespace LMS_Final_Project
                 lblDetails.Visible = false;
                 btnFile.Visible = false;
                 btnGrade.Visible = false;
+                label2.Visible = false;
+                txtGrade.Visible = false;
             }
         }
 
@@ -77,13 +85,20 @@ namespace LMS_Final_Project
         {
             if (lstPosts.SelectedItem != null)
             {
-                string filepath = Environment.CurrentDirectory + hand.filePath;
-                string filename = hand.filePath.Split("\\").LastOrDefault();
-                SaveFileDialog save = new SaveFileDialog();
-                save.FileName = filename;
-                save.ShowDialog();
-                File.Copy(filepath, save.FileName);
-                Process.Start("explorer.exe", save.FileName);
+                try
+                {
+                    string filepath = Environment.CurrentDirectory + hand.filePath;
+                    string filename = hand.filePath.Split("\\").LastOrDefault();
+                    SaveFileDialog save = new SaveFileDialog();
+                    save.FileName = filename;
+                    save.ShowDialog();
+                    File.Copy(filepath, save.FileName);
+                    Process.Start("explorer.exe", save.FileName);
+                }
+                catch
+                {
+
+                }
             }
             else
             {
